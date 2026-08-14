@@ -62,6 +62,51 @@ test('mobile navigation opens and page has no horizontal overflow', async ({ pag
   expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client)
 })
 
+test('the potential concept is complete, interactive, and directly addressable', async ({ page }) => {
+  const errors: string[] = []
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text())
+  })
+  page.on('pageerror', (error) => errors.push(error.message))
+
+  await page.goto('/potential/')
+
+  await expect(page).toHaveURL(/\/potential\/$/)
+  await expect(page).toHaveTitle('A Knew Knowledge | Ideas for a Conscious Future')
+  await expect(page.getByRole('heading', { name: /Remember differently/i })).toBeVisible()
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://aknewknowledge.com/potential/')
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://aknewknowledge.com/potential/')
+  await expect(page.getByRole('img', { name: /Cover of A Knew Knowledge/i })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Jarrod Womack/ })).toHaveAttribute('href', 'mailto:jarrod.womack@aknewknowledge.com')
+  await expect(page.getByRole('link', { name: /Javell Samuel/ })).toHaveAttribute('href', 'mailto:javellsamuel@aknewknowledge.com')
+
+  const readTab = page.getByRole('tab', { name: /Read/ })
+  const listenTab = page.getByRole('tab', { name: /Listen/ })
+  await expect(page.getByRole('tabpanel', { name: /Read/ })).toBeVisible()
+  await listenTab.click()
+  await expect(readTab).toHaveAttribute('aria-selected', 'false')
+  await expect(page.getByRole('tabpanel', { name: /Listen/ })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Apple Books/ })).toBeVisible()
+
+  expect(errors).toEqual([])
+})
+
+test('the potential concept navigation works without mobile overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 })
+  await page.goto('/potential/')
+
+  const menu = page.getByRole('button', { name: 'Open navigation' })
+  await menu.click()
+  await expect(page.getByRole('navigation', { name: 'Mobile navigation' })).toBeVisible()
+  await page.keyboard.press('Escape')
+  const closedMenu = page.getByRole('button', { name: 'Open navigation' })
+  await expect(closedMenu).toHaveAttribute('aria-expanded', 'false')
+  await expect(closedMenu).toBeFocused()
+
+  const dimensions = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }))
+  expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client)
+})
+
 test('all major sections remain visible at a constrained viewport', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 568 })
   await page.goto('/')
