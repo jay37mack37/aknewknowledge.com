@@ -22,6 +22,8 @@ test('renders the complete landing page and interactive links', async ({ page })
   await expect(page.getByRole('link', { name: /Hoopla/ })).toBeVisible()
   await expect(page.getByRole('link', { name: /Smashwords/ })).toBeVisible()
   await expect(page.getByRole('link', { name: /Fable/ })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Jarrod Womack/ })).toHaveAttribute('href', 'mailto:jarrod.womack@aknewknowledge.com')
+  await expect(page.getByRole('link', { name: /Javell Samuel/ })).toHaveAttribute('href', 'mailto:javellsamuel@aknewknowledge.com')
 
   await page.getByRole('tab', { name: /Listen/ }).click()
   await expect(page.getByRole('link', { name: /Apple Books/ })).toBeVisible()
@@ -48,7 +50,7 @@ test('all major sections remain visible at a constrained viewport', async ({ pag
   await page.setViewportSize({ width: 320, height: 568 })
   await page.goto('/')
 
-  for (const selector of ['#mission', '#book', '#work', '#community']) {
+  for (const selector of ['#mission', '#book', '#work', '#community', '#contact']) {
     const section = page.locator(selector)
     await section.scrollIntoViewIfNeeded()
     await expect(section).toBeVisible()

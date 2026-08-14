@@ -1,11 +1,12 @@
 import './style.css'
 
-const icon = (name: 'arrow' | 'book' | 'code' | 'headphones' | 'menu' | 'close') => {
+const icon = (name: 'arrow' | 'book' | 'code' | 'headphones' | 'mail' | 'menu' | 'close') => {
   const paths = {
     arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
     book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13Z"/><path d="M8 7h8M8 11h6"/>',
     code: '<path d="m8 9-3 3 3 3m8-6 3 3-3 3m-3-9-2 12"/>',
     headphones: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M18 19h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v4a3 3 0 0 1-3 3ZM6 19H5a3 3 0 0 1-3-3v-4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2Z"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     close: '<path d="m6 6 12 12M18 6 6 18"/>',
   }
@@ -32,6 +33,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
       <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a class="nav-cta" href="#book">Read the book</a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation">${icon('menu')}</button>
@@ -40,6 +42,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
       <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -166,13 +169,34 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
       </div>
     </section>
+
+    <section class="contact section-shell" id="contact">
+      <div class="section-number">03</div>
+      <div class="contact-heading">
+        <p class="section-label">Start a conversation</p>
+        <h2>Have an inquiry?<br><em>Talk to the founders.</em></h2>
+        <p>For business opportunities, partnerships, press, or questions about the website, contact the creators and co-founders of A Knew Knowledge LLC.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:jarrod.womack@aknewknowledge.com">
+          <span class="contact-icon">${icon('mail')}</span>
+          <span><strong>Jarrod Womack</strong><small>jarrod.womack@aknewknowledge.com</small></span>
+          ${icon('arrow')}
+        </a>
+        <a href="mailto:javellsamuel@aknewknowledge.com">
+          <span class="contact-icon">${icon('mail')}</span>
+          <span><strong>Javell Samuel</strong><small>javellsamuel@aknewknowledge.com</small></span>
+          ${icon('arrow')}
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="section-shell footer-grid">
       <a class="brand footer-brand" href="#top"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
       <p>Remember differently.<br>Build intentionally.</p>
-      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
+      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
       <small>© <span id="year"></span> A Knew Knowledge LLC</small>
     </div>
   </footer>

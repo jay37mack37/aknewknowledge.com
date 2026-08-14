@@ -131,6 +131,17 @@ h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; }
 .profile-links span { font: 500 19px/1 'Manrope'; }
 .profile-links small { color: var(--muted); }
 
+.contact { position: relative; padding-block: 130px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 110px; align-items: end; }
+.contact-heading h2 { margin: 0; font: 500 clamp(46px, 5.5vw, 76px)/1 'Manrope'; letter-spacing: -.065em; }
+.contact-heading > p:last-child { max-width: 560px; margin: 36px 0 0; color: var(--muted); line-height: 1.7; }
+.contact-links { border-top: 1px solid var(--line); }
+.contact-links a { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; padding: 26px 4px; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding 160ms ease, background 160ms ease; }
+.contact-links a:hover { padding-inline: 14px; background: rgba(255,255,255,.45); }
+.contact-links strong, .contact-links small { display: block; }
+.contact-links strong { margin-bottom: 6px; font: 500 18px/1.2 'Manrope'; }
+.contact-links small { color: var(--muted); font-size: 12px; }
+.contact-icon { display: grid; place-items: center; width: 42px; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; }
+
 footer { background: var(--ink); color: white; }
 .footer-grid { min-height: 290px; padding-block: 55px 35px; display: grid; grid-template-columns: 1fr 1fr auto; grid-template-rows: 1fr auto; gap: 30px; }
 .footer-brand .brand-mark { color: var(--ink); background: var(--acid); }
@@ -172,8 +183,9 @@ footer { background: var(--ink); color: white; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card { border-right: 1px solid var(--line); border-bottom: 0; }
   .work-card:last-child { border-bottom: 1px solid var(--line); }
+  .contact { grid-template-columns: 1fr; gap: 60px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-links { grid-column: 1 / -1; }
+  .footer-links { grid-column: 1 / -1; flex-wrap: wrap; }
 }
 
 @media (max-width: 560px) {
@@ -200,6 +212,11 @@ footer { background: var(--ink); color: white; }
   .work-card { min-height: 400px; padding: 25px; }
   .community-inner { padding-block: 95px; }
   .community h2 { font-size: 52px; }
+  .contact { padding-block: 95px; gap: 48px; }
+  .contact-heading h2 { font-size: 46px; }
+  .contact-links a { gap: 12px; padding-block: 22px; }
+  .contact-links small { font-size: 10px; overflow-wrap: anywhere; }
+  .contact-icon { width: 38px; }
   .discord-card { grid-template-columns: auto 1fr; padding: 18px; }
   .discord-icon { width: 44px; }
   .discord-action { grid-column: 2; }
