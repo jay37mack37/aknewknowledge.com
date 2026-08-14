@@ -18,12 +18,10 @@ npm run build
 npm test
 ```
 
-## Porkbun deployment
+## Production deployment
 
-1. Run `npm run build`.
-2. Open the Porkbun web hosting dashboard for `aknewknowledge.com`.
-3. Upload the contents of `dist/` to the domain's document root.
-4. Confirm that `index.html`, `assets/`, `favicon.svg`, `robots.txt`, and `sitemap.xml` are served from the root.
-5. Enable HTTPS and redirect HTTP traffic to HTTPS in the hosting dashboard.
+Pushes to `main` are checked, built, and deployed automatically through GitHub Actions and GitHub Pages.
+The Porkbun DNS configuration points the apex domain and `www` to GitHub Pages.
+GitHub Pages provides and renews the TLS certificate for both hostnames.
 
-Only the generated `dist/` contents need to be hosted.
+The production site is available at [https://aknewknowledge.com](https://aknewknowledge.com).
