@@ -93,7 +93,7 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
       entry.target.classList.add('is-visible')
       observer.unobserve(entry.target)
     })
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
+  }, { rootMargin: '120px 0px 80px', threshold: 0.04 })
 
   reveals.forEach((element) => revealObserver.observe(element))
 }

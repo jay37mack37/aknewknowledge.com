@@ -37,7 +37,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </nav>
     <a class="nav-cta" href="#book">Read the book</a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation">${icon('menu')}</button>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
       <a href="#mission">Mission</a>
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
@@ -204,20 +204,41 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 const menuButton = document.querySelector<HTMLButtonElement>('.menu-button')!
 const mobileNav = document.querySelector<HTMLElement>('.mobile-nav')!
+const siteHeader = document.querySelector<HTMLElement>('.site-header')!
+
+const setMainMenu = (open: boolean, returnFocus = false) => {
+  menuButton.setAttribute('aria-expanded', String(open))
+  menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation')
+  menuButton.innerHTML = icon(open ? 'close' : 'menu')
+  mobileNav.hidden = !open
+  mobileNav.classList.toggle('open', open)
+  document.body.classList.toggle('menu-open', open)
+
+  if (open) mobileNav.querySelector<HTMLAnchorElement>('a')?.focus()
+  if (!open && returnFocus) menuButton.focus()
+}
+
 menuButton.addEventListener('click', () => {
-  const open = menuButton.getAttribute('aria-expanded') === 'true'
-  menuButton.setAttribute('aria-expanded', String(!open))
-  menuButton.setAttribute('aria-label', open ? 'Open navigation' : 'Close navigation')
-  menuButton.innerHTML = icon(open ? 'menu' : 'close')
-  mobileNav.classList.toggle('open', !open)
+  setMainMenu(menuButton.getAttribute('aria-expanded') !== 'true')
 })
 
-mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  menuButton.setAttribute('aria-expanded', 'false')
-  menuButton.setAttribute('aria-label', 'Open navigation')
-  menuButton.innerHTML = icon('menu')
-  mobileNav.classList.remove('open')
-}))
+mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMainMenu(false)))
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+    setMainMenu(false, true)
+  }
+})
+
+document.addEventListener('pointerdown', (event) => {
+  if (menuButton.getAttribute('aria-expanded') === 'true' && !siteHeader.contains(event.target as Node)) {
+    setMainMenu(false)
+  }
+})
+
+window.matchMedia('(min-width: 901px)').addEventListener('change', ({ matches }) => {
+  if (matches) setMainMenu(false)
+})
 
 const formatTabs = [...document.querySelectorAll<HTMLButtonElement>('.format-tab')]
 const formatPanels = [...document.querySelectorAll<HTMLElement>('.retailers')]

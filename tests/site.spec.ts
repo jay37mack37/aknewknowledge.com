@@ -107,6 +107,34 @@ test('the potential concept navigation works without mobile overflow', async ({ 
   expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client)
 })
 
+test('both mobile designs remain polished in portrait and short landscape', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 })
+  await page.goto('/potential/')
+
+  const headlineRight = await page.locator('h1').evaluate((heading) => {
+    const range = document.createRange()
+    range.selectNodeContents(heading)
+    return range.getBoundingClientRect().right
+  })
+  expect(headlineRight).toBeLessThanOrEqual(375)
+
+  await page.setViewportSize({ width: 844, height: 390 })
+  await page.goto('/')
+  await expect(page.locator('h1')).toBeInViewport({ ratio: 1 })
+  const mainMenuButton = page.getByRole('button', { name: 'Open navigation' })
+  await mainMenuButton.click()
+  await expect(page.locator('body')).toHaveCSS('overflow', 'hidden')
+  await page.keyboard.press('Escape')
+  await expect(mainMenuButton).toBeFocused()
+  await expect(mainMenuButton).toHaveAttribute('aria-expanded', 'false')
+
+  await page.goto('/potential/')
+  await expect(page.locator('h1')).toBeInViewport({ ratio: 1 })
+  await page.getByRole('button', { name: 'Open navigation' }).click()
+  await expect(page.locator('body')).toHaveCSS('overflow', 'hidden')
+  await expect(page.getByRole('link', { name: /Read or listen/ })).toBeInViewport({ ratio: 1 })
+})
+
 test('all major sections remain visible at a constrained viewport', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 568 })
   await page.goto('/')
