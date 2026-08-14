@@ -91,6 +91,7 @@ h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; }
 .format-tab { display: flex; align-items: center; gap: 8px; padding: 14px 22px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #92978e; cursor: pointer; font-size: 12px; }
 .format-tab.active { color: white; border-bottom-color: var(--acid); }
 .retailers { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px; }
+.retailers[hidden] { display: none; }
 .retailers a { display: flex; align-items: center; gap: 11px; padding: 11px 14px; border: 1px solid #454943; color: #e7e8e1; text-decoration: none; font-size: 12px; transition: border-color 160ms, background 160ms; }
 .retailers a:hover { border-color: var(--acid); background: #292d28; }
 .book-meta { display: flex; align-items: center; gap: 10px; margin-top: 25px; color: #797e76; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }

@@ -98,10 +98,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <blockquote>“You were never meant to fit in.<br>You were meant to remember.”</blockquote>
           <p>A concise nonfiction journey that pulls back the curtain on a world that feels familiar but never quite made sense. It offers fewer conclusions and sharper questions, revealing not something new, but something forgotten.</p>
           <div class="format-tabs" role="tablist" aria-label="Book formats">
-            <button class="format-tab active" type="button" role="tab" aria-selected="true" data-format="read">${icon('book')} Read</button>
-            <button class="format-tab" type="button" role="tab" aria-selected="false" data-format="listen">${icon('headphones')} Listen</button>
+            <button class="format-tab active" id="read-tab" type="button" role="tab" aria-selected="true" aria-controls="read-panel" data-format="read">${icon('book')} Read</button>
+            <button class="format-tab" id="listen-tab" type="button" role="tab" aria-selected="false" aria-controls="listen-panel" tabindex="-1" data-format="listen">${icon('headphones')} Listen</button>
           </div>
-          <div class="retailers active" data-panel="read">
+          <div class="retailers active" id="read-panel" role="tabpanel" aria-labelledby="read-tab" data-panel="read">
             ${externalLink('https://www.amazon.com/Knew-knowedge-Samuel-Anderson-ebook/dp/B0F8X9XV7H', 'Amazon Kindle')}
             ${externalLink('https://www.amazon.com/dp/B0FHG1M453', 'Amazon Paperback')}
             ${externalLink('https://www.kobo.com/us/en/ebook/a-knew-knowledge', 'Kobo')}
@@ -111,7 +111,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             ${externalLink('https://www.smashwords.com/books/view/1771132', 'Smashwords')}
             ${externalLink('https://fable.co/book/x-9798231249114', 'Fable')}
           </div>
-          <div class="retailers" data-panel="listen" hidden>
+          <div class="retailers" id="listen-panel" role="tabpanel" aria-labelledby="listen-tab" data-panel="listen" hidden>
             ${externalLink('https://books.apple.com/us/audiobook/a-knew-knowledge/id1887498382', 'Apple Books')}
             ${externalLink('https://play.google.com/store/audiobooks/details/A_Knew_Knowledge?id=AQAAAEBa2EOYCM&hl=en_US', 'Google Play')}
             ${externalLink('https://www.kobo.com/us/en/audiobook/knew-knowledge-a', 'Kobo')}
@@ -219,18 +219,35 @@ mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click',
   mobileNav.classList.remove('open')
 }))
 
-document.querySelectorAll<HTMLButtonElement>('.format-tab').forEach((tab) => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll<HTMLButtonElement>('.format-tab').forEach((item) => {
-      const active = item === tab
-      item.classList.toggle('active', active)
-      item.setAttribute('aria-selected', String(active))
-    })
-    document.querySelectorAll<HTMLElement>('.retailers').forEach((panel) => {
-      const active = panel.dataset.panel === tab.dataset.format
-      panel.classList.toggle('active', active)
-      panel.hidden = !active
-    })
+const formatTabs = [...document.querySelectorAll<HTMLButtonElement>('.format-tab')]
+const formatPanels = [...document.querySelectorAll<HTMLElement>('.retailers')]
+
+const activateFormat = (tab: HTMLButtonElement, moveFocus = false) => {
+  formatTabs.forEach((item) => {
+    const active = item === tab
+    item.classList.toggle('active', active)
+    item.setAttribute('aria-selected', String(active))
+    item.tabIndex = active ? 0 : -1
+  })
+  formatPanels.forEach((panel) => {
+    const active = panel.dataset.panel === tab.dataset.format
+    panel.classList.toggle('active', active)
+    panel.hidden = !active
+  })
+  if (moveFocus) tab.focus()
+}
+
+formatTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => activateFormat(tab))
+  tab.addEventListener('keydown', (event) => {
+    let nextIndex: number | undefined
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % formatTabs.length
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + formatTabs.length) % formatTabs.length
+    if (event.key === 'Home') nextIndex = 0
+    if (event.key === 'End') nextIndex = formatTabs.length - 1
+    if (nextIndex === undefined) return
+    event.preventDefault()
+    activateFormat(formatTabs[nextIndex], true)
   })
 })
 
