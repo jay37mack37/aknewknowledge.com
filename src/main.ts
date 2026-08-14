@@ -80,7 +80,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div class="section-shell book-grid">
         <div class="book-visual reveal">
           <div class="book-shadow"></div>
-          <img src="/assets/a-knew-knowledge-cover.webp" width="1000" height="1000" alt="Cover of A Knew Knowledge by Samuel Anderson" loading="lazy">
+          <img src="./assets/a-knew-knowledge-cover.webp" width="1000" height="1000" alt="Cover of A Knew Knowledge by Samuel Anderson" loading="lazy">
           <div class="book-stamp"><strong>1h 04m</strong><span>Audiobook</span></div>
         </div>
         <div class="book-copy reveal">
