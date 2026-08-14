@@ -13,6 +13,11 @@ const icon = (name: 'arrow' | 'book' | 'code' | 'headphones' | 'menu' | 'close')
   return `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`
 }
 
+const discordIcon = () => `
+  <svg class="discord-logo" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.51 13.7 13.7 0 0 0-.63 1.29 18.4 18.4 0 0 0-5.58 0 12.6 12.6 0 0 0-.64-1.29 20 20 0 0 0-4.9 1.52C.59 9.09-.36 13.67.07 18.18a19.9 19.9 0 0 0 6 3.03 14.7 14.7 0 0 0 1.29-2.1 13 13 0 0 1-2.03-.97l.5-.39a14.3 14.3 0 0 0 12.35 0l.5.39c-.65.38-1.33.7-2.03.96.37.74.8 1.45 1.29 2.11a19.8 19.8 0 0 0 6-3.03c.5-5.23-.85-9.77-3.62-13.81ZM8.02 15.4c-1.2 0-2.18-1.1-2.18-2.45s.96-2.46 2.18-2.46c1.23 0 2.2 1.11 2.18 2.46 0 1.35-.96 2.45-2.18 2.45Zm7.97 0c-1.2 0-2.18-1.1-2.18-2.45s.96-2.46 2.18-2.46c1.22 0 2.2 1.11 2.18 2.46 0 1.35-.96 2.45-2.18 2.45Z"/>
+  </svg>`
+
 const externalLink = (href: string, label: string, className = '') =>
   `<a class="${className}" href="${href}" target="_blank" rel="noopener noreferrer">${label}${icon('arrow')}</a>`
 
@@ -95,9 +100,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           </div>
           <div class="retailers active" data-panel="read">
             ${externalLink('https://www.amazon.com/Knew-knowedge-Samuel-Anderson-ebook/dp/B0F8X9XV7H', 'Amazon Kindle')}
-            ${externalLink('https://www.amazon.com/Knew-knowedge-Samuel-Anderson/dp/B0FHG1M453', 'Paperback')}
+            ${externalLink('https://www.amazon.com/dp/B0FHG1M453', 'Amazon Paperback')}
             ${externalLink('https://www.kobo.com/us/en/ebook/a-knew-knowledge', 'Kobo')}
             ${externalLink('https://www.everand.com/search?query=A%20Knew%20Knowledge%20Samuel%20Anderson', 'Everand')}
+            ${externalLink('https://www.thalia.de/shop/home/artikeldetails/A1075410149', 'Thalia')}
+            ${externalLink('https://www.hoopladigital.com/ebook/19423840', 'Hoopla')}
+            ${externalLink('https://www.smashwords.com/books/view/1771132', 'Smashwords')}
+            ${externalLink('https://fable.co/book/x-9798231249114', 'Fable')}
           </div>
           <div class="retailers" data-panel="listen" hidden>
             ${externalLink('https://books.apple.com/us/audiobook/a-knew-knowledge/id1887498382', 'Apple Books')}
@@ -146,7 +155,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <h2>Knowledge grows<br>when it is <em>shared.</em></h2>
         <p>The code, experiments, and people behind A Knew Knowledge live in the open. Follow the work, explore the repositories, and build on what resonates.</p>
         <a class="discord-card" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">
-          <span class="discord-icon">#</span>
+          <span class="discord-icon">${discordIcon()}</span>
           <span><strong>Join A Knew Knowledge on Discord</strong><small>A space to connect, question, share, and build together.</small></span>
           <span class="discord-action">Join the community${icon('arrow')}</span>
         </a>
@@ -163,7 +172,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="section-shell footer-grid">
       <a class="brand footer-brand" href="#top"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
       <p>Remember differently.<br>Build intentionally.</p>
-      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">Discord</a></div>
+      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
       <small>© <span id="year"></span> A Knew Knowledge LLC</small>
     </div>
   </footer>
@@ -200,20 +209,5 @@ document.querySelectorAll<HTMLButtonElement>('.format-tab').forEach((tab) => {
     })
   })
 })
-
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-if (!reducedMotion) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible')
-        observer.unobserve(entry.target)
-      }
-    })
-  }, { threshold: 0.12 })
-  document.querySelectorAll('.reveal').forEach((element) => observer.observe(element))
-} else {
-  document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'))
-}
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear())

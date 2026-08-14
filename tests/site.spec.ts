@@ -12,8 +12,16 @@ test('renders the complete landing page and interactive links', async ({ page })
   await expect(page).toHaveTitle(/A Knew Knowledge/)
   await expect(page.getByRole('heading', { name: /Some knowledge is not learned/i })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'A Knew Knowledge' })).toBeVisible()
-  await expect(page.getByRole('link', { name: /Join A Knew Knowledge on Discord/i })).toHaveAttribute('href', 'https://discord.gg/zaUzpeBv6')
+  const discordLink = page.getByRole('link', { name: /Join A Knew Knowledge on Discord/i })
+  await expect(discordLink).toHaveAttribute('href', 'https://discord.gg/zaUzpeBv6')
+  await expect(discordLink.locator('.discord-logo')).toBeVisible()
   await expect(page.getByRole('img', { name: /Cover of A Knew Knowledge/i })).toBeVisible()
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://aknewknowledge.com/AknewLogo.png')
+  await expect(page.locator('meta[http-equiv="Content-Security-Policy"]')).toHaveCount(1)
+  await expect(page.getByRole('link', { name: /Thalia/ })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Hoopla/ })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Smashwords/ })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Fable/ })).toBeVisible()
 
   await page.getByRole('tab', { name: /Listen/ }).click()
   await expect(page.getByRole('link', { name: /Apple Books/ })).toBeVisible()
@@ -34,4 +42,22 @@ test('mobile navigation opens and page has no horizontal overflow', async ({ pag
 
   const dimensions = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }))
   expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client)
+})
+
+test('all major sections remain visible at a constrained viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 })
+  await page.goto('/')
+
+  for (const selector of ['#mission', '#book', '#work', '#community']) {
+    const section = page.locator(selector)
+    await section.scrollIntoViewIfNeeded()
+    await expect(section).toBeVisible()
+    await expect(section).not.toHaveCSS('overflow', 'clip')
+    await expect(section.locator('h2').first()).toBeVisible()
+  }
+
+  const hiddenReveals = await page.locator('.reveal').evaluateAll((elements) =>
+    elements.filter((element) => getComputedStyle(element).opacity === '0').length,
+  )
+  expect(hiddenReveals).toBe(0)
 })
