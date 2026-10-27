@@ -25,7 +25,9 @@ export function createRenderer(container, minimapCanvas) {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x101310, 0.055);
 
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+  // Portrait phones: keep >= ~57 degrees across so a corridor never reads as one flat wall.
+  const fitFov = (aspect) => Math.min(100, Math.max(75, 2 * Math.atan(Math.tan(35 * Math.PI / 180) / Math.max(aspect, 0.1)) * 180 / Math.PI));
+  const camera = new THREE.PerspectiveCamera(fitFov(window.innerWidth / window.innerHeight), window.innerWidth / window.innerHeight, 0.1, 100);
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -656,6 +658,7 @@ export function createRenderer(container, minimapCanvas) {
 
   function resize() {
     camera.aspect = window.innerWidth / window.innerHeight;
+    camera.fov = fitFov(camera.aspect);
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }

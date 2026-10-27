@@ -2,49 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'self'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f2f0e8">
-  <meta name="description" content="Maze Runner: a first-person Pac-Man experiment from A Knew Knowledge. It runs entirely in your browser.">
+  <meta name="description" content="The A Knew Knowledge arcade: one Pac-Man game, built three times with AI. Every version plays full-screen in your browser and works on iPhone.">
   <meta property="og:title" content="Play | A Knew Knowledge">
-  <meta property="og:description" content="A familiar maze. A different view.">
+  <meta property="og:description" content="Three builds. One maze. Play every version in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aknewknowledge.com/play/">
-  <meta property="og:image" content="https://aknewknowledge.com/AknewLogo.png">
+  <meta property="og:image" content="https://aknewknowledge.com/demos/img/maze-runner.webp">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://aknewknowledge.com/play/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <title>Play | A Knew Knowledge</title>
   <script type="module" src="/src/play.ts"></script>
 </head>
-<body class="play-page">
+<body class="arcade-page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="play-header section-shell">
-    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">AK</span><span>A Knew Knowledge</span></a>
-    <nav aria-label="Play navigation"><a href="/demos/">Demos</a><a href="/#work">The work</a><a href="/#book">The book</a><a href="/#community">Community</a></nav>
-  </header>
-  <main id="main" class="section-shell" tabindex="-1">
-    <section class="play-intro" aria-labelledby="play-title">
-      <div><p class="eyebrow"><span></span> A playful experiment / 04</p><h1 id="play-title">A familiar maze.<br><em>A different view.</em></h1></div>
-      <div class="play-context"><span class="preview-label">Single-player · in your browser</span><p>Curiosity belongs in play, too. Step inside the maze in first person: the same pellets and ghosts you remember, seen from the inside.</p><p class="boundary">Nothing is sent anywhere. The game runs on this page only; your high score stays in your own browser.</p></div>
-    </section>
-    <section class="play-stage" aria-labelledby="stage-title">
-      <div class="stage-heading"><h2 id="stage-title">Maze Runner</h2><span>Three.js · keyboard and touch</span></div>
-      <div id="game-placeholder" class="game-placeholder">
-        <div class="maze-art" aria-hidden="true"><span>K</span><i></i></div>
-        <div><p class="section-label">Question / remember / play</p><h3>Change your<br><em>perspective.</em></h3><p>Press Start to load the game. It uses WebGL and plays sound once you interact; you can mute it any time.</p><button id="load-game" type="button" class="button button-primary" aria-describedby="game-status">Start the game <span aria-hidden="true">→</span></button></div>
-      </div>
-      <div id="game-mount"></div>
-      <div class="stage-footer"><p id="game-status" role="status" aria-live="polite">The game loads only when you press Start.</p><button id="stop-game" type="button" hidden>Close game</button></div>
-    </section>
-    <div class="play-guide" id="how-to-play">
-      <section><p class="section-label">01 / Move</p><h2>Keyboard or touch.</h2><p>W or ↑ moves forward. A / D or ← / → turn at the next opening. S or ↓ turns around. On touch screens, use the on-screen arrows.</p></section>
-      <section><p class="section-label">02 / Pause</p><h2>Take a breath.</h2><p>P or Esc pauses and resumes; the Pause button does too. From the pause screen you can restart. The game also pauses when you switch tabs.</p></section>
-      <section><p class="section-label">03 / Change your view</p><h2>See it differently.</h2><p>C or Q cycles first-person, chase and front views. If your system asks for reduced motion, camera bob and shake are switched off.</p></section>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/#mission">Mission</a>
+      <a href="/#book">The Book</a>
+      <a href="/#work">What We Build</a>
+      <a href="/play/" aria-current="page">Play</a>
+      <a href="/demos/">Demos</a>
+      <a href="/#community">Community</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="fancy-link" href="/potential/"><span aria-hidden="true">✦</span> Fancy site</a>
+      <a class="nav-cta" href="/#book">Read the book</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
-    <p class="play-fallback">While you play, your keys go to the game. Tab reaches the game's own buttons; “Close game” below it brings you back here. <a id="standalone-game" href="/play/game/">Open the game on its own page ↗</a></p>
-    <a class="back-link" href="/#work">← Back to what we build</a>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="/#mission">Mission</a>
+      <a href="/#book">The Book</a>
+      <a href="/#work">What We Build</a>
+      <a href="/play/" aria-current="page">Play</a>
+      <a href="/demos/">Demos</a>
+      <a href="/#community">Community</a>
+      <a href="/#contact">Contact</a>
+      <a class="mobile-fancy" href="/potential/">Fancy site <span aria-hidden="true">✦</span></a>
+    </nav>
+  </header>
+
+  <main id="main" class="arcade section-shell" tabindex="-1">
+    <section class="arcade-hero" aria-labelledby="play-title">
+      <p class="eyebrow"><span></span> The arcade · 3 builds</p>
+      <h1 id="play-title">Three builds.<br><em>One maze.</em></h1>
+      <p class="hero-intro">One Pac-Man game, built three times with AI. Pick a version: it opens full-screen and plays right on your iPhone.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/play/final/">Play the final build<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+
+    <aside class="how-to" aria-labelledby="how-title">
+      <h2 class="section-label" id="how-title">How to play</h2>
+      <ul>
+        <li><span class="how-label">Swipe, or tap the big arrows</span><span class="keys"><span class="touch" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h7M3 7l3-3M3 7l3 3M21 7h-7M21 7l-3-3M21 7l-3 3"/><path d="M10 21v-6.5a1.5 1.5 0 0 1 3 0V17l3.4.8a2 2 0 0 1 1.5 2.3L17.7 21"/></svg></span></span></li>
+        <li class="kb-only"><span class="how-label">Move</span><span class="keys"><span class="visually-hidden">Arrow keys</span><kbd aria-hidden="true">←</kbd><kbd aria-hidden="true">↑</kbd><kbd aria-hidden="true">↓</kbd><kbd aria-hidden="true">→</kbd></span></li>
+        <li class="kb-only"><span class="how-label">Pause</span><span class="keys"><kbd>P</kbd></span></li>
+        <li class="kb-only"><span class="how-label">Switch camera <small>Maze Runner builds</small></span><span class="keys"><kbd>C</kbd></span></li>
+      </ul>
+    </aside>
+
+    <section class="arcade-builds" id="builds" aria-labelledby="builds-title">
+      <h2 class="visually-hidden" id="builds-title">The three builds</h2>
+      <div class="build-grid">
+        <article class="work-card dark build-card build-featured">
+          <div class="card-top"><span>After multiplayer</span><span class="card-index">03</span></div>
+          <a class="build-shot" href="/play/final/" tabindex="-1" aria-hidden="true"><img src="/play/img/final.webp" data-fallback="/demos/img/maze-runner.webp" width="960" height="540" alt="" decoding="async"><span>Latest</span></a>
+          <div class="build-body">
+            <h3>Maze Runner: <em>Final</em></h3>
+            <p class="build-date"><time datetime="2026-10-27">Oct 27, 2026</time></p>
+            <p class="build-desc">The polished build: swipe or tap big arrows on iPhone, it rounds corners for you, and the 3D view stays clear up against walls. This copy plays solo, right in your browser.</p>
+            <div class="tag-row"><span>3D</span><span>Swipe + arrows</span><span>Auto-corner</span><span>Online soon</span></div>
+            <a class="build-play" href="/play/final/">Play Maze Runner: Final<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="work-card build-card">
+          <div class="card-top"><span>Before multiplayer</span><span class="card-index">02</span></div>
+          <a class="build-shot" href="/play/game/" tabindex="-1" aria-hidden="true"><img src="/demos/img/maze-runner.webp" width="960" height="540" alt="" decoding="async"></a>
+          <div class="build-body">
+            <h3>Maze Runner</h3>
+            <p class="build-date"><time datetime="2026-10-24">Oct 24–25, 2026</time></p>
+            <p class="build-desc">First-person 3D with three camera views: first-person, chase and front.</p>
+            <div class="tag-row"><span>First-person</span><span>3 cameras</span></div>
+            <a class="build-play" href="/play/game/">Play Maze Runner<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="work-card build-card">
+          <div class="card-top"><span>The first build</span><span class="card-index">01</span></div>
+          <a class="build-shot" href="/play/afterhours/" tabindex="-1" aria-hidden="true"><img src="/demos/img/afterhours.webp" width="960" height="540" alt="" decoding="async"></a>
+          <div class="build-body">
+            <h3>AFTERHOURS</h3>
+            <p class="build-date"><time datetime="2026-10-24">Oct 24, 2026</time></p>
+            <p class="build-desc">A 2.5D neon arcade: a tilted top-down board with extruded walls.</p>
+            <div class="tag-row"><span>2.5D</span><span>Neon</span><span>Swipe</span></div>
+            <a class="build-play" href="/play/afterhours/">Play AFTERHOURS<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <p class="arcade-credits">Prompted by Jack · built by AI · all three work on iPhone</p>
+    </section>
   </main>
-  <footer><div class="section-shell play-footer"><p>Remember differently.<br>Build intentionally.</p><a href="/#community">Knowledge grows when it is shared. ↗</a><small>Maze Runner is a fan-made experiment. Pac-Man is a trademark of Bandai Namco Entertainment Inc.; this project is not affiliated with or endorsed by it.</small></div></footer>
+
+  <footer>
+    <div class="section-shell footer-grid">
+      <a class="brand footer-brand" href="/"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
+      <p>Remember differently.<br>Build intentionally.</p>
+      <div class="footer-links"><a href="/#book">Book</a><a href="/#work">Projects</a><a href="/demos/">Demos</a><a href="/#contact">Contact</a><a href="/potential/">Fancy site</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      <small>© <span id="year">2026</span> A Knew Knowledge LLC · Fan-made; Pac-Man is a trademark of Bandai Namco Entertainment Inc. Not affiliated.</small>
+    </div>
+  </footer>
 </body>
 </html>

@@ -10,7 +10,7 @@ Static, client-side adaptation of the accepted single-player game
 - Adapted: `index.html` (brand copy, accessible names, CSP, pause/restart buttons),
   `style.css` (A Knew Knowledge palette and type), `src/main.js` (pause/restart
   buttons, focus management, live announcements, reduced motion, auto-pause on tab
-  hide), `src/renderer.js` (brand colours, reduced-motion switch),
+  hide), `src/renderer.js` (brand colours, reduced-motion switch, wider vertical FOV on portrait phones so corridors stay readable),
   `src/camera.js` (optional head bob).
 - Three.js r174, MIT licence: `vendor/LICENSE-three.txt` (the source repository did
   not vendor this file).
@@ -31,7 +31,7 @@ c26475fbe584487a49484e1263d6631e1c72e96b60b72d53313514f650540cc9  src/ghost_ai.j
 281de18ad151e64a377e1aa4b27facd2f27b795d3a9e1f44b56f15803e8be805  src/main.js
 9b45d97fe219a02dca5d8329fdc23e3839eaedff4e89f2c9f561e4056ca32fdb  src/maze.js
 79819fb84d2fc70a5d476efe9395fc8c73a28fb1bc925380e4099b5b5bea093a  src/movement.js
-87dcb9b3d72171f55887a2ac1bb0babe96ba4c4014b43ff6b773ee921a18d11f  src/renderer.js
+5882d2f34b37f1b5ab7a3efacb89fe9d3bfbe363f3ae66a786535976a54b6fd7  src/renderer.js
 bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601  vendor/LICENSE-three.txt
 8af04b9919f19452d7e210db378a4be62f7952f3256739464c088a660d7d7c7f  vendor/three.core.js
 8cd1b1ed9c81fb3e433615f5277f3feeebfb7404836b1fa22c282c02da26b080  vendor/three.module.js
