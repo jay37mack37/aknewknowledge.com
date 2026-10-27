@@ -1,4 +1,5 @@
 import './potential.css'
+import { setupImageFallbacks } from './site-menu'
 
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle')!
 const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu')!
@@ -99,3 +100,4 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
 }
 
 document.querySelector('#year')!.textContent = String(new Date().getFullYear())
+setupImageFallbacks()

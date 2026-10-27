@@ -1,5 +1,5 @@
 import './style.css'
-import './play.css'
+import './subpage.css'
 import './demos.css'
 
 // /demos/ is fully static: cards are generated at build time from

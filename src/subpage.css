@@ -1,0 +1,20 @@
+/* Shared chrome for standalone subpages that use the old compact header (/demos/). */
+.skip-link { position: fixed; top: -80px; left: 16px; z-index: 50; background: var(--acid); padding: 16px; }
+.skip-link:focus { top: 12px; }
+.play-page a:focus-visible, .play-page button:focus-visible { outline-color: var(--ink); }
+.play-header { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+.play-header nav { display: flex; gap: 28px; font-size: 13px; }
+.play-header nav a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+[hidden] { display: none; }
+.back-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; margin-block: 16px 64px; text-underline-offset: 5px; }
+.play-footer { padding-block: 40px; display: flex; gap: 32px; justify-content: space-between; align-items: center; }
+.play-footer p { font: 22px/1.4 Georgia, serif; margin: 0; color: var(--acid); }
+.play-footer a, .play-footer small { font-size: 12px; color: var(--paper); }
+@media (max-width: 900px) {
+  .play-footer { flex-wrap: wrap; }
+}
+@media (max-width: 560px) {
+  .play-header { flex-wrap: wrap; gap: 4px; padding-block: 16px 8px; }
+  .play-header nav { width: 100%; justify-content: space-between; }
+  .play-footer { flex-direction: column; align-items: start; gap: 24px; }
+}
