@@ -11,6 +11,20 @@ const status = document.querySelector<HTMLElement>('#game-status')!
 
 const gameURL = new URL('game/index.html', new URL('./', location.href))
 
+// Keep the whole game stage inside the viewport while it is open. The iframe is
+// never taller than the viewport (see play.css), so 'nearest' fully reveals it.
+function alignStage() {
+  mount.querySelector('iframe')?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' })
+}
+let alignQueued = 0
+function queueAlign() {
+  if (alignQueued) return
+  alignQueued = requestAnimationFrame(() => {
+    alignQueued = 0
+    alignStage()
+  })
+}
+
 start.addEventListener('click', () => {
   if (mount.childElementCount) return
   const frame = document.createElement('iframe')
@@ -26,15 +40,20 @@ start.addEventListener('click', () => {
     } catch {
       // Same-origin by construction; ignore if a browser blocks access.
     }
+    // Focus moves can scroll the page; align the stage last.
+    alignStage()
   }, { once: true })
   mount.append(frame)
   placeholder.hidden = true
   stop.hidden = false
   status.textContent = 'Loading the game…'
   frame.focus()
+  alignStage()
+  window.addEventListener('resize', queueAlign)
 })
 
 stop.addEventListener('click', () => {
+  window.removeEventListener('resize', queueAlign)
   mount.replaceChildren()
   placeholder.hidden = false
   stop.hidden = true
