@@ -19,6 +19,34 @@
   },
   "demos": [
     {
+      "id": "online",
+      "emoji": "👥",
+      "title": "Maze Runner Online",
+      "subtitle": "play with friends",
+      "lead": "First-person 3D Pac-Man for up to 4 players.",
+      "how": "Tap ▶️ Play Online, then hit **Share** and send the room link to a friend.",
+      "credits": [
+        "Prompted by Jack"
+      ],
+      "tags": [
+        "game",
+        "AI"
+      ],
+      "play": {
+        "label": "Play Online",
+        "url": "https://aknewknowledge.com/play/online/"
+      },
+      "image": {
+        "src": "/demos/img/online.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Maze Runner Online: a smiling yellow Pac-Man with a name tag faces another player down a neon-edged corridor"
+      },
+      "discord": {
+        "file": "demo-online.png"
+      }
+    },
+    {
       "id": "afterhours",
       "emoji": "🕹️",
       "title": "AFTERHOURS",
@@ -28,7 +56,6 @@
       "credits": [
         "Prompted by Jack"
       ],
-      "status": "👥 multiplayer coming soon",
       "tags": [
         "game",
         "AI"
@@ -59,7 +86,6 @@
         "Prompted by Jack",
         "built by Gemini 3.8"
       ],
-      "status": "👥 multiplayer coming soon",
       "tags": [
         "game",
         "AI",
