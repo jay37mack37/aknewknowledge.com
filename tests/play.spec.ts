@@ -125,10 +125,9 @@ test('player moves on keyboard input and on touch input', async ({ page }, info)
   await page.keyboard.press('ArrowDown')
   const turned = await snapshot(frame)
   expect(turned.dir).toBe('RIGHT')
-  await page.waitForTimeout(500)
-  const after = await snapshot(frame)
-  expect(after.state).toBe('PLAYING')
-  expect(after.x).toBeGreaterThan(turned.x + 0.5)
+  // Poll on game progress rather than a fixed sleep, so a slow (loaded) host only waits longer.
+  await expect.poll(async () => (await snapshot(frame)).x).toBeGreaterThan(turned.x + 0.5)
+  expect((await snapshot(frame)).state).toBe('PLAYING')
 
   // Same check with the other key binding.
   await page.keyboard.press('s')
@@ -140,8 +139,7 @@ test('player moves on keyboard input and on touch input', async ({ page }, info)
     await touchBack.tap()
     const tapped = await snapshot(frame)
     expect(tapped.dir).toBe('RIGHT')
-    await page.waitForTimeout(400)
-    expect((await snapshot(frame)).x).toBeGreaterThan(tapped.x + 0.3)
+    await expect.poll(async () => (await snapshot(frame)).x).toBeGreaterThan(tapped.x + 0.3)
   } else {
     await expect(frame.getByRole('group', { name: 'Touch controls' })).toBeHidden()
   }
@@ -157,12 +155,17 @@ test('eating pellets increases the score and the HUD shows it', async ({ page })
   expect(start.score).toBeLessThanOrEqual(30)
   expect(start.score).toBe((start.initialPelletCount - start.pelletsRemaining) * 10)
 
-  await expect.poll(async () => (await snapshot(frame)).score, { timeout: 5000 }).toBeGreaterThanOrEqual(start.score + 30)
+  // Wait on game progress, not wall-clock speed: the game caps each frame's delta at 0.1 s, so
+  // under SwiftShader on a loaded host (few fps) simulated time runs slower than real time.
+  // Three more pellets is ~1 s of game time; the generous timeout only matters when frames crawl.
+  await expect
+    .poll(async () => (await snapshot(frame)).score, { timeout: 30_000, intervals: [100, 250, 500] })
+    .toBeGreaterThanOrEqual(start.score + 30)
   const later = await snapshot(frame)
   expect(later.pelletsRemaining).toBeLessThan(start.pelletsRemaining)
   // 10 points per pellet; nothing else can score in the first seconds.
   expect(later.score).toBe((start.initialPelletCount - later.pelletsRemaining) * 10)
-  await expect.poll(async () => Number(await frame.locator('#hud-score').textContent())).toBeGreaterThanOrEqual(30)
+  await expect.poll(async () => Number(await frame.locator('#hud-score').textContent()), { timeout: 15_000 }).toBeGreaterThanOrEqual(30)
   expect(errors).toEqual([])
 })
 
