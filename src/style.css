@@ -112,6 +112,9 @@ h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; }
 .work-card h3 { margin: 76px 0 18px; font: 500 34px/1.08 'Manrope'; letter-spacing: -.055em; }
 .work-card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
 .work-card.dark p { color: #9fa49c; }
+.work-card.play-card { grid-column: 1 / -1; min-height: 300px; border: 1px solid var(--line); background: var(--cream); }
+.play-card h3 { margin-top: 36px; }
+.play-card .card-link { margin-top: 28px; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 28px; }
 .tag-row span { padding: 7px 10px; border: 1px solid rgba(23,26,23,.25); border-radius: 20px; font-size: 11px; }
 .card-link { min-height: 44px; display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 18px; border-top: 1px solid currentColor; text-decoration: none; font-size: 12px; font-weight: 600; }

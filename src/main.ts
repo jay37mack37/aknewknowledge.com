@@ -149,6 +149,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <p>Experimental forecasting systems evaluated against clear baselines. Research only, never investment advice.</p>
           ${externalLink('https://github.com/jay37mack37?tab=repositories', 'See all projects', 'card-link')}
         </article>
+        <article class="work-card play-card">
+          <div class="card-top"><span>Playful experiments</span><span class="card-index">04</span></div>
+          <h3>A familiar maze.<br>A different view.</h3>
+          <p>Step inside a first-person Pac-Man experiment. Same maze, new perspective, and it runs entirely in your browser.</p>
+          <div class="tag-row"><span>Three.js</span><span>Single-player</span><span>In-browser</span></div>
+          <a class="card-link" href="/play/">Play the maze${icon('arrow')}</a>
+        </article>
       </div>
     </section>
 

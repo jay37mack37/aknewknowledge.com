@@ -1,0 +1,70 @@
+.skip-link { position: fixed; top: -80px; left: 16px; z-index: 50; background: var(--acid); padding: 16px; }
+.skip-link:focus { top: 12px; }
+.play-page a:focus-visible, .play-page button:focus-visible { outline-color: var(--ink); }
+.play-header { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+.play-header nav { display: flex; gap: 28px; font-size: 13px; }
+.play-header nav a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.play-intro { padding-block: 94px 64px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end; }
+.play-intro h1 { font: 500 clamp(52px, 6.1vw, 86px)/.98 'Manrope', sans-serif; letter-spacing: -.065em; margin: 0; }
+.play-context p { color: var(--muted); font-size: 15px; line-height: 1.75; }
+.preview-label { display: inline-flex; background: var(--orange); padding: 8px 12px; text-transform: uppercase; font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+.play-context .boundary { color: var(--ink); padding-left: 16px; border-left: 2px solid var(--orange); font-size: 13px; }
+.play-stage { border: 1px solid var(--ink); }
+.stage-heading { min-height: 64px; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; background: var(--ink); color: var(--paper); }
+.stage-heading h2 { margin: 0; font-size: 15px; font-weight: 500; }
+.stage-heading > span { font-size: 11px; color: var(--acid); }
+.game-placeholder { min-height: 470px; padding: 48px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; background: var(--cream); }
+.game-placeholder[hidden], [hidden] { display: none; }
+.game-placeholder h3 { font: 500 clamp(40px, 4vw, 60px)/1.05 'Manrope', sans-serif; letter-spacing: -.055em; margin: 0 0 24px; }
+.game-placeholder h3 em { font-family: Georgia, serif; font-weight: 400; }
+.game-placeholder p:not(.section-label) { max-width: 360px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.game-placeholder button { cursor: pointer; margin-top: 16px; }
+.maze-art { aspect-ratio: 1; border-radius: 50%; background: var(--acid); position: relative; display: grid; place-items: center; max-width: 340px; width: 100%; margin: auto; }
+.maze-art:before, .maze-art:after { content: ''; position: absolute; border: 1px solid var(--ink); border-radius: 50%; inset: 32px -16px; transform: rotate(-35deg); }
+.maze-art:after { inset: -14px 72px; transform: rotate(32deg); }
+.maze-art span { font: 400 200px/1 Georgia, serif; }
+.maze-art i { position: absolute; width: 26px; height: 26px; background: var(--orange); border-radius: 50%; top: 12%; right: 2%; }
+#game-mount:empty { display: none; }
+#game-mount iframe { width: 100%; height: min(780px, 85svh); min-height: 640px; border: 0; display: block; background: var(--ink); }
+.stage-footer { display: flex; align-items: center; gap: 24px; justify-content: space-between; padding: 12px 24px; border-top: 1px solid var(--line); }
+.stage-footer p { margin: 0; max-width: 800px; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.stage-footer button { flex: none; background: transparent; border: 1px solid var(--ink); min-height: 44px; padding: 8px 14px; cursor: pointer; }
+.play-guide { display: grid; grid-template-columns: repeat(3, 1fr); margin-block: 56px 32px; }
+.play-guide section { padding: 0 28px; border-right: 1px solid var(--line); }
+.play-guide section:first-child { padding-left: 0; }
+.play-guide section:last-child { border-right: 0; }
+.play-guide .section-label { font-size: 10px; margin-bottom: 24px; }
+.play-guide h2 { font: 500 23px/1.2 'Manrope', sans-serif; letter-spacing: -.04em; }
+.play-guide p:not(.section-label) { font-size: 13px; line-height: 1.8; color: var(--muted); }
+.play-fallback { max-width: 760px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.play-fallback a { text-underline-offset: 4px; }
+.back-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; margin-block: 16px 64px; text-underline-offset: 5px; }
+.play-footer { padding-block: 40px; display: flex; gap: 32px; justify-content: space-between; align-items: center; }
+.play-footer p { font: 22px/1.4 Georgia, serif; margin: 0; color: var(--acid); }
+.play-footer a, .play-footer small { font-size: 12px; color: var(--paper); }
+button:disabled { opacity: .65; cursor: not-allowed; }
+@media (max-width: 900px) {
+  .play-intro { grid-template-columns: 1fr; gap: 32px; padding-block: 60px 40px; }
+  .play-intro h1 { font-size: clamp(48px, 8vw, 72px); }
+  .game-placeholder { padding: 32px; gap: 36px; }
+  .maze-art span { font-size: 150px; }
+  .play-guide { grid-template-columns: 1fr; }
+  .play-guide section, .play-guide section:first-child { padding: 24px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .play-footer { flex-wrap: wrap; }
+}
+@media (max-width: 560px) {
+  .play-header { flex-wrap: wrap; gap: 4px; padding-block: 16px 8px; }
+  .play-header nav { width: 100%; justify-content: space-between; }
+  .play-intro { padding-top: 44px; }
+  .play-intro h1 { font-size: clamp(42px, 10.5vw, 58px); }
+  .play-intro .eyebrow { font-size: 9px; }
+  .stage-heading { flex-direction: column; align-items: start; gap: 8px; padding: 18px; }
+  .game-placeholder { grid-template-columns: 1fr; gap: 36px; padding: 36px 22px; }
+  .maze-art { width: 170px; }
+  .maze-art span { font-size: 110px; }
+  .maze-art:after { inset: -10px 35px; }
+  .game-placeholder h3 { font-size: 44px; }
+  .stage-footer { padding: 16px; flex-wrap: wrap; gap: 12px; }
+  #game-mount iframe { height: 740px; }
+  .play-footer { flex-direction: column; align-items: start; gap: 24px; }
+}

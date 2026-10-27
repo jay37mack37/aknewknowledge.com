@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('index.html', import.meta.url)),
         potential: fileURLToPath(new URL('potential/index.html', import.meta.url)),
+        play: fileURLToPath(new URL('play/index.html', import.meta.url)),
       },
     },
   },
