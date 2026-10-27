@@ -16,7 +16,7 @@ async function noHorizontalOverflow(page: Page) {
   expect(g.scroll).toBeLessThanOrEqual(g.width)
 }
 
-test('arcade hub lists all three builds in the site design and links each one', async ({ page, request }) => {
+test('arcade hub lists all three builds plus Online in the site design and links each one', async ({ page, request }) => {
   const errors = watchErrors(page)
   await page.goto('/play/')
   await expect(page).toHaveTitle('Play | A Knew Knowledge')
@@ -24,9 +24,11 @@ test('arcade hub lists all three builds in the site design and links each one', 
   // Same header component as the home page, with Play marked current.
   await expect(page.locator('.site-header .brand')).toBeVisible()
   const builds = page.locator('.build-card')
-  await expect(builds).toHaveCount(3)
+  await expect(builds).toHaveCount(4)
   for (const [name, href] of [
     ['Play Maze Runner: Final', '/play/final/'],
+    ['Play Maze Runner Online', '/play/online/'],
+    ['Play online with friends', '/play/online/'],
     ['Play Maze Runner', '/play/game/'],
     ['Play AFTERHOURS', '/play/afterhours/'],
   ] as const) {
