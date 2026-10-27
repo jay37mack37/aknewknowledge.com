@@ -25,7 +25,12 @@
 .maze-art span { font: 400 200px/1 Georgia, serif; }
 .maze-art i { position: absolute; width: 26px; height: 26px; background: var(--orange); border-radius: 50%; top: 12%; right: 2%; }
 #game-mount:empty { display: none; }
-#game-mount iframe { width: 100%; height: min(780px, 85svh); min-height: 640px; border: 0; display: block; background: var(--ink); }
+/* The stage never exceeds the viewport: HUD and every control stay on screen together. */
+#game-mount iframe { width: 100%; height: min(780px, 85vh); height: min(780px, 85svh); border: 0; display: block; background: var(--ink); }
+@media (max-width: 900px), (max-height: 560px) {
+  /* Phones and short (landscape) screens: the stage fills exactly one small-viewport height. */
+  #game-mount iframe { height: 100vh; height: 100svh; }
+}
 .stage-footer { display: flex; align-items: center; gap: 24px; justify-content: space-between; padding: 12px 24px; border-top: 1px solid var(--line); }
 .stage-footer p { margin: 0; max-width: 800px; font-size: 12px; line-height: 1.7; color: var(--muted); }
 .stage-footer button { flex: none; background: transparent; border: 1px solid var(--ink); min-height: 44px; padding: 8px 14px; cursor: pointer; }
@@ -65,6 +70,5 @@ button:disabled { opacity: .65; cursor: not-allowed; }
   .maze-art:after { inset: -10px 35px; }
   .game-placeholder h3 { font-size: 44px; }
   .stage-footer { padding: 16px; flex-wrap: wrap; gap: 12px; }
-  #game-mount iframe { height: 740px; }
   .play-footer { flex-direction: column; align-items: start; gap: 24px; }
 }
