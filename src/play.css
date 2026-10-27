@@ -30,7 +30,7 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
 .build-shot { position: relative; display: block; margin-top: 24px; aspect-ratio: 16 / 9; overflow: hidden; background: #0b0d0b; }
 .build-shot img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
 .build-card:hover .build-shot img { transform: scale(1.03); }
-.build-shot span { position: absolute; left: 12px; top: 12px; padding: 6px 10px; border: 1px solid var(--ink); border-radius: 20px; background: var(--acid); color: var(--ink); font: 600 10px/1 'Manrope', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.build-shot span { position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; border: 1px solid var(--ink); border-radius: 20px; background: var(--acid); color: var(--ink); font: 600 10px/1 'Manrope', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
 .build-body { flex: 1; display: flex; flex-direction: column; }
 .build-card h3 { margin: 30px 0 8px; font-size: 30px; }
 .build-card h3 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.03em; }
@@ -101,6 +101,13 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
 @media (orientation: landscape) and (max-height: 520px) and (max-width: 900px) {
   .arcade { padding-top: 96px; }
   .arcade-hero h1 { font-size: 54px; }
+}
+
+/* Phones and tablets: keyboard rows are noise, show the touch row only. */
+@media (hover: none) and (pointer: coarse) {
+  .how-to .kb-only { display: none; }
+  .how-to ul { grid-template-columns: 1fr; }
+  .how-to li:nth-child(odd) { padding-right: 0; border-right: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

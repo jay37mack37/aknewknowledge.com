@@ -220,7 +220,7 @@ footer { background: var(--ink); color: white; }
   .work-card:last-child { border-bottom: 1px solid var(--line); }
   .contact { grid-template-columns: 1fr; gap: 60px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-links { grid-column: 1 / -1; flex-wrap: wrap; }
+  .footer-links { grid-column: 1 / -1; flex-wrap: wrap; column-gap: 22px; row-gap: 0; }
 }
 
 @media (max-width: 560px) {
