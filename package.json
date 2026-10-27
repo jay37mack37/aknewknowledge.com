@@ -8,7 +8,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit",
-    "test": "playwright test"
+    "test": "playwright test",
+    "demos:discord": "node scripts/demos-discord.mjs",
+    "demos:check": "node scripts/demos-discord.mjs --check"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",

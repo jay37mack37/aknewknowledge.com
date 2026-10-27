@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f0e8">
+  <meta name="description" content="Demos from A Knew Knowledge: playable things we built by talking to AI. Tap a card, hit Play. Works on your phone.">
+  <meta property="og:title" content="Demos | A Knew Knowledge">
+  <meta property="og:description" content="Things we built by talking to AI. Tap a card, hit Play.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aknewknowledge.com/demos/">
+  <meta property="og:image" content="https://aknewknowledge.com/demos/img/afterhours.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://aknewknowledge.com/demos/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Demos | A Knew Knowledge</title>
+  <script type="module" src="/src/demos.ts"></script>
+</head>
+<body class="play-page demos-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="play-header section-shell">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">AK</span><span>A Knew Knowledge</span></a>
+    <nav aria-label="Demos navigation"><a href="/demos/" aria-current="page">Demos</a><a href="/#work">The work</a><a href="/#book">The book</a><a href="/#community">Community</a></nav>
+  </header>
+  <main id="main" class="section-shell" tabindex="-1">
+    <section class="demos-intro" aria-labelledby="demos-title">
+      <p class="eyebrow"><span></span> Demos / <!--DEMOS_COUNT--> playable</p>
+      <h1 id="demos-title"><!--DEMOS_TITLE_A--><br><em><!--DEMOS_TITLE_B--></em></h1>
+      <p class="demos-how"><span aria-hidden="true">🎮</span> <!--DEMOS_HOW--></p>
+      <p class="demos-byline"><!--DEMOS_BYLINE--></p>
+    </section>
+    <section class="demo-grid" aria-label="Demos"><!--DEMOS_CARDS-->
+    </section>
+    <a class="demos-discord" href="<!--DEMOS_INVITE-->" target="_blank" rel="noopener noreferrer">
+      <span class="demos-discord-emoji" aria-hidden="true">💬</span>
+      <span><strong>Same demos, live in Discord #demos</strong><small>Join A Knew Knowledge and see new ones land first.</small></span>
+      <span class="demos-discord-go" aria-hidden="true">↗</span>
+    </a>
+    <a class="back-link" href="/#work">← Back to what we build</a>
+  </main>
+  <footer><div class="section-shell play-footer"><p>Remember differently.<br>Build intentionally.</p><a href="/#community">Knowledge grows when it is shared. ↗</a><small>These demos are fan-made experiments. Pac-Man is a trademark of Bandai Namco Entertainment Inc.; these demos are not affiliated with or endorsed by Bandai Namco.</small></div></footer>
+</body>
+</html>
