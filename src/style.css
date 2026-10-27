@@ -7,7 +7,8 @@
   --orange: #ef7946;
   /* Focus ring: a deeper burnt orange that keeps >=3:1 on paper, cream, acid and white.
      Dark surfaces switch back to the bright brand orange (6.3:1 on ink). */
-  --focus: #c4501a;
+  --focus-light: #c4501a;
+  --focus: var(--focus-light);
   --line: rgba(23, 26, 23, 0.18);
   color: var(--ink);
   background: var(--paper);
