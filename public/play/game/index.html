@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171a17">
+  <title>Maze Runner — A Knew Knowledge play experiment</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Adapted for aknewknowledge.com from pacman-fps@7179621. See PROVENANCE.md. -->
+  <div id="game-container" role="application" aria-label="Maze Runner, a first-person 3D Pac-Man game" aria-describedby="game-instructions" tabindex="-1"></div>
+  <div id="screen-flash" aria-hidden="true"></div>
+  <p id="game-announcer" class="visually-hidden" role="status" aria-live="polite"></p>
+
+  <!-- HUD Overlay -->
+  <div id="hud">
+    <div class="hud-group">
+      <div class="hud-row">
+        <div><span class="hud-label">Score </span><span id="hud-score" class="hud-value">0</span></div>
+        <div><span class="hud-label">High </span><span id="hud-high" class="hud-value">0</span></div>
+      </div>
+      <div class="hud-row">
+        <div><span class="hud-label">Level </span><span id="hud-level" class="hud-value">1</span></div>
+        <div id="lives-container">
+          <span class="hud-label">Lives</span>
+          <div id="lives-icons" aria-hidden="true"></div>
+        </div>
+        <div><span id="hud-view" class="hud-value hud-view">VIEW: 1ST</span></div>
+      </div>
+      <div id="power-timer-container">
+        <div id="power-timer-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimap / Radar -->
+  <div id="minimap-wrapper" aria-hidden="true">
+    <canvas id="minimap" width="168" height="186"></canvas>
+  </div>
+
+  <!-- Start Title Screen -->
+  <section id="screen-title" class="overlay-screen" aria-labelledby="title-heading">
+    <p class="eyebrow"><span class="brand-mark">AK</span> A Knew Knowledge · Play experiment</p>
+    <h1 id="title-heading" class="title-glow">A familiar maze. <em>A different view.</em></h1>
+    <p class="subtitle">Maze Runner — a first-person Pac-Man experiment</p>
+    <div id="game-instructions" class="instructions-card">
+      <h2 class="visually-hidden">How to play</h2>
+      <p class="instruction-intro">Eat every pellet. Avoid the ghosts. Power pellets turn the tables for a few seconds.</p>
+      <dl>
+        <div class="instruction-line"><dt>Move forward</dt><dd class="key-tag">W / ↑</dd></div>
+        <div class="instruction-line"><dt>Turn left / right</dt><dd class="key-tag">A / D or ← / →</dd></div>
+        <div class="instruction-line"><dt>Turn around</dt><dd class="key-tag">S / ↓</dd></div>
+        <div class="instruction-line"><dt>Pause / resume</dt><dd class="key-tag">P / Esc</dd></div>
+        <div class="instruction-line"><dt>Change camera</dt><dd class="key-tag">C / Q</dd></div>
+        <div class="instruction-line"><dt>Touch</dt><dd class="key-tag">On-screen arrows</dd></div>
+      </dl>
+      <p class="instruction-note">Turns are buffered: press a direction early and you will take the next opening.</p>
+    </div>
+    <button id="btn-start" class="btn-arcade" type="button">Enter the maze</button>
+  </section>
+
+  <!-- Pause Screen -->
+  <section id="screen-pause" class="overlay-screen hidden" aria-labelledby="pause-heading">
+    <h1 id="pause-heading" class="title-glow">Paused</h1>
+    <p class="subtitle">Press P or Esc, or choose Resume.</p>
+    <div class="button-row">
+      <button id="btn-resume" class="btn-arcade" type="button">Resume</button>
+      <button id="btn-pause-restart" class="btn-secondary" type="button">Restart</button>
+    </div>
+  </section>
+
+  <!-- Level Clear Screen -->
+  <section id="screen-clear" class="overlay-screen hidden" aria-labelledby="clear-heading">
+    <h1 id="clear-heading" class="title-glow">Level clear</h1>
+    <p class="subtitle">Preparing the next maze…</p>
+  </section>
+
+  <!-- Game Over Screen -->
+  <section id="screen-gameover" class="overlay-screen hidden" aria-labelledby="gameover-heading">
+    <h1 id="gameover-heading" class="title-glow title-orange">Game over</h1>
+    <p class="subtitle">The maze remembers you.</p>
+    <p class="final-score">Final score: <span id="gameover-score">0</span></p>
+    <button id="btn-restart" class="btn-arcade" type="button">Play again</button>
+  </section>
+
+  <!-- Mobile / Touch Controls -->
+  <div id="mobile-controls" role="group" aria-label="Touch controls">
+    <button id="btn-fwd" class="touch-btn" type="button" aria-label="Forward">▲</button>
+    <button id="btn-camera" class="touch-btn" type="button" aria-label="Change camera">CAM</button>
+    <button id="btn-left" class="touch-btn" type="button" aria-label="Turn left">◀</button>
+    <button id="btn-back" class="touch-btn" type="button" aria-label="Turn around">▼</button>
+    <button id="btn-right" class="touch-btn" type="button" aria-label="Turn right">▶</button>
+  </div>
+
+  <div id="corner-controls">
+    <button id="btn-pause" type="button" class="corner-btn" aria-pressed="false">Pause</button>
+    <button id="btn-mute" type="button" class="corner-btn" aria-pressed="false">Sound: on</button>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

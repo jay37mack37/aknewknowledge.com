@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'self'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f0e8">
+  <meta name="description" content="Maze Runner: a first-person Pac-Man experiment from A Knew Knowledge. It runs entirely in your browser.">
+  <meta property="og:title" content="Play | A Knew Knowledge">
+  <meta property="og:description" content="A familiar maze. A different view.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aknewknowledge.com/play/">
+  <meta property="og:image" content="https://aknewknowledge.com/AknewLogo.png">
+  <link rel="canonical" href="https://aknewknowledge.com/play/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Play | A Knew Knowledge</title>
+  <script type="module" src="/src/play.ts"></script>
+</head>
+<body class="play-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="play-header section-shell">
+    <a class="brand" href="/" aria-label="A Knew Knowledge home"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
+    <nav aria-label="Play navigation"><a href="/#work">The work</a><a href="/#book">The book</a><a href="/#community">Community</a></nav>
+  </header>
+  <main id="main" class="section-shell" tabindex="-1">
+    <section class="play-intro" aria-labelledby="play-title">
+      <div><p class="eyebrow"><span></span> A playful experiment / 04</p><h1 id="play-title">A familiar maze.<br><em>A different view.</em></h1></div>
+      <div class="play-context"><span class="preview-label">Single-player · in your browser</span><p>Curiosity belongs in play, too. Step inside the maze in first person: the same pellets and ghosts you remember, seen from the inside.</p><p class="boundary">Nothing is sent anywhere. The game runs on this page only; your high score stays in your own browser.</p></div>
+    </section>
+    <section class="play-stage" aria-labelledby="stage-title">
+      <div class="stage-heading"><h2 id="stage-title">Maze Runner</h2><span>Three.js · keyboard and touch</span></div>
+      <div id="game-placeholder" class="game-placeholder">
+        <div class="maze-art" aria-hidden="true"><span>K</span><i></i></div>
+        <div><p class="section-label">Question / remember / play</p><h3>Change your<br><em>perspective.</em></h3><p>Press Start to load the game. It uses WebGL and plays sound once you interact; you can mute it any time.</p><button id="load-game" type="button" class="button button-primary" aria-describedby="game-status">Start the game <span aria-hidden="true">→</span></button></div>
+      </div>
+      <div id="game-mount"></div>
+      <div class="stage-footer"><p id="game-status" role="status" aria-live="polite">The game loads only when you press Start.</p><button id="stop-game" type="button" hidden>Close game</button></div>
+    </section>
+    <div class="play-guide" id="how-to-play">
+      <section><p class="section-label">01 / Move</p><h2>Keyboard or touch.</h2><p>W or ↑ moves forward. A / D or ← / → turn at the next opening. S or ↓ turns around. On touch screens, use the on-screen arrows.</p></section>
+      <section><p class="section-label">02 / Pause</p><h2>Take a breath.</h2><p>P or Esc pauses and resumes; the Pause button does too. From the pause screen you can restart. The game also pauses when you switch tabs.</p></section>
+      <section><p class="section-label">03 / Change your view</p><h2>See it differently.</h2><p>C or Q cycles first-person, chase and front views. If your system asks for reduced motion, camera bob and shake are switched off.</p></section>
+    </div>
+    <p class="play-fallback">While you play, your keys go to the game. Tab reaches the game's own buttons; “Close game” below it brings you back here. <a id="standalone-game" href="/play/game/">Open the game on its own page ↗</a></p>
+    <a class="back-link" href="/#work">← Back to what we build</a>
+  </main>
+  <footer><div class="section-shell play-footer"><p>Remember differently.<br>Build intentionally.</p><a href="/#community">Knowledge grows when it is shared. ↗</a><small>Maze Runner is a fan-made experiment. Pac-Man is a trademark of Bandai Namco Entertainment Inc.; this project is not affiliated with or endorsed by it.</small></div></footer>
+</body>
+</html>
