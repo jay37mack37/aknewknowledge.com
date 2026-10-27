@@ -78,6 +78,7 @@ h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; }
 .principles article + article { padding-left: 28px; }
 .principles article:last-child { border: 0; }
 .principles span, .card-index { color: var(--muted); font-size: 11px; }
+.work-card.dark .card-index { color: #9fa49c; }
 .principles h3 { margin: 48px 0 10px; font: 500 22px/1.2 'Manrope'; letter-spacing: -.03em; }
 .principles p { max-width: 270px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
 
@@ -171,7 +172,7 @@ footer { background: var(--ink); color: white; }
 .footer-links a { min-height: 44px; display: inline-flex; align-items: center; color: #b8bdb5; }
 .footer-discord { display: inline-flex; align-items: center; gap: 6px; }
 .footer-discord .discord-logo { color: #8c96ff; }
-.footer-grid small { grid-column: 1 / -1; color: #696e67; font-size: 10px; }
+.footer-grid small { grid-column: 1 / -1; color: #9fa49c; font-size: 10px; }
 
 .reveal { opacity: 1; transform: none; }
 

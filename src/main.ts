@@ -24,7 +24,7 @@ const externalLink = (href: string, label: string, className = '') =>
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="A Knew Knowledge home">
+    <a class="brand" href="#top">
       <span class="brand-mark">AK</span>
       <span>A Knew Knowledge</span>
     </a>

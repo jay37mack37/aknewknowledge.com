@@ -1,8 +1,8 @@
 /**
  * Swipe gestures for the maze. Movement is relative to where Pac-Man faces:
  * swipe left/right = turn left/right at the next opening, swipe up = keep going,
- * swipe down = turn around. A short swipe (>= 24 px) is enough; the turn fires as
- * soon as the finger has moved far enough, without waiting for the lift.
+ * swipe down = turn around. A short swipe (>= 24 px) is enough; the turn fires once
+ * per gesture, as soon as the finger has moved far enough (no waiting for the lift).
  */
 export function classifySwipe(dx, dy, minDistance = 24) {
   const ax = Math.abs(dx);
@@ -28,13 +28,11 @@ export function attachSwipe(target, onTurn, options = {}) {
     const t = touches.get(e.pointerId);
     if (!t) return;
     e.preventDefault();
+    if (t.fired) return; // one swipe = one turn, however long the drag
     const turn = classifySwipe(e.clientX - t.x, e.clientY - t.y, minDistance);
     if (turn) {
-      onTurn(turn);
-      // Re-anchor so one long drag can chain turns (e.g. up then left).
-      t.x = e.clientX;
-      t.y = e.clientY;
       t.fired = true;
+      onTurn(turn);
     }
   }
 

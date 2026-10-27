@@ -41,6 +41,14 @@ test('arcade hub lists all three builds in the site design and links each one', 
   expect(errors).toEqual([])
 })
 
+test('/play/ reflows at 320px with nothing clipped', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 })
+  await page.goto('/play/')
+  const over = await page.$$eval('main *', (els) => els.filter((e) => e.getBoundingClientRect().right > document.documentElement.clientWidth + 0.5 && getComputedStyle(e).position !== 'absolute').map((e) => e.className || e.tagName).slice(0, 5))
+  expect(over).toEqual([])
+  await noHorizontalOverflow(page)
+})
+
 test('Fancy site button sits in the header (or mobile menu) of home and /play/', async ({ page, isMobile }) => {
   for (const path of ['/', '/play/']) {
     await page.goto(path)
@@ -109,12 +117,13 @@ test('final build plays solo: keyboard, arrows and swipe all steer, no network, 
       }).toPass({ timeout: 20_000 })
     }
     await flips(() => page.getByRole('button', { name: 'Turn around' }).tap())
+    // A long swipe (150px, many move events) is still exactly one turn-around.
     await flips(() => page.evaluate(() => {
       const el = document.getElementById('game-container')!
       const o = { pointerId: 9, pointerType: 'touch', isPrimary: true, bubbles: true, cancelable: true }
-      el.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: 200, clientY: 300 }))
-      window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: 200, clientY: 380 }))
-      window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: 200, clientY: 380 }))
+      el.dispatchEvent(new PointerEvent('pointerdown', { ...o, clientX: 200, clientY: 250 }))
+      for (let y = 260; y <= 400; y += 10) window.dispatchEvent(new PointerEvent('pointermove', { ...o, clientX: 200, clientY: y }))
+      window.dispatchEvent(new PointerEvent('pointerup', { ...o, clientX: 200, clientY: 400 }))
     }))
   } else {
     await expect(page.locator('#mobile-controls')).toBeHidden()
@@ -126,6 +135,13 @@ test('final build plays solo: keyboard, arrows and swipe all steer, no network, 
   // Pause really pauses in solo mode.
   await page.getByRole('button', { name: 'Pause' }).click()
   await expect(page.getByRole('dialog', { name: 'PAUSED' })).toBeVisible()
+  // Modal: focus starts on RESUME and Tab never reaches the controls behind the overlay.
+  await expect(page.getByRole('button', { name: 'RESUME' })).toBeFocused()
+  for (let i = 0; i < 4; i++) {
+    await page.keyboard.press('Tab')
+    expect(await page.evaluate(() => Boolean(document.activeElement?.closest('#hud, #mobile-controls')))).toBe(false)
+  }
+  await page.getByRole('button', { name: 'RESUME' }).focus()
   await page.waitForTimeout(400) // let interpolation settle on the last snapshot
   const frozen = await pos()
   await page.waitForTimeout(600)

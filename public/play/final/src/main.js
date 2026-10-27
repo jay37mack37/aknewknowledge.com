@@ -472,15 +472,28 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // Help Overlay
+  let helpOpener = null;
+  const behindDialog = ['hud', 'mobile-controls', 'minimap-wrapper', 'game-container']
+    .map((id) => document.getElementById(id)).filter(Boolean);
+
   function setHelpOverlay(open) {
+    if (open === isHelpOpen) return;
     isHelpOpen = open;
+    if (open) helpOpener = document.activeElement;
     screenHelp.classList.toggle('hidden', !open);
+    // Modal: everything under the overlay leaves the tab order and the a11y tree.
+    for (const el of behindDialog) el.inert = open;
     // Solo play really pauses; online play keeps running (shared match).
     if (SOLO && LocalRoomSocket.current) {
       if (open) LocalRoomSocket.current.pause();
       else LocalRoomSocket.current.resume();
     }
     if (open) btnHelpResume.focus({ preventScroll: true });
+    else if (helpOpener && helpOpener !== document.body && document.contains(helpOpener) && !inLobby) {
+      helpOpener.focus({ preventScroll: true });
+    } else if (!inLobby && btnPause) {
+      btnPause.focus({ preventScroll: true });
+    }
   }
 
   function toggleHelpOverlay() {
@@ -493,7 +506,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   const btnPause = document.getElementById('btn-pause');
-  if (btnPause) btnPause.addEventListener('click', () => { btnPause.blur(); setHelpOverlay(true); });
+  if (btnPause) btnPause.addEventListener('click', () => setHelpOverlay(true));
 
   btnHelpResume.addEventListener('click', toggleHelpOverlay);
 

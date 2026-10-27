@@ -55,19 +55,20 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
 }
 
 @media (max-width: 900px) {
-  .arcade { grid-template-columns: 1fr; grid-template-areas: 'hero' 'builds' 'how'; padding-top: 140px; }
+  .arcade { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'hero' 'builds' 'how'; padding-top: 140px; }
+  .arcade > *, .build-card { min-width: 0; }
   .arcade-builds { margin-top: 56px; padding-bottom: 0; }
   .how-to { margin: 56px 0 90px; }
   .build-card .tag-row { padding-top: 18px; }
 }
 
 @media (max-width: 680px) {
-  .build-grid { grid-template-columns: 1fr; }
+  .build-grid { grid-template-columns: minmax(0, 1fr); }
   .build-featured { display: flex; }
   .build-card, .build-card:nth-child(3) { border-top: 1px solid var(--line); }
   .build-card:nth-child(2) { border-top: 0; }
   /* Earlier builds become compact rows so the whole arcade stays short on a phone. */
-  .build-card:not(.build-featured) { display: grid; grid-template-columns: 136px 1fr; grid-template-areas: 'top top' 'shot body'; column-gap: 16px; align-items: start; padding: 20px; }
+  .build-card:not(.build-featured) { display: grid; grid-template-columns: clamp(96px, 34%, 136px) minmax(0, 1fr); grid-template-areas: 'top top' 'shot body'; column-gap: 16px; align-items: start; padding: 20px; }
   .build-card:not(.build-featured) .card-top { grid-area: top; }
   .build-card:not(.build-featured) .build-shot { grid-area: shot; align-self: start; margin-top: 16px; }
   .build-card:not(.build-featured) .build-body { grid-area: body; margin-top: 12px; }
