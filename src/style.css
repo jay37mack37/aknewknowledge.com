@@ -5,6 +5,9 @@
   --cream: #e8e4d8;
   --acid: #d7ed58;
   --orange: #ef7946;
+  /* Focus ring: a deeper burnt orange that keeps >=3:1 on paper, cream, acid and white.
+     Dark surfaces switch back to the bright brand orange (6.3:1 on ink). */
+  --focus: #c4501a;
   --line: rgba(23, 26, 23, 0.18);
   color: var(--ink);
   background: var(--paper);
@@ -19,7 +22,8 @@ html { scroll-behavior: smooth; overflow-x: clip; }
 body { margin: 0; min-width: 320px; overflow-x: clip; }
 a { color: inherit; }
 button { font: inherit; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.book-section, footer, .work-card.dark { --focus: var(--orange); }
 svg { width: 1.1em; height: 1.1em; flex: none; }
 
 .section-shell { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }

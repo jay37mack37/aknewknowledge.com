@@ -73,7 +73,7 @@ test('home Arcade card and the fancy site both link the game demo', async ({ pag
   await page.goto('/')
   const card = page.locator('.play-card')
   await card.scrollIntoViewIfNeeded()
-  await expect(card.getByRole('link', { name: /Play all three/ })).toHaveAttribute('href', '/play/')
+  await expect(card.getByRole('link', { name: /Open the arcade/ })).toHaveAttribute('href', '/play/')
 
   await page.goto('/potential/')
   const arcade = page.locator('.project-play')

@@ -161,9 +161,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <div class="play-card-copy">
             <div class="card-top"><span>Arcade</span><span class="card-index">04</span></div>
             <h3>Three builds.<br><em>One maze.</em></h3>
-            <p>The same Pac-Man game, three times over: a neon arcade, a first-person run, and the final build. Each one plays full-screen on your phone.</p>
-            <div class="tag-row"><span>Three.js</span><span>Works on iPhone</span><span>Built with AI</span></div>
-            <a class="card-link" href="/play/">Play all three${icon('arrow')}</a>
+            <p>The same Pac-Man game, three times over: a neon arcade, a first-person run, and the final build, now playable online with friends. Each one plays full-screen on your phone.</p>
+            <div class="tag-row"><span>Three.js</span><span>Works on iPhone</span><span>Online with friends</span></div>
+            <a class="card-link" href="/play/">Open the arcade${icon('arrow')}</a>
           </div>
           <a class="play-card-shots" href="/play/" tabindex="-1" aria-hidden="true">
             <figure><img src="/demos/img/afterhours.webp" width="960" height="540" alt="" loading="lazy" decoding="async"><figcaption>01</figcaption></figure>
