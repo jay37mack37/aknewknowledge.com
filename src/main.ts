@@ -32,6 +32,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#mission">Mission</a>
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
+      <a href="/demos/">Demos</a>
       <a href="#community">Community</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -41,6 +42,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#mission">Mission</a>
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
+      <a href="/demos/">Demos</a>
       <a href="#community">Community</a>
       <a href="#contact">Contact</a>
     </nav>
