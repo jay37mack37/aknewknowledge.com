@@ -320,6 +320,12 @@ window.addEventListener('DOMContentLoaded', () => {
     hud.classList.remove('hidden');
     minimapWrapper.classList.remove('hidden');
     btnEnterRoom.disabled = false;
+    // The PLAY button just vanished: hand keyboard focus to Pause instead of dropping it on <body>.
+    const pauseBtn = document.getElementById('btn-pause');
+    const active = document.activeElement;
+    if (pauseBtn && (!active || active === document.body || screenLobby.contains(active))) {
+      pauseBtn.focus({ preventScroll: true });
+    }
   }
 
   function leaveRoom() {
@@ -456,19 +462,19 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  btnCam.addEventListener('click', () => {
-    btnCam.blur();
+  btnCam.addEventListener('click', (e) => {
+    if (e.detail !== 0) btnCam.blur(); // blur only after a pointer tap; keyboard users keep focus
     const newMode = renderer.cycleCamera();
     hudCamMode.textContent = getCameraModeLabel(newMode);
   });
 
   btnTouchEmote.addEventListener('click', triggerEmoteCycle);
 
-  btnMute.addEventListener('click', () => {
+  btnMute.addEventListener('click', (e) => {
     const muted = audio.toggleMute();
     btnMute.setAttribute('aria-pressed', String(!muted));
     btnMute.classList.toggle('muted', muted);
-    btnMute.blur();
+    if (e.detail !== 0) btnMute.blur();
   });
 
   // Help Overlay

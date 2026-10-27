@@ -276,6 +276,8 @@ kbd { display: inline-block; min-width: 22px; margin: 0 1px; padding: 1px 5px; b
 @media (prefers-reduced-motion: reduce) {
   .shake { animation: none; }
   .toast { animation: none; }
+  #screen-flash, #screen-flash.active { transition: none; }
+  #screen-flash.active { opacity: .25; }
 }
 
 main.overlay-screen { display: flex; }

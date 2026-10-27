@@ -1,7 +1,7 @@
 # Maze Runner: Final — provenance
 
 Static, solo build of the final (post-multiplayer) Pac-Man client, from the local
-repository `pacman-multiplayer`, branch `t_b0c3844c/final` at commit `83ae1e0`
+repository `pacman-multiplayer`, branch `t_b0c3844c/final` at commit `ae3cd1d`
 (MIT per its package.json), for `/play/final/` on aknewknowledge.com.
 
 - The server's authoritative simulation (`src/multiplayer_game.js`) runs inside the
@@ -23,15 +23,15 @@ repository `pacman-multiplayer`, branch `t_b0c3844c/final` at commit `83ae1e0`
 ## SHA-256 of files in this directory
 
 ```
-c4f45f0f2eb08878ef85e1de2bc97139828cf4b5a45bc4ca5997d51de4e4f201  index.html
-b4404aaaec65a9a40cc5f2ed00e3644408338e1165a8bcc7f3891fde6b178c6a  style.css
+aba058c2c06c13075d5083b6a6b53eb13c2f7db59c9d4b1826271aabd6e6c486  index.html
+6d98d74b30fc2b121dd62c5a4d416ce3af61802846d7bd91ce75936b593e3a44  style.css
 3802855962ce3c04b6edf207ca40f4768d8898e9e89b8e77e73c66b329c2f4d8  src/audio.js
 8b8250f04d3674555c2496104ccee02e449cb6204afefd243d4a5f8ae0b3dcb6  src/camera.js
 0b9ab6a49a13e43914c85827dc2c20050a58f00ccd19978a232336f64602bcd4  src/client_adapter.js
 ede519121ca47eb6ae4ae3b684c447f63159bfd071c6bd10f2613bdf350b3f96  src/game_state.js
 c26475fbe584487a49484e1263d6631e1c72e96b60b72d53313514f650540cc9  src/ghost_ai.js
 0647b1a62a29a8966529673422736d21623f2025eae8d38f2bde3b74a3ed1702  src/local_room.js
-c86598fe8cb74a443c3052346f74b90942fd86eefe45f1d173dc623170fd367b  src/main.js
+3b1491e86954020327c16813f1a3db35e7f0e6d28e43de66ffe368a6b8c958f2  src/main.js
 c169a3759ae587542e06f6d968cbb285a2a6c5446c03cd97af4759751239e7d4  src/maze.js
 65850e8c12d5c5ea2f5e9828833e89a284d80ef148e108be4e80a20a93aeac26  src/movement.js
 84dfee593dd41780e74aa7c8fd4fad49a0782f209cbdacdce149acf82d0d5762  src/multiplayer_game.js
