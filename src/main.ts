@@ -166,7 +166,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <p class="section-label">Open by nature</p>
         <h2>Knowledge grows<br>when it is <em>shared.</em></h2>
         <p>The code, experiments, and people behind A Knew Knowledge live in the open. Follow the work, explore the repositories, and build on what resonates.</p>
-        <a class="discord-card" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">
+        <a class="discord-card" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">
           <span class="discord-icon">${discordIcon()}</span>
           <span><strong>Join A Knew Knowledge on Discord</strong><small>A space to connect, question, share, and build together.</small></span>
           <span class="discord-action">Join the community${icon('arrow')}</span>
@@ -205,7 +205,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="section-shell footer-grid">
       <a class="brand footer-brand" href="#top"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
       <p>Remember differently.<br>Build intentionally.</p>
-      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/zaUzpeBv6" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
+      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
       <small>© <span id="year"></span> A Knew Knowledge LLC</small>
     </div>
   </footer>

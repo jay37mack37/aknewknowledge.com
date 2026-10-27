@@ -77,7 +77,7 @@ export function renderCard(m, d, i) {
   return `
       <article class="demo-card" id="${esc(d.id)}" aria-labelledby="${esc(d.id)}-title">
         <a class="demo-shot" href="${esc(sitePath(d.play.url))}" tabindex="-1">
-          <img src="${esc(d.image.src)}" width="${d.image.width}" height="${d.image.height}" alt="${esc(d.image.alt)}" loading="${i ? 'lazy' : 'eager'}" decoding="async">
+          <img src="${esc(d.image.src)}" width="${d.image.width}" height="${d.image.height}" alt="${esc(d.image.alt)}" loading="eager" decoding="async">
           <span class="demo-index">${n}</span>
         </a>
         <div class="demo-body">
