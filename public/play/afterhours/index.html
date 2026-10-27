@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d13"><title>AFTERHOURS — Neon maze arcade</title><style>
+:root{color-scheme:dark;--bg:#080d13;--ink:#eaf2ed;--muted:#87969e;--line:#24313c;--yellow:#e7ff70;--cyan:#52dacb}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Arial',sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-offset:5px}button:hover{color:var(--yellow);border-color:#697d75!important}.cabinet{max-width:1336px;margin:auto;padding:0 42px}header{height:93px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.wordmark{display:flex;align-items:center;gap:11px;font-size:21px;letter-spacing:2px;font-weight:900;color:var(--ink);text-decoration:none}.mark{color:var(--yellow);font-size:34px}.edition{font:10px 'Courier New',monospace;letter-spacing:1px;color:var(--muted);padding-left:16px;margin-left:5px;border-left:1px solid var(--line)}.live,.label,.arena-top,.arena-bottom,.signature,.eyebrow,small,.instructions,.actions,.status{font-family:'Courier New',monospace}.live{font-size:10px;color:var(--muted);letter-spacing:1px}.live i{display:inline-block;width:5px;height:5px;background:var(--yellow);border-radius:50%;margin-right:9px}.instruments{display:grid;grid-template-columns:1.1fr 1.1fr .85fr .8fr 1fr;padding:23px 0 24px;gap:24px}.label{font-size:10px;letter-spacing:1.6px;display:block;color:var(--muted);margin-bottom:8px}strong{font:29px 'Courier New',monospace;font-weight:bold;letter-spacing:1px}#score{color:var(--yellow)}#best{color:#b0bdbd}.life-stat strong{font-size:22px;color:var(--yellow);letter-spacing:5px}.status{padding-left:24px;border-left:1px solid var(--line);font-size:11px;color:var(--cyan)}.meter{height:3px;background:#1c2d32;margin-top:12px}.meter b{display:block;background:var(--yellow);width:0;height:100%;transition:width .1s linear}.arena{position:relative;background:#0a141b;border:1px solid #2b3c46;overflow:hidden;isolation:isolate}.arena:after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 3px,#00000008 3px 4px);z-index:3}.arena-top,.arena-bottom{position:absolute;left:25px;right:25px;display:flex;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:1.4px;z-index:2;color:#aabec3}.arena-top{top:20px}.arena-top em{font-style:normal;color:#637b84}.angle{font-size:9px;color:#637b84}.arena-bottom{bottom:19px;font-size:9px;letter-spacing:1px}.arena-bottom>span:first-child{display:flex;align-items:center;gap:9px}.dot,.pellet{width:4px;height:4px;background:var(--yellow);border-radius:50%;display:inline-block}.pellet{width:9px;height:9px;margin-left:16px;box-shadow:0 0 10px #dfff7070}#event{color:var(--cyan)}canvas{display:block;width:100%;aspect-ratio:1200/780;max-height:calc(100svh - 310px);min-height:370px;object-fit:fill}.overlay{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-left:7.5%;background:linear-gradient(90deg,#08121aee 0%,#08121acb 34%,#08121a44 62%,transparent 100%)}.overlay.hidden{display:none}.eyebrow{font-size:9px;letter-spacing:1.8px;color:var(--cyan)}h1{font-size:clamp(42px,5.5vw,76px);letter-spacing:-4px;line-height:.98;font-weight:900;margin:24px 0 16px}h1 em{font-style:normal;color:var(--yellow)}.overlay p{font-size:14px;line-height:1.7;color:#a9b9c1;margin:0 0 28px}.primary{border:0;background:var(--yellow);color:#111b16!important;min-height:49px;min-width:230px;padding:0 20px;font:11px 'Courier New',monospace;font-weight:bold;letter-spacing:1px;display:flex;align-items:center;justify-content:space-between;gap:32px}.primary:hover{background:#f4ffb5}.primary span{font-size:23px}small{font-size:9px;letter-spacing:1.2px;color:#879b9d;margin-top:15px}footer{height:75px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.instructions{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--muted);letter-spacing:.5px}kbd{font:10px 'Courier New',monospace;border:1px solid #34424b;border-radius:3px;padding:4px 6px;min-width:24px;text-align:center;color:#aabcc3}.instructions span{margin-left:8px}.instructions b{font-weight:normal;margin:0 7px;color:#4c626d}.desktop-hint{margin-left:25px!important;display:flex;align-items:center;gap:10px}.actions{display:flex;gap:10px}.actions button{background:transparent;border:1px solid var(--line);min-height:39px;padding:0 13px;font-size:13px;display:flex;align-items:center;gap:10px}.actions button span{font-size:9px;letter-spacing:1px}.actions kbd{border:0;color:#6b828c;padding:0;min-width:10px}.signature{display:flex;justify-content:space-between;font-size:8px;letter-spacing:1.6px;color:#576d79;margin:17px 0 22px}.touch{display:none;touch-action:none}.touch button{width:49px;height:46px;background:#14232c;border:1px solid #3a515d;border-radius:4px;font-size:21px}.touch button:active{background:var(--yellow);color:#08121a}@media(pointer:coarse){.touch{display:flex;align-items:center;flex-direction:column;gap:5px;padding-top:12px}.touch>div{display:flex;gap:5px}.desktop-hint{display:none}}@media(max-width:650px){.cabinet{padding:0 16px}header{height:68px}.wordmark{font-size:16px;gap:7px}.mark{font-size:28px}.edition{font-size:8px;margin:0;padding-left:9px}.live{display:none}.instruments{gap:10px;padding:18px 0;grid-template-columns:1fr 1fr .8fr .7fr}.label{font-size:8px;letter-spacing:.8px}strong{font-size:23px}.life-stat strong{font-size:17px;letter-spacing:1px}.status{display:none}.arena-top,.arena-bottom{left:12px;right:12px;font-size:8px;letter-spacing:.5px}.arena-top{top:14px}.arena-top em{display:none}.angle{font-size:7px}.arena-bottom{bottom:13px}.arena-bottom>span:first-child{gap:6px}#event{font-size:7px;max-width:130px;text-align:right}canvas{min-height:360px;max-height:none;aspect-ratio:1/1.1}.overlay{padding:30px 24px;background:linear-gradient(90deg,#08121aed,#08121a77)}h1{font-size:55px;letter-spacing:-3px}.eyebrow{font-size:7px;letter-spacing:1px}.overlay p{font-size:13px}.primary{min-width:220px}footer{height:65px}.instructions{gap:3px}.instructions kbd{display:none}.instructions span{font-size:8px;margin-left:0}.actions button{padding:0 9px;gap:6px}.actions kbd{display:none}.signature{font-size:7px;letter-spacing:.8px}.signature span{display:none}.touch{display:flex;align-items:center;flex-direction:column;gap:5px;padding-top:12px}.touch>div{display:flex;gap:5px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style></head>
+<body><main class="cabinet"><header><a class="wordmark" href="./" aria-label="Afterhours arcade home"><span class="mark">◕</span> AFTERHOURS<span class="edition">ARCADE / 001</span></a><div class="live"><i></i> LOCAL PLAY · NO QUARTERS</div></header>
+<section class="instruments" aria-label="Game statistics"><div><span class="label">SCORE</span><strong id="score">000000</strong></div><div><span class="label">PERSONAL BEST</span><strong id="best">000000</strong></div><div class="life-stat"><span class="label">LIVES</span><strong id="lives" aria-label="3 lives">● ● ●</strong></div><div class="remaining"><span class="label">DOTS LEFT</span><strong id="remaining">—</strong></div><div class="status"><span class="label">SYSTEM</span><span id="status">READY TO ROAM</span><div class="meter"><b id="power"></b></div></div></section>
+<section class="arena" aria-label="Maze arcade"><div class="arena-top"><span>SECTOR 01 <em>/ THE NIGHT SHIFT</em></span><span class="angle">2.5D MAZE RUNNER</span></div><canvas id="board" width="1200" height="780" role="img" aria-label="Pseudo-3D maze. Guide the yellow runner through dots, avoid ghosts, eat large power pellets to hunt them."></canvas><div id="overlay" class="overlay"><span class="eyebrow" id="overlay-label">THE CITY IS ASLEEP. YOU AREN’T.</span><h1 id="overlay-title">Own the<br><em>afterhours.</em></h1><p id="overlay-copy">Clear the maze. Lose the tail.<br>Turn the hunters into the hunted.</p><button id="start" class="primary">ENTER THE MAZE <span>↵</span></button><small id="overlay-hint">ARROWS / WASD TO MOVE</small></div><div class="arena-bottom"><span><i class="dot"></i> 10 PTS <i class="pellet"></i> POWER / 50 PTS</span><span id="event" aria-live="polite">KEEP MOVING. THEY’RE CLOSE.</span></div></section>
+<footer><div class="instructions"><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd><span>MOVE <b>/</b> WASD</span><span class="desktop-hint"><kbd>SPACE</kbd> PAUSE</span></div><div class="actions"><button id="pause">Ⅱ <span>PAUSE</span></button><button id="restart">↻ <span>RESTART</span><kbd>R</kbd></button></div></footer>
+<nav class="touch" aria-label="Touch movement controls"><button data-dir="up" aria-label="Move up">↑</button><div><button data-dir="left" aria-label="Move left">←</button><button data-dir="down" aria-label="Move down">↓</button><button data-dir="right" aria-label="Move right">→</button></div></nav><p class="signature">ONE MAZE. FOUR GHOSTS. NO SHORTCUTS.<span>BUILT FOR THE LATE SHIFT</span></p></main><script>
+/* Pure, deterministic game model. Coordinates are integer maze cells. */
+(function(root){
+'use strict';
+const MAZE=[
+'#####################',
+'#o........#........o#',
+'#.###.###.#.###.###.#',
+'#...................#',
+'#.###.#.#####.#.###.#',
+'#.....#...#...#.....#',
+'#####.###.#.###.#####',
+'#.....#.......#.....#',
+'#.###.#.##.##.#.###.#',
+'#...#...#   #...#...#',
+'###.#.#.#   #.#.#.###',
+'#.....#.......#.....#',
+'#.###.###.#.###.###.#',
+'#o..#..... .....#..o#',
+'###.#.#.#####.#.#.###',
+'#.....#...#...#.....#',
+'#.#######.#.#######.#',
+'#...................#',
+'#####################'];
+const DIRS={up:{x:0,y:-1},right:{x:1,y:0},down:{x:0,y:1},left:{x:-1,y:0}};
+class Game{
+ constructor(){this.maze=MAZE;this.width=21;this.height=19;this.spawn={x:10,y:13};this.state='ready';this.lives=3;this.score=0;this.power=0;this.pellets=new Map();MAZE.forEach((r,y)=>[...r].forEach((v,x)=>{if(v==='.'||v==='o')this.pellets.set(`${x},${y}`,v)}));this.player={...this.spawn,dir:'left'};this.ghosts=[{x:9,y:9},{x:11,y:9},{x:9,y:10},{x:11,y:10}].map((p,id)=>({...p,id,home:{...p},dir:'up'}));this.tick=0;}
+ pause(){if(this.state==='playing')this.state='paused';else if(this.state==='paused')this.state='playing';}
+ restart(){Object.assign(this,new Game());this.queued=undefined;this.invulnerable=0;}
+ start(){if(this.state==='ready')this.state='playing';}
+ setDirection(dir){if(DIRS[dir])this.queued=dir;}
+ step(){
+  if(this.state!=='playing')return;
+  if(this.power>0)this.power--;
+  if(this.invulnerable>0)this.invulnerable--;
+  const eaten=new Set();
+  const contact=()=>{for(const h of this.ghosts){if(h.x!==this.player.x||h.y!==this.player.y||eaten.has(h))continue;if(this.power){this.score+=200;Object.assign(h,h.home);eaten.add(h);}else if(!this.invulnerable){this.lives--;this.player={...this.spawn,dir:'left'};this.queued='left';this.invulnerable=16;this.power=0;for(const ghost of this.ghosts)Object.assign(ghost,ghost.home);if(this.lives===0)this.state='gameover';return true;}}return false;};
+  if(contact())return;
+  const p=this.player;
+  const can=d=>d&&this.walkable(p.x+DIRS[d].x,p.y+DIRS[d].y);
+  if(can(this.queued))p.dir=this.queued;
+  if(can(p.dir)){p.x+=DIRS[p.dir].x;p.y+=DIRS[p.dir].y;}
+  const k=`${p.x},${p.y}`,pellet=this.pellets.get(k);
+  if(pellet){this.pellets.delete(k);this.score+=pellet==='o'?50:10;if(pellet==='o')this.power=60;}
+  if(this.pellets.size===0){this.state='won';return;}
+  if(contact())return;
+  // BFS distance field makes pursuit respect the maze rather than Manhattan walls.
+  const distances=new Map([[`${p.x},${p.y}`,0]]),queue=[{x:p.x,y:p.y}];
+  for(let i=0;i<queue.length;i++){const a=queue[i];for(const d of Object.values(DIRS)){const x=a.x+d.x,y=a.y+d.y,k=`${x},${y}`;if(this.walkable(x,y)&&!distances.has(k)){distances.set(k,distances.get(`${a.x},${a.y}`)+1);queue.push({x,y});}}}
+  for(const h of this.ghosts){
+   if(eaten.has(h))continue;
+   if((this.tick+h.id)%4===3 || (this.power&&this.tick%2))continue;
+   const options=Object.entries(DIRS).map(([dir,d])=>({dir,x:h.x+d.x,y:h.y+d.y})).filter(a=>this.walkable(a.x,a.y));
+   options.sort((a,b)=>(distances.get(`${a.x},${a.y}`)-distances.get(`${b.x},${b.y}`))*(this.power?-1:1));
+   if(options.length)Object.assign(h,options[0]);
+  }
+  contact();
+  this.tick++;
+ }
+ walkable(x,y){return Number.isInteger(x)&&Number.isInteger(y)&&!!this.maze[y]&&this.maze[y][x]!==undefined&&this.maze[y][x]!=='#';}
+}
+const api={Game,MAZE,DIRS};if(typeof module!=='undefined')module.exports=api;else root.NeonMaze=api;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Canvas presentation + input adapter; simulation lives in game.js. */
+'use strict';
+(()=>{
+const $=id=>document.getElementById(id),game=new NeonMaze.Game();
+window.arcade={game}; // Readable inspection hook: no hidden backend or remote state.
+const canvas=$('board'),ctx=canvas.getContext('2d');
+let best=0;try{best=Number(localStorage.getItem('afterhours-best'))||0;}catch{}
+let previous=null,last=performance.now(),accumulator=0,visualTime=0,lastLives=3,notice='KEEP MOVING. THEY’RE CLOSE.';
+const tickMs=135,colors=['#ff6e8a','#66e3e2','#e2a0ff','#ffad6b'];
+const project=(x,y,z=0)=>({x:350+x*34-y*12,y:65+x*7+y*23-z});
+function polygon(points,fill,stroke){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}}
+function tile(x,y,z,fill,stroke,inset=0){polygon([project(x+inset,y+inset,z),project(x+1-inset,y+inset,z),project(x+1-inset,y+1-inset,z),project(x+inset,y+1-inset,z)],fill,stroke);}
+function block(x,y){const h=14;polygon([project(x,y+1,h),project(x+1,y+1,h),project(x+1,y+1,0),project(x,y+1,0)],'#0b3848','#164d5d');polygon([project(x+1,y,h),project(x+1,y+1,h),project(x+1,y+1,0),project(x+1,y,0)],'#102c3d','#164d5d');tile(x,y,h,'#123b49','#48b7b5',.065);}
+function actor(entity,isPlayer,alpha){
+ const old=isPlayer?previous?.player:previous?.ghosts.find(h=>h.id===entity.id);
+ const smooth=old&&Math.abs(old.x-entity.x)+Math.abs(old.y-entity.y)<=1;
+ const x=smooth?old.x+(entity.x-old.x)*alpha:entity.x,y=smooth?old.y+(entity.y-old.y)*alpha:entity.y;
+ const p=project(x+.5,y+.5,13);
+ ctx.save();ctx.fillStyle='#0007';ctx.beginPath();ctx.ellipse(p.x,p.y+15,14,7,0,0,Math.PI*2);ctx.fill();
+ if(isPlayer){
+  if(game.invulnerable&&Math.floor(visualTime/90)%2)ctx.globalAlpha=.35;
+  ctx.translate(p.x,p.y);const angle={right:0,down:Math.PI/2,left:Math.PI,up:-Math.PI/2}[entity.dir]||0;ctx.rotate(angle);
+  const mouth=.19+Math.abs(Math.sin(visualTime/80))*.35;
+  const gradient=ctx.createRadialGradient(-5,-6,1,0,0,15);gradient.addColorStop(0,'#ffffbf');gradient.addColorStop(.5,'#eaff70');gradient.addColorStop(1,'#a5b72f');
+  ctx.shadowColor='#e7ff70';ctx.shadowBlur=17;ctx.fillStyle=gradient;ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,14,mouth,Math.PI*2-mouth);ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#1c2815';ctx.beginPath();ctx.arc(1,-8,1.8,0,Math.PI*2);ctx.fill();
+ }else{
+  const frightened=game.power>0;const color=frightened?(game.power<15&&Math.floor(visualTime/120)%2?'#e9ffff':'#688ffe'):colors[entity.id%4];
+  ctx.translate(p.x,p.y+Math.sin(visualTime/180+entity.id)*2);ctx.shadowColor=color;ctx.shadowBlur=15;const gradient=ctx.createLinearGradient(-10,-14,10,14);gradient.addColorStop(0,color);gradient.addColorStop(1,frightened?'#283b8b':'#273c50');ctx.fillStyle=gradient;ctx.beginPath();ctx.moveTo(-12,12);ctx.lineTo(-12,-1);ctx.bezierCurveTo(-12,-19,12,-19,12,-1);ctx.lineTo(12,12);ctx.lineTo(6,8);ctx.lineTo(0,12);ctx.lineTo(-6,8);ctx.closePath();ctx.fill();ctx.shadowBlur=0;
+  for(const ex of [-4.5,4.5]){ctx.fillStyle='#eefaff';ctx.beginPath();ctx.ellipse(ex,-2,3.9,5,0,0,Math.PI*2);ctx.fill();const d=NeonMaze.DIRS[entity.dir]||{x:0,y:0};ctx.fillStyle='#112d42';ctx.beginPath();ctx.arc(ex+d.x*1.4,-2+d.y*1.6,1.9,0,Math.PI*2);ctx.fill();}
+  if(frightened){ctx.strokeStyle='#eaffff';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(-5,6);ctx.lineTo(-2,4);ctx.lineTo(1,6);ctx.lineTo(4,4);ctx.stroke();}
+ }
+ ctx.restore();
+}
+function draw(alpha){
+ ctx.clearRect(0,0,1200,780);const bg=ctx.createRadialGradient(620,390,50,600,390,650);bg.addColorStop(0,'#122b34');bg.addColorStop(1,'#09131b');ctx.fillStyle=bg;ctx.fillRect(0,0,1200,780);
+ // Subtle floor grid outside the physical cabinet.
+ ctx.strokeStyle='#16313a55';ctx.lineWidth=1;for(let i=-20;i<50;i++){let a=project(i,-10),b=project(i,35);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}for(let i=-15;i<40;i++){let a=project(-15,i),b=project(40,i);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+ const corners=[project(-.4,-.4,-12),project(21.4,-.4,-12),project(21.4,19.4,-12),project(-.4,19.4,-12)];ctx.save();ctx.shadowColor='#36b2b84a';ctx.shadowBlur=45;polygon(corners,'#071219','#327c82');ctx.restore();
+ polygon([project(-.4,19.4,-12),project(21.4,19.4,-12),project(21.4,19.4,-29),project(-.4,19.4,-29)],'#10242f','#30606a');polygon([project(21.4,-.4,-12),project(21.4,19.4,-12),project(21.4,19.4,-29),project(21.4,-.4,-29)],'#0a1c28','#234955');
+ for(let y=0;y<19;y++)for(let x=0;x<21;x++){tile(x,y,0,'#0a1b24','#18313a');}
+ for(const [key,v] of game.pellets){const [x,y]=key.split(',').map(Number),p=project(x+.5,y+.5,3);ctx.beginPath();const power=v==='o';ctx.fillStyle=power?'#edffa0':'#b3d1ad';ctx.shadowColor='#eaff8b';ctx.shadowBlur=power?12:0;ctx.ellipse(p.x,p.y,power?5+Math.sin(visualTime/200)*.8:2.1,power?4:1.6,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}
+ const objects=[];for(let y=0;y<19;y++)for(let x=0;x<21;x++)if(!game.walkable(x,y))objects.push({depth:project(x+.5,y+1).y,paint:()=>block(x,y)});
+ for(const h of game.ghosts)objects.push({depth:project(h.x+.5,h.y+.5).y,paint:()=>actor(h,false,alpha)});
+ objects.push({depth:project(game.player.x+.5,game.player.y+.5).y,paint:()=>actor(game.player,true,alpha)});objects.sort((a,b)=>a.depth-b.depth);objects.forEach(o=>o.paint());
+}
+function sync(){
+ $('score').textContent=String(game.score).padStart(6,'0');$('best').textContent=String(best).padStart(6,'0');$('lives').textContent=Array.from({length:3},(_,i)=>i<game.lives?'●':'○').join(' ');$('lives').setAttribute('aria-label',`${game.lives} lives`);$('remaining').textContent=String(game.pellets.size).padStart(3,'0');$('power').style.width=`${game.power/60*100}%`;
+ $('status').textContent=game.power?'HUNTER MODE':game.state==='playing'?'ON THE RUN':game.state.toUpperCase();$('event').textContent=game.power?'POWER UP. CHASE THEM DOWN.':notice;$('pause').querySelector('span').textContent=game.state==='paused'?'RESUME':'PAUSE';
+ const state=game.state;$('overlay').classList.toggle('hidden',state==='playing');
+ if(state==='ready'){$('overlay-label').textContent='THE CITY IS ASLEEP. YOU AREN’T.';$('overlay-title').innerHTML='Own the<br><em>afterhours.</em>';$('overlay-copy').innerHTML='Clear the maze. Lose the tail.<br>Turn the hunters into the hunted.';$('start').innerHTML='ENTER THE MAZE <span>↵</span>';}
+ else if(state!=='playing'){
+ const paused=state==='paused',won=state==='won';$('overlay-label').textContent=paused?'TAKE A BREATHER.':won?'SECTOR CLEARED. NICELY DONE.':'THE NIGHT CAUGHT UP.';$('overlay-title').innerHTML=paused?'Night on<br><em>pause.</em>':won?'Clean<br><em>getaway.</em>':'End of<br><em>the shift.</em>';$('overlay-copy').innerHTML=paused?'Your run is right where you left it.':`Final score: ${String(game.score).padStart(6,'0')}<br>${won?'Every last dot. Every last corner.':'Another night. Another chance.'}`;$('start').innerHTML=(paused?'BACK TO THE CHASE':'ONE MORE RUN')+' <span>↵</span>';
+ }
+}
+function activate(){if(game.state==='paused')game.pause();else{if(['won','gameover'].includes(game.state))game.restart();game.start();}previous=null;accumulator=0;sync();}
+function move(dir){if(game.state==='ready')activate();game.setDirection(dir);}
+$('start').addEventListener('click',activate);$('pause').addEventListener('click',()=>{game.pause();previous=null;accumulator=0;sync();});$('restart').addEventListener('click',()=>{game.restart();previous=null;accumulator=0;notice='FRESH SHIFT. SAME STREETS.';sync();});
+const keys={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',a:'left',s:'down',d:'right'};
+document.addEventListener('keydown',e=>{const key=e.key.length===1?e.key.toLowerCase():e.key;if(keys[key]){e.preventDefault();move(keys[key]);}else if(e.code==='Space'||key==='Escape'){e.preventDefault();if(!e.repeat){game.pause();previous=null;accumulator=0;sync();}}else if(key==='Enter'&&e.target.tagName!=='BUTTON'){e.preventDefault();activate();}else if(key==='r'&&!e.repeat){game.restart();previous=null;accumulator=0;sync();}});
+document.querySelectorAll('[data-dir]').forEach(button=>button.addEventListener('pointerdown',e=>{e.preventDefault();move(button.dataset.dir);}));
+let touchStart=null;canvas.addEventListener('pointerdown',e=>{touchStart={x:e.clientX,y:e.clientY};});canvas.addEventListener('pointerup',e=>{if(!touchStart)return;const dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;if(Math.hypot(dx,dy)>15)move(Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up');touchStart=null;});canvas.style.touchAction='none';
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&game.state==='playing'){game.pause();previous=null;accumulator=0;sync();}});
+function frame(now){const dt=Math.min(now-last,100);last=now;visualTime=now;if(game.state==='playing'){accumulator+=dt;while(accumulator>=tickMs){previous={player:{...game.player},ghosts:game.ghosts.map(h=>({...h}))};game.step();accumulator-=tickMs;if(game.lives<lastLives)notice='LIFE LOST. STAY SHARP.';lastLives=game.lives;if(game.score>best){best=game.score;try{localStorage.setItem('afterhours-best',String(best));}catch{}}sync();if(game.state!=='playing'){previous=null;break;}}}draw(previous?accumulator/tickMs:1);requestAnimationFrame(frame);}
+sync();requestAnimationFrame(frame);
+})();
+
+</script>
+</body></html>
