@@ -1,0 +1,84 @@
+{
+  "$comment": "The ONE source for every demo. The site's /demos/ page is generated from this at build time (scripts/demos.mjs), and the Discord #demos forum posts are generated from it by `npm run demos:discord` (aKnewMod intents). Edit here, never in Discord or HTML.",
+  "version": 1,
+  "forum": {
+    "title": "Things we built by talking to AI.",
+    "how": "Tap a post, hit ▶️ **Play**. Works on your phone.",
+    "byline": "Prompted by Jack · A Knew Knowledge",
+    "discord": {
+      "channel_id": "1564590978705129604",
+      "url": "https://discord.com/channels/1563133284328808500/1564590978705129604",
+      "invite": "https://discord.gg/zaUzpeBv6"
+    }
+  },
+  "tags": {
+    "game": "🎮",
+    "AI": "🤖",
+    "experiment": "🧪",
+    "voice": "🎙️"
+  },
+  "demos": [
+    {
+      "id": "afterhours",
+      "emoji": "🕹️",
+      "title": "AFTERHOURS",
+      "subtitle": "neon arcade",
+      "lead": "Top-down neon Pac-Man arcade.",
+      "how": "Tap ▶️ Play AFTERHOURS, then swipe or tap the arrows.",
+      "credits": [
+        "Prompted by Jack"
+      ],
+      "status": "👥 multiplayer coming soon",
+      "tags": [
+        "game",
+        "AI"
+      ],
+      "play": {
+        "label": "Play AFTERHOURS",
+        "url": "https://aknewknowledge.com/play/afterhours/"
+      },
+      "image": {
+        "src": "/demos/img/afterhours.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "AFTERHOURS: a glowing Pac-Man faces four neon ghosts in a tilted teal maze scattered with pellets"
+      },
+      "discord": {
+        "thread_id": "1564591167021129879",
+        "file": "demo-afterhours-v3.png"
+      }
+    },
+    {
+      "id": "maze-runner",
+      "emoji": "👀",
+      "title": "Maze Runner",
+      "subtitle": "first-person 3D",
+      "lead": "First-person 3D Pac-Man.",
+      "how": "Tap ▶️ Play Maze Runner, then the on-screen arrows. **CAM** flips the view.",
+      "credits": [
+        "Prompted by Jack",
+        "built by Gemini 3.8"
+      ],
+      "status": "👥 multiplayer coming soon",
+      "tags": [
+        "game",
+        "AI",
+        "experiment"
+      ],
+      "play": {
+        "label": "Play Maze Runner",
+        "url": "https://aknewknowledge.com/play/game/"
+      },
+      "image": {
+        "src": "/demos/img/maze-runner.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Maze Runner: a first-person view down a dark neon-edged corridor, an orange ball rolling ahead"
+      },
+      "discord": {
+        "thread_id": "1564591210121797672",
+        "file": "demo-maze-runner-v2.png"
+      }
+    }
+  ]
+}
