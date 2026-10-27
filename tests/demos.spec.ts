@@ -21,7 +21,7 @@ test('demos page renders every manifest demo with a working play link', async ({
     await expect(card).toHaveAttribute('id', d.id)
     await expect(card.getByRole('heading', { level: 2 })).toContainText(d.title)
     await expect(card).toContainText(d.lead)
-    await expect(card).toContainText(d.status)
+    if (d.status) await expect(card).toContainText(d.status)
     for (const t of d.tags) await expect(card.locator('.demo-tags')).toContainText(t)
     const img = card.getByRole('img', { name: d.image.alt })
     await expect(img).toBeVisible()
