@@ -54,5 +54,5 @@ test('demos is linked from the main nav and the play page', async ({ page, isMob
     await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Demos' }).click()
   }
   await expect(page).toHaveURL(/\/demos\/$/)
-  await expect(page.getByRole('navigation', { name: 'Demos navigation' }).getByRole('link', { name: 'Demos' })).toHaveAttribute('aria-current', 'page')
+  await expect(page.getByRole('navigation', { name: 'Primary navigation', includeHidden: true }).getByRole('link', { name: 'Demos', includeHidden: true })).toHaveAttribute('aria-current', 'page')
 })

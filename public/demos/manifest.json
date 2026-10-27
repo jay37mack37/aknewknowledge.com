@@ -48,6 +48,35 @@
       }
     },
     {
+      "id": "final",
+      "emoji": "🏁",
+      "title": "Maze Runner: Final",
+      "subtitle": "the polished build",
+      "lead": "Polished 3D Pac-Man, made for iPhone.",
+      "how": "Tap ▶️ Play Final, then swipe or tap the big arrows. It rounds corners for you.",
+      "credits": [
+        "Prompted by Jack"
+      ],
+      "tags": [
+        "game",
+        "AI"
+      ],
+      "play": {
+        "label": "Play Final",
+        "url": "https://aknewknowledge.com/play/final/"
+      },
+      "image": {
+        "src": "/demos/img/final.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Maze Runner: Final: a yellow Pac-Man with big eyes faces you in a glassy blue neon corridor, a glowing pellet on each side"
+      },
+      "discord": {
+        "thread_id": "1564762615467737170",
+        "file": "demo-final.png"
+      }
+    },
+    {
       "id": "afterhours",
       "emoji": "🕹️",
       "title": "AFTERHOURS",

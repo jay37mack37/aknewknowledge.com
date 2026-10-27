@@ -1,12 +1,8 @@
 @import './style.css';
+@import './subpage.css';
 /* /play/ — the arcade hub. Built from the main-site system in style.css:
    .site-header, .eyebrow, .hero-intro, .button, .work-card (+ .dark), .card-top,
-   .tag-row, .section-label and the footer. Only layout lives here. */
-.skip-link { position: fixed; z-index: 50; top: 12px; left: 16px; padding: 14px 16px; background: var(--acid); color: var(--ink); font-size: 13px; font-weight: 600; transform: translateY(-160%); transition: transform 160ms ease; }
-.skip-link:focus { transform: none; }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-main:focus { outline: none; }
-.mobile-nav a[aria-current='page'] { font-weight: 600; }
+   .tag-row, .section-label and the footer; subpage.css adds the skip link. Only layout lives here. */
 
 .arcade { display: grid; grid-template-columns: 1.3fr .7fr; grid-template-areas: 'hero how' 'builds builds'; column-gap: 90px; align-items: end; padding-top: 170px; }
 .arcade-hero { grid-area: hero; }
@@ -66,6 +62,12 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
   .build-card .tag-row { padding-top: 18px; }
 }
 
+/* Tablet: the two earlier builds sit side by side and style.css gives every card a right
+   border at this width, so drop the left card's one to keep a single 1px divider. */
+@media (min-width: 681px) and (max-width: 900px) {
+  .build-grid > .build-card:nth-child(3) { border-right: 0; }
+}
+
 @media (max-width: 680px) {
   .build-grid { grid-template-columns: minmax(0, 1fr); }
   .build-featured { display: flex; }
@@ -78,6 +80,10 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
   .build-card:not(.build-featured) h3 { margin: 0 0 2px; font-size: 22px; }
   .build-card:not(.build-featured) .build-date { margin-bottom: 0; }
   .build-card:not(.build-featured) .build-desc, .build-card:not(.build-featured) .tag-row { display: none; }
+  /* Online keeps its two headline tags so the row still says "multiplayer" at a glance. */
+  .build-online.build-card .tag-row { display: flex; margin: 12px 0 4px; padding-top: 0; gap: 5px; }
+  .build-online .tag-row span { padding: 5px 8px; font-size: 10.5px; }
+  .build-online .tag-row span:nth-child(n+3) { display: none; }
   .build-card:not(.build-featured) .build-play { min-height: 44px; margin-top: 6px; padding-top: 0; border-top: 0; justify-content: flex-start; gap: 10px; text-decoration: underline; text-underline-offset: 5px; font-size: 13px; }
 }
 
@@ -115,6 +121,6 @@ kbd { min-width: 30px; height: 30px; padding: 0 8px; display: inline-grid; place
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .build-shot img, .build-play, .skip-link { transition: none; }
+  .build-shot img, .build-play { transition: none; }
   .build-card:hover .build-shot img, .build-featured .build-play:hover { transform: none; }
 }

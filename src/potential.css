@@ -36,7 +36,9 @@
   body { background: var(--paper); color: var(--ink); }
   body.menu-open { overflow: hidden; touch-action: none; }
   ::selection { background: var(--mint); color: var(--deep); }
-  :focus-visible { outline: 2px solid #53a399; outline-offset: 4px; }
+  :focus-visible { outline: 2px solid var(--focus, var(--teal)); outline-offset: 4px; }
+  /* Teal keeps >=3:1 on the light surfaces; the mint-teal ring is for the deep ones. */
+  .hero, .book-section, .project-dark, .community { --focus: #53a399; }
   [id] { scroll-margin-top: 90px; }
   .page-shell { width: min(1240px, calc(100% - 80px)); margin-inline: auto; }
   .section-pad { padding-block: clamp(110px, 13vw, 190px); }
