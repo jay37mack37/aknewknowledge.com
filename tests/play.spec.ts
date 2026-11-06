@@ -51,20 +51,15 @@ test('/play/ reflows at 320px with nothing clipped', async ({ page }) => {
   await noHorizontalOverflow(page)
 })
 
-test('Fancy site button sits in the header (or mobile menu) of home and /play/', async ({ page, isMobile }) => {
+test('the redesign link lives in the menu and footer, not as a header button, on home and /play/', async ({ page, isMobile }) => {
   for (const path of ['/', '/play/']) {
     await page.goto(path)
+    // Owner 2026-11-06: no header button for the redesign (it read as tacky).
+    await expect(page.locator('.header-actions a[href="/potential/"]')).toHaveCount(0)
+    await expect(page.locator('footer a[href="/potential/"]')).toHaveCount(1)
     if (isMobile) {
       await page.getByRole('button', { name: 'Open navigation' }).click()
-      const link = page.locator('#mobile-nav').getByRole('link', { name: /Fancy site/ })
-      await expect(link).toBeVisible()
-      await expect(link).toHaveAttribute('href', '/potential/')
-      // The pill is also visible next to the menu button on phones.
-      await expect(page.locator('.header-actions .fancy-link')).toBeVisible()
-    } else {
-      const link = page.locator('.header-actions .fancy-link')
-      await expect(link).toBeVisible()
-      await expect(link).toHaveAttribute('href', '/potential/')
+      await expect(page.locator('#mobile-nav a[href="/potential/"]')).toBeVisible()
     }
   }
 })
