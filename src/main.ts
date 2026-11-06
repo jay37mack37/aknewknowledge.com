@@ -38,7 +38,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="fancy-link" href="/potential/"><span aria-hidden="true">✦</span> Fancy site</a>
       <a class="nav-cta" href="#book">Read the book</a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation">${icon('menu')}</button>
     </div>
