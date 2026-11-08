@@ -38,7 +38,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="fancy-link" href="/potential/"><span aria-hidden="true">✦</span> Fancy site</a>
       <a class="nav-cta" href="#book">Read the book</a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation">${icon('menu')}</button>
     </div>
@@ -50,7 +49,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="/demos/">Demos</a>
       <a href="#community">Community</a>
       <a href="#contact">Contact</a>
-      <a class="mobile-fancy" href="/potential/">Fancy site <span aria-hidden="true">✦</span></a>
     </nav>
   </header>
 
@@ -218,7 +216,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="section-shell footer-grid">
       <a class="brand footer-brand" href="#top"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
       <p>Remember differently.<br>Build intentionally.</p>
-      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="/play/">Play</a><a href="#contact">Contact</a><a href="/potential/">Fancy site</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
+      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="/play/">Play</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
       <small>© <span id="year"></span> A Knew Knowledge LLC</small>
     </div>
   </footer>
