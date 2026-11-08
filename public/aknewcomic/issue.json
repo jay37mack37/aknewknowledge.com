@@ -1,0 +1,71 @@
+{
+  "title": "The Costume",
+  "issue": 1,
+  "pages": [
+    {
+      "src": "pages/00-cover.webp",
+      "label": "Cover"
+    },
+    {
+      "src": "pages/01.webp",
+      "label": "Story page 1"
+    },
+    {
+      "src": "pages/02.webp",
+      "label": "Story page 2"
+    },
+    {
+      "src": "pages/03.webp",
+      "label": "Story page 3"
+    },
+    {
+      "src": "pages/04.webp",
+      "label": "Story page 4"
+    },
+    {
+      "src": "pages/05.webp",
+      "label": "Story page 5"
+    },
+    {
+      "src": "pages/06.webp",
+      "label": "Story page 6"
+    },
+    {
+      "src": "pages/07.webp",
+      "label": "Story page 7"
+    },
+    {
+      "src": "pages/08.webp",
+      "label": "Story page 8"
+    },
+    {
+      "src": "pages/09.webp",
+      "label": "Story page 9"
+    },
+    {
+      "src": "pages/10.webp",
+      "label": "Story page 10"
+    },
+    {
+      "src": "pages/11.webp",
+      "label": "Story page 11"
+    },
+    {
+      "src": "pages/12.webp",
+      "label": "Story page 12"
+    },
+    {
+      "src": "pages/13.webp",
+      "label": "Story page 13"
+    },
+    {
+      "src": "pages/14.webp",
+      "label": "Story page 14"
+    },
+    {
+      "src": "pages/15.webp",
+      "label": "Story page 15"
+    }
+  ],
+  "pdf": "issue-01.pdf"
+}
