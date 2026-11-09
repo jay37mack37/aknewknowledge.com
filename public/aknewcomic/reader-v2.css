@@ -47,6 +47,8 @@ body.comic .reading-bar { padding: 10px 12px calc(10px + env(safe-area-inset-bot
 body.comic .count { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); margin: 0; line-height: 40px; font-size: 15px; white-space: nowrap; pointer-events: none; }
 body.comic .navigation { justify-content: space-between; max-width: 1068px; }
 body.comic.cover .navigation { justify-content: flex-end; }
+/* The cover has only one button, so reserve the empty left side for its caption. */
+body.comic.cover .count { left: max(12px, calc((100vw - 1068px) / 2)); transform: none; }
 
 .cover-note { text-align: center; padding: 16px 0; color: var(--paper); }
 .transcript { padding: 22px 0 0; overflow-wrap: anywhere; }

@@ -60,3 +60,6 @@ No gateway/browser restart, new privilege or new network exposure.
 - Page 11 hero faces and hands corrected while original Javell, margins and unaffected panels are preserved with masked compositing.
 - Identity audit also corrected the matching glasses/light-face drift on page 12 and darkened page 9 skin without changing its original hair, pose or expressions.
 - All affected full pages, panel crops and the PDF were rebuilt from the selected sources.
+- Final all-panel identity sweep inventories every one of the sixty-one panels against the cover, including civilian and miniature hero appearances.
+- Fourteen remaining mismatches on pages 1, 2, 3, 5 and 9 are corrected only within bounded hero regions; original lettering, Javell, props, expressions and all unaffected panels remain.
+- Normal-mode cover caption aligns on the empty left side of its bar, separated from the unchanged 40px Read issue button by a browser-tested minimum 16px gap.

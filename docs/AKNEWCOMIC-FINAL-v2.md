@@ -66,6 +66,9 @@ npx playwright test tests/site.spec.ts tests/demos.spec.ts tests/play.spec.ts --
 - Narrow 320px layout checked at maximum text size, with no document overflow.
 - Keyboard focus, zoom, page selection, reload persistence, broken images and incomplete-manifest failures checked.
 - Actual iPhone-width screenshots captured with 28px story text and 56px navigation.
+- A complete sixty-one-panel identity inventory identified fourteen remaining hero mismatches across five pages, including civilian and in-phone appearances.
+- Only the mismatched hero regions were corrected to match the cover's Black hero and short textured hair; unchanged panels, dialogue, the hoodie friend, original expressions and props were preserved.
+- A cover-only caption alignment correction keeps the normal-size Read issue button separated from the issue caption; the browser regression requires a minimum 16px gap at phone width.
 
 Independent acceptance and publication readback are recorded separately after their completion.
 
