@@ -9,14 +9,17 @@
   <link rel="stylesheet" href="reader-v2.css">
   <script src="reader-v2.js" defer></script>
 </head>
-<body>
+<body class="comic">
   <a class="skip" href="#story">Skip to comic</a>
   <header class="masthead">
     <a class="brand" href="/aknewcomic/" aria-label="AKnewComic cover">AKnew<span>Comic</span></a>
-    <button id="options-toggle" aria-expanded="false" aria-controls="options">Options</button>
+    <div class="masthead-actions">
+      <button id="mode-toggle" aria-pressed="false">Large text mode</button>
+      <button id="options-toggle" aria-expanded="false" aria-controls="options">Options</button>
+    </div>
   </header>
   <section id="options" class="options" aria-label="Reading options" hidden>
-    <div class="option-row"><span>Text size</span><div class="size-controls"><button id="smaller" aria-label="Smaller story text">A−</button><output id="text-size" aria-live="polite">28</output><button id="larger" aria-label="Larger story text">A+</button></div></div>
+    <div id="size-row" class="option-row"><span>Text size</span><div class="size-controls"><button id="smaller" aria-label="Smaller story text">A−</button><output id="text-size" aria-live="polite">28</output><button id="larger" aria-label="Larger story text">A+</button></div></div>
     <label class="option-row" for="page-select"><span>Go to page</span><select id="page-select" aria-label="Go to page"></select></label>
     <a class="download" href="issue-01.pdf" download>Download Issue #1 ↓</a>
   </section>

@@ -12,6 +12,18 @@ Edit only hero skin throughout and remove interior mastheads, preserving origina
 Assemble final WebP, PDF and explicit reading metadata.
 Extend existing static reader with a clean cover entry, large controls, a panel-focused mobile mode, and actual large selectable dialogue and scene descriptions.
 Keep full-page artwork and zoom available.
+
+### Owner redirect 2026-11-09: normal comic layout first
+The default reader is a normal comic book site: first visit opens the cover, then each full story page as art only, with no transcript under it.
+Controls are tidy and normal sized (about 40px, not 56px slabs); the page fits the viewport on desktop 1440x900 and phone 390x844.
+Tapping the left or right edge of the page turns it, tapping the center enlarges it.
+A horizontal swipe turns the page and the trailing synthesized click is ignored so it does not open zoom.
+Arrow keys and small Prev/Next controls also turn pages.
+One visible "Large text mode" toggle switches to the existing panel and transcript reader unchanged (28px+ story text, 56px controls, text sizing, panel/whole-page views) and switches back.
+The chosen mode is stored under its own key `aknewcomic.issue01.reader.mode.v3`; the old v2 saved page/view/size key never selects a mode, so earlier visitors land in the new default layout.
+Normal mode remembers its own page under `aknewcomic.issue01.reader.comic.v3`.
+`?mode=accessible` (or `?mode=comic`) deep links pick and remember a mode; toggling clears the query so the choice sticks.
+Zoom, PDF, schema guards, broken-asset recovery and focus behavior are shared by both modes.
 Use original story script and visually verify every transcript against the actual edited page.
 
 ## Files allowed
@@ -26,6 +38,9 @@ No homepage changes unless the separately requested Fancy site removal is still 
 
 ## Test plan
 First run a real-browser regression that fails because readable text/panel mode are absent.
+Redirect: first add and run one failing default-layout test (cover then full page art, no transcript, small controls) before production changes.
+Existing accessibility tests keep their assertions and explicitly enter Large text mode.
+New tests: full 16-page normal reading flow, edge taps, swipe without zoom, keyboard, zoom, toggling both ways, persistence, deep link, old v2 preferences ignored, no overflow at 320, 390 and desktop, small default control heights.
 Verify every page decodes, all page assets exist, no interior mastheads, consistent dark-brown hero in all panels, unchanged story/approved style.
 At 390x844 and 320px: no sideways document scroll, controls >=48px, readable HTML text >=24px, every scene/panel reachable, font sizing and persistence, cover-to-ending navigation, keyboard, zoom, reload, explicit load failures.
 Run check, build and existing site tests.
@@ -39,6 +54,9 @@ No gateway/browser restart, new privilege or new network exposure.
 ## Acceptance
 - Cover plus fifteen story pages, Black hero consistent everywhere including artwork embedded in story covers.
 - Exactly one external cover title, no story-page masthead clutter.
-- Actual low-vision-readable story on iPhone with large selectable text and panel-first artwork; not merely larger navigation.
+- Normal comic layout by default; actual low-vision-readable story on iPhone with large selectable text and panel-first artwork one toggle away; not merely larger navigation.
 - Preserve jokes, story circle, approved style, physical props and callbacks.
-- Existing website live with all exact assets read back, independent acceptance evidence and complete tests.
+- Private preview is verified at 127.0.0.1:4195; publication remains explicitly on hold for OpenClaw main.
+- Page 11 hero faces and hands corrected while original Javell, margins and unaffected panels are preserved with masked compositing.
+- Identity audit also corrected the matching glasses/light-face drift on page 12 and darkened page 9 skin without changing its original hair, pose or expressions.
+- All affected full pages, panel crops and the PDF were rebuilt from the selected sources.

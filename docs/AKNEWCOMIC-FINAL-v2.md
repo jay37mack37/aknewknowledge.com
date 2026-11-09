@@ -9,7 +9,18 @@ The main caped hero and his friend both have brown skin throughout the selected 
 Interior chapter mastheads are removed; titles printed on fictional comic props remain part of the story.
 
 ## Reader
-Panel view is the default and follows the actual artwork's reading order through sixty-one panels.
+The default layout is a normal comic site: a first visit opens on the cover, then each full story page is shown as art only, sized to fit the screen.
+Tap the left or right edge of the page to turn it, or tap the center to enlarge it.
+A horizontal swipe also turns the page, and the click a browser may synthesize after the swipe is ignored so zoom does not open.
+Arrow keys and the small Back and Next controls turn pages too.
+Controls in this layout are a normal 40px tall.
+
+A single "Large text mode" button in the header opens the low-vision reader described below, and the same button switches back.
+The chosen mode is stored under its own local key, separate from the earlier saved page, view and text size, so earlier visitors still land in the default layout.
+`?mode=accessible` opens Large text mode directly; `?mode=comic` opens the default layout.
+
+### Large text mode
+Panel view is the default here and follows the actual artwork's reading order through sixty-one panels.
 Every panel includes a concise scene description and selectable dialogue, attributed to the visible speaker.
 The red-caped character is labeled Hero; the character in the gray hoodie is Javell.
 Wordless panels intentionally contain no invented dialogue.
@@ -17,8 +28,8 @@ Whole-page view preserves the original composition and shows that page's complet
 Artwork can also open in an enlarged, scrollable dialog.
 
 Story lettering defaults to 28px and adjusts from 24px to 44px.
-Interactive controls are at least 56px high.
-Reading position, view and text size are saved locally when browser storage is available.
+Interactive controls in Large text mode are at least 56px high.
+Reading position, view and text size are saved locally when browser storage is available; the default layout keeps its own saved page.
 No account, analytics, external font, tracking script or server-side reading history is used.
 The PDF contains the same cover and fifteen cropped story pages.
 
@@ -49,7 +60,7 @@ npx playwright test tests/site.spec.ts tests/demos.spec.ts tests/play.spec.ts --
 ## Verified before publication
 - Sixteen unique source images decoded at their actual resolution.
 - Sixty-one cropped panels assembled from measured final-image borders.
-- Sixteen reader browser tests passed across desktop and mobile projects.
+- Thirty reader browser tests passed across desktop and mobile projects, covering the default comic layout (all sixteen pages, edge taps, swipe, keyboard, zoom, sizing at 320px, 390px and 1440px) and Large text mode (toggle both ways, persistence, deep link, old preferences ignored).
 - Twenty-eight existing website, arcade and demo tests passed.
 - Every panel traversed in order from the cover through the ending.
 - Narrow 320px layout checked at maximum text size, with no document overflow.
