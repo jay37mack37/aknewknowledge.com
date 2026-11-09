@@ -16,7 +16,9 @@ Use original story script and visually verify every transcript against the actua
 
 ## Files allowed
 - public/aknewcomic/index.html and reader assets within public/aknewcomic/.
-- tests/comic.spec.ts for real-browser checks.
+- tests/comic.spec.ts and tests/comic-flow.spec.ts for real-browser checks.
+- scripts/finalize-comic-v2.py for deterministic reviewed-asset assembly.
+- .github/workflows/check.yml, reusing the existing PR30 pinned check/build workflow because live main protection requires a build check but main has no pull-request build trigger.
 - docs/AKNEWCOMIC-FINAL-v2.md for public technical verification without private source quotes.
 - This blueprint.
 Art outputs and private receipts remain in the canonical task workspace until selected for publication.

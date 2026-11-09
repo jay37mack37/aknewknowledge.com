@@ -1,0 +1,31 @@
+import { expect, test } from '@playwright/test'
+
+test('panel reading gives the actual story large selectable text', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/aknewcomic/')
+  await page.getByRole('button', { name: 'Read issue' }).click()
+  await expect(page.getByRole('button', { name: 'Panel view' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('#count')).toContainText('Page 1 of 15 · Panel 1 of')
+  await expect(page.locator('.scene')).toBeVisible()
+  await page.getByRole('button', { name: 'Next →', exact: true }).click()
+  await expect(page.locator('#count')).toContainText('Panel 2 of')
+  await expect(page.locator('.words')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Next →', exact: true }).click()
+  await expect(page.locator('#count')).toContainText('Panel 3 of')
+  await expect(page.locator('.words').first()).toBeVisible()
+  expect(await page.locator('.words').first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(28)
+  await page.getByRole('button', { name: 'Whole page' }).click()
+  await expect(page.locator('#transcript')).toContainText('I believe in you.')
+})
+
+test('comic cover has large unobstructed iPhone reading controls', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/aknewcomic/')
+  const read = page.getByRole('button', { name: 'Read issue', exact: false })
+  await expect(read).toBeVisible()
+  const box = await read.boundingBox()
+  expect(box?.height).toBeGreaterThanOrEqual(56)
+  expect(await read.evaluate((el) => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(20)
+  const width = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }))
+  expect(width.scroll).toBeLessThanOrEqual(width.client)
+})

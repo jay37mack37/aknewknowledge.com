@@ -1,15 +1,52 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#111a18"><title>AKnewComic · The Costume · Issue #1</title>
-<style>
-:root{color-scheme:dark;--paper:#f1e7cf;--gold:#e0b347;--red:#b8322a;--ink:#111a18}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:Georgia,serif}button,a,select{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.35;cursor:default}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}header{min-height:62px;display:flex;justify-content:space-between;align-items:center;padding:8px 18px;border-bottom:1px solid #ffffff25;gap:12px}.brand{color:var(--paper);text-decoration:none;font-weight:bold;letter-spacing:.03em}.brand span{color:var(--gold)}.issue{font:12px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#cfbea0}.download{font:14px Arial,sans-serif;color:var(--paper);text-decoration:none;min-height:44px;display:flex;align-items:center;padding:0 12px;border:1px solid #ffffff40;border-radius:5px}.stage{height:calc(100svh - 154px);min-height:220px;display:flex;align-items:center;justify-content:center;padding:10px 12px}.art{border:0;background:none;padding:0;line-height:0;max-height:100%;max-width:100%;cursor:zoom-in}.art img{display:block;max-height:calc(100svh - 174px);max-width:100%;width:auto;object-fit:contain;box-shadow:0 8px 40px #0008}.bar{height:92px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:4px 12px env(safe-area-inset-bottom);border-top:1px solid #ffffff25}.nav{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:620px}.nav button,.close,.thumb-toggle{background:#23352f;color:var(--paper);border:1px solid #ffffff40;border-radius:5px;min-height:44px;padding:0 14px;font:14px Arial,sans-serif}.count{min-width:100px;text-align:center;font:14px Arial,sans-serif}.hint{font:12px Arial,sans-serif;color:#bdb39e}.hint button{border:0;background:none;color:var(--gold);padding:4px;font:inherit;cursor:pointer}.thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid #ffffff25}.thumbs[hidden]{display:none}.thumbs button{flex:0 0 64px;border:2px solid transparent;border-radius:4px;padding:2px;background:transparent;color:var(--paper);font:11px Arial,sans-serif}.thumbs button[aria-current=true]{border-color:var(--gold)}.thumbs img{width:52px;height:78px;object-fit:contain;display:block;margin:auto auto 4px}body.overview .stage{height:calc(100svh - 274px)}body.overview .art img{max-height:calc(100svh - 294px)}.status{font:16px Arial,sans-serif;text-align:center;max-width:36ch;line-height:1.6}dialog{border:0;padding:0;background:#0b1210;color:var(--paper);width:100vw;max-width:100vw;height:100svh;max-height:100svh;margin:0}dialog::backdrop{background:#000d}.zoom-head{height:56px;display:flex;align-items:center;justify-content:space-between;padding:6px 12px;font:14px Arial,sans-serif}.zoom-scroll{overflow:auto;height:calc(100svh - 56px);text-align:center;touch-action:pan-x pan-y pinch-zoom}.zoom-scroll img{display:block;max-width:100%;max-height:calc(100svh - 70px);margin:auto;cursor:zoom-in}.zoom-scroll.actual img{max-width:none;max-height:none;width:1696px;cursor:zoom-out}@media(max-width:420px){header{padding:6px 10px}.brand{font-size:15px}.issue{font-size:10px}.download{font-size:12px;padding:0 8px}.nav{gap:8px}.nav button{padding:0 10px}.count{min-width:88px}.stage{padding:8px}.hint{font-size:11px}}
-</style></head><body>
-<header><div><a class="brand" href="/aknewcomic/">AKnew<span>Comic</span></a><div class="issue">The Costume · Issue #1</div></div><a id="pdf" class="download" href="issue-01.pdf" download>Download the issue ↓</a></header>
-<div id="thumbs" class="thumbs" hidden aria-label="Choose a page"></div>
-<main class="stage" id="stage"><p id="status" class="status" role="status">Opening Issue #1…</p><button id="art" class="art" aria-label="Enlarge current page" hidden><img id="page" alt=""></button></main>
-<footer class="bar"><div class="nav"><button id="prev" aria-label="Previous page">← Previous</button><span id="count" class="count" aria-live="polite">—</span><button id="next" aria-label="Next page">Next →</button></div><div class="hint">Tap the page to enlarge · <button id="overview" aria-expanded="false" aria-controls="thumbs">All pages</button></div></footer>
-<dialog id="zoom" aria-label="Enlarged comic page"><div class="zoom-head"><span id="zlabel">Comic page</span><div><button id="fit" class="close">Actual size</button> <button id="close" class="close">Close ✕</button></div></div><div id="zscroll" class="zoom-scroll"><img id="zpage" alt=""></div></dialog>
-<script>
-/* Sol 6.1 on behalf of the owner. Static reader; no tracking or private source data. */
-(()=>{'use strict';const $=id=>document.getElementById(id),key='aknewcomic.issue01.page.v2';let pages=[],i=0,startX=null,startY=null;const status=t=>{$('status').textContent=t;$('status').hidden=false;$('art').hidden=true};function show(n){i=Math.max(0,Math.min(pages.length-1,n));const p=pages[i];if(!p)return;$('page').src=p.src;$('page').alt=p.label;$('art').setAttribute('aria-label','Enlarge '+p.label);$('count').textContent=i===0?'Cover':`${i} / ${pages.length-1}`;$('prev').disabled=i===0;$('next').disabled=i===pages.length-1;$('next').textContent=i===0?'Read issue →':'Next →';document.querySelectorAll('#thumbs button').forEach((b,j)=>b.setAttribute('aria-current',String(i===j)));try{localStorage.setItem(key,String(i))}catch{}if(pages[i+1]){const preload=new Image();preload.src=pages[i+1].src}}
-$('page').onload=()=>{$('status').hidden=true;$('art').hidden=false};$('page').onerror=()=>status('This page could not load. Please reload, or download the issue.');$('prev').onclick=()=>show(i-1);$('next').onclick=()=>show(i+1);$('overview').onclick=()=>{const open=$('thumbs').hidden;$('thumbs').hidden=!open;document.body.classList.toggle('overview',open);$('overview').setAttribute('aria-expanded',String(open))};$('art').onclick=()=>{const p=pages[i];$('zpage').src=p.src;$('zpage').alt=p.label;$('zlabel').textContent=p.label;$('zscroll').classList.remove('actual');$('fit').textContent='Actual size';$('zoom').showModal()};const toggle=()=>{const actual=$('zscroll').classList.toggle('actual');$('fit').textContent=actual?'Fit page':'Actual size'};$('fit').onclick=toggle;$('zpage').onclick=toggle;$('close').onclick=()=>{$('zoom').close();$('art').focus()};document.addEventListener('keydown',e=>{if($('zoom').open||e.altKey||e.ctrlKey||e.metaKey||['SELECT','INPUT'].includes(e.target.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();show(i+1)}if(e.key==='ArrowLeft'){e.preventDefault();show(i-1)}});$('stage').addEventListener('touchstart',e=>{if(e.touches.length!==1){startX=null;return}startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});$('stage').addEventListener('touchend',e=>{if(startX===null||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;startX=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6)show(i+(dx<0?1:-1))},{passive:true});async function boot(){try{const res=await fetch('issue.json',{cache:'no-cache'});if(!res.ok)throw Error();const m=await res.json();if(!Array.isArray(m.pages)||!m.pages.length)throw Error();pages=m.pages;for(const p of pages){if(!/^pages\/[a-z0-9-]+\.(webp|jpg|png)$/.test(p.src)||typeof p.label!=='string')throw Error()}$('pdf').href='issue-01.pdf';pages.forEach((p,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Show '+p.label);const im=document.createElement('img');im.src=p.src;im.alt='';im.loading='lazy';b.append(im,document.createTextNode(n===0?'Cover':String(n)));b.onclick=()=>show(n);$('thumbs').append(b)});let saved=0;try{saved=Number(localStorage.getItem(key))||0}catch{}show(saved)}catch{status('Issue #1 is being prepared. The comic will appear here when it is ready.');$('pdf').hidden=true;$('prev').disabled=$('next').disabled=true}}boot()})();
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#111a18">
+  <title>AKnewComic · The Costume · Issue #1</title>
+  <link rel="stylesheet" href="reader-v2.css">
+  <script src="reader-v2.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#story">Skip to comic</a>
+  <header class="masthead">
+    <a class="brand" href="/aknewcomic/" aria-label="AKnewComic cover">AKnew<span>Comic</span></a>
+    <button id="options-toggle" aria-expanded="false" aria-controls="options">Options</button>
+  </header>
+  <section id="options" class="options" aria-label="Reading options" hidden>
+    <div class="option-row"><span>Text size</span><div class="size-controls"><button id="smaller" aria-label="Smaller story text">A−</button><output id="text-size" aria-live="polite">28</output><button id="larger" aria-label="Larger story text">A+</button></div></div>
+    <label class="option-row" for="page-select"><span>Go to page</span><select id="page-select" aria-label="Go to page"></select></label>
+    <a class="download" href="issue-01.pdf" download>Download Issue #1 ↓</a>
+  </section>
+  <main id="story" tabindex="-1">
+    <p id="status" class="status" role="status">Opening the comic…</p>
+    <div id="reader" hidden>
+      <div id="view-controls" class="view-controls" role="group" aria-label="Reading view" hidden>
+        <button id="panel-view" aria-pressed="true">Panel view</button>
+        <button id="page-view" aria-pressed="false">Whole page</button>
+      </div>
+      <figure class="artwork">
+        <button id="art" class="art" aria-label="Enlarge cover"><img id="page" alt="" fetchpriority="high"></button>
+        <figcaption id="cover-note" class="cover-note">Issue #1 · A comic for Javell</figcaption>
+      </figure>
+      <section id="transcript" class="transcript" aria-label="Comic text" hidden></section>
+      <p id="ending" class="ending" hidden>End of Issue #1.<br>Two supports. One future.</p>
+    </div>
+    <noscript><p class="status">This reader needs JavaScript. <a href="issue-01.pdf">Download the complete comic</a> instead.</p></noscript>
+  </main>
+  <footer class="reading-bar">
+    <p id="count" class="count" role="status" aria-live="polite">Issue #1</p>
+    <nav class="navigation" aria-label="Comic navigation">
+      <button id="prev" disabled>← Back</button>
+      <button id="next" class="primary" disabled>Read issue →</button>
+    </nav>
+  </footer>
+  <dialog id="zoom" aria-label="Enlarged comic art">
+    <div class="zoom-bar"><button id="fit">Actual size</button><button id="close">Close ✕</button></div>
+    <div id="zoom-scroll" class="zoom-scroll"><img id="zoom-page" alt=""></div>
+    <p id="zoom-error" role="status" hidden>The enlarged image could not load.</p>
+  </dialog>
+</body>
+</html>
