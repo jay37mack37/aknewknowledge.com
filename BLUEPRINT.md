@@ -1,65 +1,60 @@
-# AKnewComic final polish v2 blueprint
-Author: Sol 6.1 on behalf of the owner.
+# Projects and ideas directory blueprint
 
 ## Goal
-Finish the existing owner-approved Issue #1 without redesigning it: consistently Black hero, cover-only title, and readable iPhone presentation.
-Private chronological requirements are attached to canonical task t_ee5ddd96, never shipped with the website.
+Publish one honest, searchable list of every A Knew Knowledge project and idea, current, past and not yet started, at `/projects/`.
+The owner wants all of it public, including ideas, the comic and the Threader work; the list holds 150+ entries and keeps growing.
+Every entry says in plain text what state it is in (Public, In use, Building, Paused, Past, Idea, Unknown), so nothing claims to be live when it is not.
 
 ## Components and flow
-Use AKnewGemini's existing locked Chromium client and shared rate guard for reference-conditioned Nano Banana edits, sequentially paced with checkpoints and no credential changes.
-Preserve all 16 approved source images in the original art checkout.
-Edit only hero skin throughout and remove interior mastheads, preserving original dialogue and layout.
-Assemble final WebP, PDF and explicit reading metadata.
-Extend existing static reader with a clean cover entry, large controls, a panel-focused mobile mode, and actual large selectable dialogue and scene descriptions.
-Keep full-page artwork and zoom available.
+- `public/projects/projects.json`: the one public data file (`aknew-projects/1`). Curated, sanitized summaries only; private research records never ship.
+- `scripts/projects.mjs`: `loadProjects`, `validate` (schema, unique ids, parent ids exist, allowed statuses and categories, link rules, privacy lint), render helpers and `fillPage`. Same shape as `scripts/demos.mjs`, kept independent of it.
+- `projects/index.html`: main-site chrome (header, mobile menu, footer, skip link, CSP) with `<!--PROJECTS_*-->` slots filled at dev and build time by a vite `transformIndexHtml` plugin, exactly like `/demos/`.
+- Content is static HTML grouped by status with a jump list and counts, so the full directory, every summary and every link work with JavaScript off.
+- `src/projects.ts`: progressive enhancement only. Reveals a search box and filters (status, category, era), hides non-matching rows and empty groups, announces the result count in a polite live region, and mirrors the filter in the URL query (`?q=&status=&category=&era=`) so a filtered view can be shared. No network; CSP stays `script-src 'self'`.
+- Search matches the public name, original names and aliases, summary, note, included sub-projects, category, status and parent project.
+- Records folded into another entry (for example early trading bots inside the legacy bundle) stay visible and searchable on that entry as an "Includes" list with their own names and a one-line relationship, so no past project disappears.
+- AI-written concept lists (one entry has forty generated game pitches) render as a collapsed sub-list labelled as generated concepts; they are neither counted nor search hits.
+- Optional `firstNoted` (YYYY or YYYY-MM) shows the earliest month an entry appears in our records; it is not a start date.
+- Navigation: "Projects" joins the header and mobile nav on home, `/play/`, `/demos/` and `/projects/`; footer "Projects" points to `/projects/`; home "What we build" gets a "See every project" link; `/projects/` joins `sitemap.xml`.
 
-### Owner redirect 2026-11-09: normal comic layout first
-The default reader is a normal comic book site: first visit opens the cover, then each full story page as art only, with no transcript under it.
-Controls are tidy and normal sized (about 40px, not 56px slabs); the page fits the viewport on desktop 1440x900 and phone 390x844.
-Tapping the left or right edge of the page turns it, tapping the center enlarges it.
-A horizontal swipe turns the page and the trailing synthesized click is ignored so it does not open zoom.
-Arrow keys and small Prev/Next controls also turn pages.
-One visible "Large text mode" toggle switches to the existing panel and transcript reader unchanged (28px+ story text, 56px controls, text sizing, panel/whole-page views) and switches back.
-The chosen mode is stored under its own key `aknewcomic.issue01.reader.mode.v3`; the old v2 saved page/view/size key never selects a mode, so earlier visitors land in the new default layout.
-Normal mode remembers its own page under `aknewcomic.issue01.reader.comic.v3`.
-`?mode=accessible` (or `?mode=comic`) deep links pick and remember a mode; toggling clears the query so the choice sticks.
-Zoom, PDF, schema guards, broken-asset recovery and focus behavior are shared by both modes.
-Use original story script and visually verify every transcript against the actual edited page.
+### Privacy lint (fails the build)
+Blocks private infrastructure and identity leaks in every string: IP literals, localhost and ports, tailnet hosts, home or server paths (`/home/`, `/srv/`, `~/`), hidden config directories, board ids (`t_` plus 8 hex), long numeric ids, email addresses, secret-looking words (password, token, api key, secret), and standalone AI model or agent names.
+Project names the owner coined that contain a vendor word (for example AKnewGemini or aKnewCodex) are allowed because the rule matches standalone words only; this replaces the earlier blanket keyword filter that would have rejected legitimate project names.
+Secret detection looks for secret values (`password=...`, token prefixes), not topics, so an idea like a local password manager is listed.
+An exact-string allowlist (`ORIGINAL_NAMES`) keeps an owner's original project name searchable as an alias when it contains a vendor product word; it never applies to summaries or notes.
+Links may only be site-relative paths that exist in the build or `https://github.com/jay37mack37/` public repositories. Auth routes are never linked.
+The lint has known-bad fixtures in `tests/projects.spec.ts`; each must throw. The lint is a floor, not proof; summaries are written by hand from the research records.
 
 ## Files allowed
-- public/aknewcomic/index.html and reader assets within public/aknewcomic/.
-- tests/comic.spec.ts and tests/comic-flow.spec.ts for real-browser checks.
-- scripts/finalize-comic-v2.py for deterministic reviewed-asset assembly.
-- .github/workflows/check.yml, reusing the existing PR30 pinned check/build workflow because live main protection requires a build check but main has no pull-request build trigger.
-- docs/AKNEWCOMIC-FINAL-v2.md for public technical verification without private source quotes.
-- This blueprint.
-Art outputs and private receipts remain in the canonical task workspace until selected for publication.
-No homepage changes unless the separately requested Fancy site removal is still needed and independently reviewed.
+- `BLUEPRINT.md` (this file)
+- `public/projects/projects.json` (new)
+- `scripts/projects.mjs` (new)
+- `projects/index.html` (new)
+- `src/projects.ts`, `src/projects.css` (new)
+- `vite.config.mjs` (add the `/projects/` input and slot plugin)
+- `src/main.ts`, `demos/index.html`, `play/index.html` (nav "Projects", footer target, home "See every project" link)
+- `src/style.css` (only if the eight-item desktop nav needs a tighter gap to fit)
+- `public/sitemap.xml` (add `/projects/`)
+- `tests/projects.spec.ts` (new)
+Untouched: `/potential/`, comic, games, Threader pages, demos manifest, workflows, existing tests.
 
 ## Test plan
-First run a real-browser regression that fails because readable text/panel mode are absent.
-Redirect: first add and run one failing default-layout test (cover then full page art, no transcript, small controls) before production changes.
-Existing accessibility tests keep their assertions and explicitly enter Large text mode.
-New tests: full 16-page normal reading flow, edge taps, swipe without zoom, keyboard, zoom, toggling both ways, persistence, deep link, old v2 preferences ignored, no overflow at 320, 390 and desktop, small default control heights.
-Verify every page decodes, all page assets exist, no interior mastheads, consistent dark-brown hero in all panels, unchanged story/approved style.
-At 390x844 and 320px: no sideways document scroll, controls >=48px, readable HTML text >=24px, every scene/panel reachable, font sizing and persistence, cover-to-ending navigation, keyboard, zoom, reload, explicit load failures.
-Run check, build and existing site tests.
-Independent Opus5.5 acceptance reviews current diffs and actual rendered flow, then final publication is read back from the existing URL and hashes compared.
+- RED first: `tests/projects.spec.ts` run before any production file exists fails on `/projects/` (404).
+- The page mirrors `projects.json`: total count, per-status group counts, every entry id, name, status label, summary, aliases.
+- With JavaScript disabled every entry, summary and link is present and the filter controls stay hidden.
+- Search finds entries by public name and by original alias, and shows a "no matches" message for nonsense; status, category and era filters combine; reset restores the full list; the URL query restores the same view on reload.
+- Every site-relative link returns 200; external links use `rel="noopener noreferrer"`.
+- No console errors; no horizontal overflow at 320, 390, 844x390 landscape and 1440.
+- "Projects" is reachable from home, `/play/` and `/demos/` in both navs, `aria-current="page"` on `/projects/`, footer link targets `/projects/`, desktop nav does not wrap at 901, 1024, 1180, 1440.
+- Privacy lint known-bad fixtures each throw; legitimate coined names and the original-name allowlist pass.
+- Every included sub-project name finds its parent entry through search; generated concepts are labelled and are not search hits.
+- `npm run check`, `npm run build` and the full Playwright suite (desktop and mobile projects) stay green; screenshots at 320, 390 and 1440 plus a no-JS capture are kept as evidence outside the repo.
 
 ## Rollback
-Revert the final coherent website commit to redeploy the prior reader and assets.
-Original art remains untouched and private output checkpoints are retained.
-No gateway/browser restart, new privilege or new network exposure.
+`git revert` the single commit. The route is additive; no data, settings, permissions or deployment configuration change.
 
 ## Acceptance
-- Cover plus fifteen story pages, Black hero consistent everywhere including artwork embedded in story covers.
-- Exactly one external cover title, no story-page masthead clutter.
-- Normal comic layout by default; actual low-vision-readable story on iPhone with large selectable text and panel-first artwork one toggle away; not merely larger navigation.
-- Preserve jokes, story circle, approved style, physical props and callbacks.
-- Private preview is verified at 127.0.0.1:4195; publication remains explicitly on hold for OpenClaw main.
-- Page 11 hero faces and hands corrected while original Javell, margins and unaffected panels are preserved with masked compositing.
-- Identity audit also corrected the matching glasses/light-face drift on page 12 and darkened page 9 skin without changing its original hair, pose or expressions.
-- All affected full pages, panel crops and the PDF were rebuilt from the selected sources.
-- Final all-panel identity sweep inventories every one of the sixty-one panels against the cover, including civilian and miniature hero appearances.
-- Fourteen remaining mismatches on pages 1, 2, 3, 5 and 9 are corrected only within bounded hero regions; original lettering, Javell, props, expressions and all unaffected panels remain.
-- Normal-mode cover caption aligns on the empty left side of its bar, separated from the unchanged 40px Read issue button by a browser-tested minimum 16px gap.
+- `/projects/` lists every entry in `public/projects/projects.json` with an honest text status, readable on a 320px phone and usable with JavaScript off.
+- Search and filters narrow 150+ entries quickly and announce results to screen readers.
+- Existing pages, tests and routes behave as before apart from the added nav and footer links.
+- Independent review and publication are owned outside this change; until the site is read back live, the directory is "merged, not live" at best.
