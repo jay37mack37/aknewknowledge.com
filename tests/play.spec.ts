@@ -51,21 +51,13 @@ test('/play/ reflows at 320px with nothing clipped', async ({ page }) => {
   await noHorizontalOverflow(page)
 })
 
-test('Fancy site button sits in the header (or mobile menu) of home and /play/', async ({ page, isMobile }) => {
-  for (const path of ['/', '/play/']) {
+// The owner removed the unfinished Fancy site button (PR #30); /potential/ itself stays reachable by URL.
+test('no Fancy site link or button on home, /play/ or /demos/', async ({ page, isMobile }) => {
+  for (const path of ['/', '/play/', '/demos/']) {
     await page.goto(path)
-    if (isMobile) {
-      await page.getByRole('button', { name: 'Open navigation' }).click()
-      const link = page.locator('#mobile-nav').getByRole('link', { name: /Fancy site/ })
-      await expect(link).toBeVisible()
-      await expect(link).toHaveAttribute('href', '/potential/')
-      // The pill is also visible next to the menu button on phones.
-      await expect(page.locator('.header-actions .fancy-link')).toBeVisible()
-    } else {
-      const link = page.locator('.header-actions .fancy-link')
-      await expect(link).toBeVisible()
-      await expect(link).toHaveAttribute('href', '/potential/')
-    }
+    if (isMobile) await page.getByRole('button', { name: 'Open navigation' }).click()
+    await expect(page.getByRole('link', { name: /Fancy site/i })).toHaveCount(0)
+    await expect(page.locator('.fancy-link, a[href="/potential/"]')).toHaveCount(0)
   }
 })
 

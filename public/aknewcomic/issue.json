@@ -1,70 +1,624 @@
 {
+  "schema": "aknewcomic-issue/2",
   "title": "The Costume",
   "issue": 1,
   "pages": [
     {
       "src": "pages/00-cover.webp",
-      "label": "Cover"
+      "label": "Cover",
+      "description": "The Costume, Issue #1. Two Black friends, one in a red cape and teal suit and one in a charcoal hoodie, stand together on a two-tower bridge. A tree grows from an open book behind them; a paper boat floats below. You Got the Alien Right Here. One friendship. One future. Too many messages."
     },
     {
       "src": "pages/01.webp",
-      "label": "Story page 1"
+      "label": "Story page 1",
+      "panels": [
+        {
+          "src": "panels/01-01.webp",
+          "description": "A phone vibrates beside a mug and a small book-leaved plant in a quiet living room.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/01-02.webp",
+          "description": "Javell, in his gray hoodie, looks at his phone on the couch.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/01-03.webp",
+          "description": "A close-up of the phone shows Javell's message.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "Get this outta my face."
+            }
+          ]
+        },
+        {
+          "src": "panels/01-04.webp",
+          "description": "The red-caped hero smiles at his phone. An open book fills the shield on his chest.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "I believe in you."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/02.webp",
-      "label": "Story page 2"
+      "label": "Story page 2",
+      "panels": [
+        {
+          "src": "panels/02-01.webp",
+          "description": "Wearing glasses and a white shirt, the hero studies his phone.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "I think I just figured it out."
+            }
+          ]
+        },
+        {
+          "src": "panels/02-02.webp",
+          "description": "His shadow on the wall already wears a superhero's cape.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/02-03.webp",
+          "description": "He works at a cluttered desk. A paper boat rests beside the unfinished work.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "I been holding back."
+            },
+            {
+              "speaker": "Hero",
+              "text": "The potential. Relax."
+            }
+          ]
+        },
+        {
+          "src": "panels/02-04.webp",
+          "description": "He looks at his own image on the phone and adjusts his glasses.",
+          "dialogue": []
+        }
+      ]
     },
     {
       "src": "pages/03.webp",
-      "label": "Story page 3"
+      "label": "Story page 3",
+      "panels": [
+        {
+          "src": "panels/03-01.webp",
+          "description": "The hero opens his white shirt to reveal the book shield and teal suit. His red cape flares behind him.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/03-02.webp",
+          "description": "With his hood up, Javell gives him a skeptical look.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "You be cosplaying a normal."
+            }
+          ]
+        },
+        {
+          "src": "panels/03-03.webp",
+          "description": "Javell pulls at his hoodie's collar, unimpressed.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "That's cringe as shit."
+            }
+          ]
+        },
+        {
+          "src": "panels/03-04.webp",
+          "description": "On a rooftop at sunset, the hero adjusts his glasses while Javell stands beside him with folded arms.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "Born Superman. Clark's the costume."
+            },
+            {
+              "speaker": "Javell",
+              "text": "All that under the shirt and you still scared to make a move."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/04.webp",
-      "label": "Story page 4"
+      "label": "Story page 4",
+      "panels": [
+        {
+          "src": "panels/04-01.webp",
+          "description": "Javell stands beside a board of plans, notes and connecting red string against the night skyline.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/04-02.webp",
+          "description": "Javell folds his arms and starts his challenge.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "If I had half what you had…"
+            }
+          ]
+        },
+        {
+          "src": "panels/04-03.webp",
+          "description": "The hero strikes a confident pose, his cape billowing behind him.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/04-04.webp",
+          "description": "Holding a small notebook with a bridge sketch, Javell points toward the hero and finishes his thought.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "…I'd have started."
+            },
+            {
+              "speaker": "Caption",
+              "text": "5:26 AM"
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/05.webp",
-      "label": "Story page 5"
+      "label": "Story page 5",
+      "panels": [
+        {
+          "src": "panels/05-01.webp",
+          "description": "The hero lands on a rooftop with a dramatic crouch, cracking the concrete.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/05-02.webp",
+          "description": "He puts a hand over his chest and makes a solemn declaration.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "I got ONE weakness."
+            }
+          ]
+        },
+        {
+          "src": "panels/05-03.webp",
+          "description": "A cannabis bud is fused with glowing green crystal facets: chronic and kryptonite in one suspicious object.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/05-04.webp",
+          "description": "The hero points toward the green object. Javell asks for clarification.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "That green shit."
+            },
+            {
+              "speaker": "Javell",
+              "text": "The chronic or the crystal?"
+            }
+          ]
+        },
+        {
+          "src": "panels/05-05.webp",
+          "description": "A wisp of smoke curls beside the hero as Javell holds the glowing green stash.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "Yes."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/06.webp",
-      "label": "Story page 6"
+      "label": "Story page 6",
+      "panels": [
+        {
+          "src": "panels/06-01.webp",
+          "description": "In the workshop, Javell spreads his arms over a table of plans. Tools and a team photograph hang behind him.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/06-02.webp",
+          "description": "The hero folds his arms and grins.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "Bro think he cool 'cause he assembled the whole team."
+            }
+          ]
+        },
+        {
+          "src": "panels/06-03.webp",
+          "description": "Against a glowing burst, the hero holds up a comic with himself on its cover.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/06-04.webp",
+          "description": "The hero gestures at the comic while Javell folds his arms across the table.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "But who's on the cover?"
+            },
+            {
+              "speaker": "Javell",
+              "text": "Who paid for the printing?"
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/07.webp",
-      "label": "Story page 7"
+      "label": "Story page 7",
+      "panels": [
+        {
+          "src": "panels/07-01.webp",
+          "description": "An open notebook of bridge sketches lies on the workbench beside pencils and a small plant.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/07-02.webp",
+          "description": "Roots spread across the pages of an open book beneath a growing sapling.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/07-03.webp",
+          "description": "The hero holds his glasses and pauses for a sincere thought.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "You know this is our legacy."
+            }
+          ]
+        },
+        {
+          "src": "panels/07-04.webp",
+          "description": "Javell points at a bridge sketch beside the wooden model on the desk.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "So we planting something, or you just showing me your wood?"
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/08.webp",
-      "label": "Story page 8"
+      "label": "Story page 8",
+      "panels": [
+        {
+          "src": "panels/08-01.webp",
+          "description": "An imagined future on Mars: a young descendant looks across a colony toward a two-tower suspension bridge.",
+          "dialogue": [
+            {
+              "speaker": "Caption",
+              "text": "In his head…"
+            }
+          ]
+        },
+        {
+          "src": "panels/08-02.webp",
+          "description": "A young descendant looks up with a hopeful expression.",
+          "dialogue": [
+            {
+              "speaker": "Imagined descendant",
+              "text": "What are the odds we get to live on Mars?"
+            }
+          ]
+        },
+        {
+          "src": "panels/08-03.webp",
+          "description": "A montage moves from patched clothing to a workshop, a boat and a floating craft.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/08-04.webp",
+          "description": "Children gather around an elder under a starry sky. Above them, the two friends appear in a vision of building the bridge together.",
+          "dialogue": [
+            {
+              "speaker": "Caption",
+              "text": "Started with a little wood and a lot of confidence."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/09.webp",
-      "label": "Story page 9"
+      "label": "Story page 9",
+      "panels": [
+        {
+          "src": "panels/09-01.webp",
+          "description": "In the workshop, the red-caped hero stands confidently with a hand on his hip.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "Everybody on my back. It don’t matter. I’m Superman."
+            }
+          ]
+        },
+        {
+          "src": "panels/09-02.webp",
+          "description": "In a thought-cloud, the hero imagines carrying an entire bridge, cars and all.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/09-03.webp",
+          "description": "Under the imagined weight, he strains and sweats as concrete cracks above him.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/09-04.webp",
+          "description": "Back in the workshop, the exhausted hero wipes his brow. Javell offers a small notebook and a skeptical look.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "I got it."
+            },
+            {
+              "speaker": "Javell",
+              "text": "You said you could go all night."
+            },
+            {
+              "speaker": "Hero",
+              "text": "Why you gotta say it like that?"
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/10.webp",
-      "label": "Story page 10"
+      "label": "Story page 10",
+      "panels": [
+        {
+          "src": "panels/10-01.webp",
+          "description": "The wooden bridge model lies among broken pieces and scattered drawings on the workshop floor.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/10-02.webp",
+          "description": "A piece of the wooden model hits the floor with a small impact.",
+          "dialogue": [
+            {
+              "speaker": "Sound",
+              "text": "clack"
+            }
+          ]
+        },
+        {
+          "src": "panels/10-03.webp",
+          "description": "Javell kneels to gather the broken pieces while the hero covers his face.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/10-04.webp",
+          "description": "Javell holds up his bridge notebook and speaks gently to the subdued hero.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "I said stop playing small. I didn't say do it alone."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/11.webp",
-      "label": "Story page 11"
+      "label": "Story page 11",
+      "panels": [
+        {
+          "src": "panels/11-01.webp",
+          "description": "An open sketchbook shows the bridge and its missing support. The friends’ hands rest beside the drawings.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/11-02.webp",
+          "description": "The hero opens the notebook in surprise. Javell stands beside him with folded arms.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "You had this the whole time?"
+            },
+            {
+              "speaker": "Javell",
+              "text": "You been texting the whole time."
+            }
+          ]
+        },
+        {
+          "src": "panels/11-03.webp",
+          "description": "Hands in teal sleeves and gray sleeves work together to fit the wooden bridge supports.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "Two hands on the job. Try not to make that weird."
+            }
+          ]
+        },
+        {
+          "src": "panels/11-04.webp",
+          "description": "The completed bridge stands between the friends under a desk lamp; a green glow lights the workbench.",
+          "dialogue": []
+        }
+      ]
     },
     {
       "src": "pages/12.webp",
-      "label": "Story page 12"
+      "label": "Story page 12",
+      "panels": [
+        {
+          "src": "panels/12-01.webp",
+          "description": "Moon photographs, clippings and connecting red string fill Javell’s research board.",
+          "dialogue": [
+            {
+              "speaker": "Caption",
+              "text": "THEY'RE ON THE MOON"
+            }
+          ]
+        },
+        {
+          "src": "panels/12-02.webp",
+          "description": "The hero glances back over his shoulder with a grin.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "You looking for aliens on the moon..."
+            }
+          ]
+        },
+        {
+          "src": "panels/12-03.webp",
+          "description": "He points at the open-book shield on his chest.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "...you got the alien right here."
+            }
+          ]
+        },
+        {
+          "src": "panels/12-04.webp",
+          "description": "Javell points to the unfinished side of their bridge model.",
+          "dialogue": [
+            {
+              "speaker": "Javell",
+              "text": "Cool. The alien can finish this side."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/13.webp",
-      "label": "Story page 13"
+      "label": "Story page 13",
+      "panels": [
+        {
+          "src": "panels/13-01.webp",
+          "description": "A finished wooden suspension bridge sits on the workbench as the hero waters the small plant.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/13-02.webp",
+          "description": "A phone camera frames a photograph of the completed bridge.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/13-03.webp",
+          "description": "A phone shows the photograph being shared instead of another long message.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/13-04.webp",
+          "description": "Both friends smile beside a glowing open book and the tree growing from its pages.",
+          "dialogue": [
+            {
+              "speaker": "Caption",
+              "text": "Look at that. We actually finished together."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/14.webp",
-      "label": "Story page 14"
+      "label": "Story page 14",
+      "panels": [
+        {
+          "src": "panels/14-01.webp",
+          "description": "The hero poses on a comic cover while Javell is squeezed into its edge.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/14-02.webp",
+          "description": "The cover turns back as a pencil draws Javell fully into the picture.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/14-03.webp",
+          "description": "Both friends now share the cover beneath the book-tree, above a bridge and a small paper boat.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/14-04.webp",
+          "description": "The two friends face each other, smiling and trading one last joke about the cover.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "But who's on the cover?"
+            },
+            {
+              "speaker": "Javell",
+              "text": "Finally got the credits right."
+            },
+            {
+              "speaker": "Hero",
+              "text": "Still my good side, though."
+            }
+          ]
+        }
+      ]
     },
     {
       "src": "pages/15.webp",
-      "label": "Story page 15"
+      "label": "Story page 15",
+      "panels": [
+        {
+          "src": "panels/15-01.webp",
+          "description": "The opening living room returns: the same phone, mug and small plant beside the couch.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/15-02.webp",
+          "description": "A phone shows the comic attachment and the friends’ final exchange of messages.",
+          "dialogue": [
+            {
+              "speaker": "Hero",
+              "text": "My bad for blowing your phone up."
+            },
+            {
+              "speaker": "Hero",
+              "text": "I believe in you."
+            },
+            {
+              "speaker": "Javell",
+              "text": "I believe in you too. Now let me sleep."
+            }
+          ]
+        },
+        {
+          "src": "panels/15-03.webp",
+          "description": "Javell sits on the couch, smiling softly at his phone.",
+          "dialogue": []
+        },
+        {
+          "src": "panels/15-04.webp",
+          "description": "The phone screen shows a typing indicator and the quiet final delivery status.",
+          "dialogue": [
+            {
+              "speaker": "Phone",
+              "text": "typing…"
+            },
+            {
+              "speaker": "Phone",
+              "text": "Delivered."
+            }
+          ]
+        }
+      ]
     }
   ],
   "pdf": "issue-01.pdf"
