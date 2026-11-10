@@ -1,0 +1,101 @@
+/* /projects/: mobile first, under the main-site header (style.css .site-header, absolute 74-88px).
+   Compact text rows, not image cards: the list holds 150+ entries and must stay fast on a phone. */
+.projects-intro { padding-block: 112px 24px; }
+.projects-intro .eyebrow { margin-bottom: 18px; font-size: 11px; }
+.projects-total { font-weight: 700; color: var(--ink); }
+.projects-intro h1 { margin: 0; font: 600 clamp(38px, 10.5vw, 88px)/.98 Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: -.055em; text-wrap: balance; }
+.projects-intro h1 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.03em; }
+.projects-lead { max-width: 62ch; margin: 22px 0 6px; font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+.projects-updated { margin: 0; color: var(--muted); font-size: 13px; }
+
+.projects-jump { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.projects-jump li[hidden] { display: none; }
+.projects-jump a { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 600; background: var(--paper); }
+.projects-jump a:hover { background: white; }
+.projects-jump a span { min-width: 2ch; padding: 3px 7px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 12px; text-align: center; }
+
+.project-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 10px; margin: 18px -16px 8px; padding: 12px 16px; background: var(--paper); border-block: 1px solid var(--line); }
+.project-filters[hidden] { display: none; }
+.project-field { display: grid; gap: 4px; min-width: 0; }
+.project-field-search { grid-column: 1 / -1; }
+.project-field label { font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+.project-field input, .project-field select { width: 100%; min-width: 0; min-height: 44px; padding: 8px 10px; border: 1px solid var(--ink); border-radius: 0; background: white; color: var(--ink); font: inherit; font-size: 16px; }
+.project-field input:focus-visible, .project-field select:focus-visible, .project-reset:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.project-reset { align-self: end; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; cursor: pointer; }
+.project-reset:hover { background: white; }
+.project-results { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 13px; }
+
+.project-groups { padding-bottom: 110px; }
+.project-group { scroll-margin-top: 16px; padding-top: 34px; }
+.project-group[hidden] { display: none; }
+.project-group-head { border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+.project-group-head h2 { display: flex; align-items: baseline; gap: 10px; margin: 0; font: 600 28px/1.1 Inter, sans-serif; letter-spacing: -.035em; }
+.project-group-count { font: 500 15px/1 Inter, sans-serif; color: var(--muted); letter-spacing: 0; }
+.project-group-head p { margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+.project-list { list-style: none; margin: 0; padding: 0; }
+.project-row { scroll-margin-top: 16px; border-bottom: 1px solid var(--line); }
+.project-row[hidden] { display: none; }
+/* Pad the targeted row out into the gutter so the ring never touches the text column. */
+.project-row:target { margin-inline: -12px; padding-inline: 12px; background: rgba(215, 237, 88, .35); outline: 3px solid var(--focus-light); outline-offset: -3px; }
+.project-row article { padding: 16px 0 18px; display: grid; gap: 8px; }
+.project-head { display: grid; gap: 6px; }
+.project-head h3 { margin: 0; font: 600 19px/1.25 Inter, sans-serif; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.project-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.project-status, .project-category { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 1.2; }
+/* Status is always text; the colour only repeats it. All pairs are >= 4.5:1. */
+.project-status { border: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
+.status-public { background: var(--acid); }
+.status-in-use { background: var(--ink); color: var(--paper); }
+.status-building { background: #fde2d3; }
+.status-paused { background: var(--cream); border-style: dashed; }
+.status-past { background: transparent; color: #4a4f48; border-color: #4a4f48; }
+.status-idea { background: white; border-style: dotted; }
+.status-unknown { background: white; color: #4a4f48; border-color: #4a4f48; border-style: dashed; }
+.project-category { border: 1px solid var(--line); color: #4a4f48; font-weight: 500; }
+.project-summary { max-width: 70ch; margin: 0; font-size: 16px; line-height: 1.55; text-wrap: pretty; }
+.project-note, .project-aliases, .project-parent { max-width: 70ch; margin: 0; color: #4a4f48; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.project-note { font-style: italic; }
+.project-includes { max-width: 70ch; padding: 10px 12px; border-left: 3px solid var(--ink); background: rgba(255, 255, 255, .5); }
+.project-includes-title { margin: 0 0 4px; font-size: 13px; font-weight: 700; }
+.project-includes ul, .project-concepts ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; line-height: 1.5; }
+.project-concepts { max-width: 70ch; font-size: 14px; }
+.project-concepts summary { min-height: 44px; display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; list-style: none; }
+.project-concepts summary::-webkit-details-marker { display: none; }
+.project-concepts summary::before { content: '+'; display: inline-grid; place-items: center; width: 22px; height: 22px; flex: none; border: 1px solid var(--ink); font-weight: 700; }
+.project-concepts[open] summary::before { content: '\2212'; }
+.project-concepts summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.project-concepts-group { margin: 8px 0 4px; font-weight: 600; }
+.project-concepts ul { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); column-gap: 28px; color: #4a4f48; }
+.project-first { margin: 0; color: #4a4f48; font-size: 13px; }
+.project-aliases span { font-weight: 600; color: var(--ink); }
+.project-parent a { color: var(--ink); text-underline-offset: 3px; }
+.project-links { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.project-links a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 0 16px; background: var(--ink); color: var(--paper); text-decoration: none; font-size: 14px; font-weight: 600; --focus: var(--focus-light); }
+.project-links a:hover { background: #30352f; }
+.project-empty { margin: 34px 0 0; padding: 18px; border: 1px dashed var(--ink); font-size: 16px; }
+.project-empty[hidden] { display: none; }
+
+@media (min-width: 561px) {
+  .projects-intro { padding-top: 140px; }
+  .project-filters { margin-inline: 0; padding-inline: 0; }
+}
+@media (min-width: 720px) {
+  .projects-lead { font-size: 18px; }
+  /* Sticky only where the bar is one row; on phones it would cover the list. */
+  /* Jump targets land below the sticky bar instead of under it. */
+  .project-group, .project-row { scroll-margin-top: 132px; }
+  .project-filters { position: sticky; top: 0; z-index: 5; grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(0, 1fr)) auto; align-items: end; }
+  .project-field-search { grid-column: auto; }
+  .project-head { grid-template-columns: 1fr auto; align-items: start; gap: 12px; }
+  .project-meta { justify-content: flex-end; }
+  .project-group-head h2 { font-size: 34px; }
+}
+@media (min-width: 901px) {
+  .projects-intro { padding-top: 170px; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  /* A sticky filter bar would cover most of a short landscape screen. */
+  .project-filters { position: static; }
+  .project-group, .project-row { scroll-margin-top: 16px; }
+}

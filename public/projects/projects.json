@@ -1,0 +1,2488 @@
+{
+  "$comment": "The one public source for /projects/. Rendered at build time by scripts/projects.mjs. Curated public summaries only.",
+  "schema": "aknew-projects/1",
+  "updated": "2026-11-10",
+  "projects": [
+    {
+      "id": "aknewknowledge",
+      "name": "A Knew Knowledge",
+      "status": "public",
+      "category": "Brand and business",
+      "era": "current",
+      "summary": "The umbrella for everything here: the book, this website, the community and the AKnewSuite of tools that run on their own and are driven by voice.",
+      "aliases": [
+        "AKnewKnowledge",
+        "AKnewSuite",
+        "A New Knowledge",
+        "AKnewOS",
+        "AKnewSuite 2.0"
+      ],
+      "links": [
+        {
+          "label": "Visit the home page",
+          "url": "/"
+        }
+      ],
+      "note": "Ideas for funding and commercializing the company are listed separately and not started."
+    },
+    {
+      "id": "aknewscribe",
+      "name": "AKnewScribe",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Records and transcribes voice notes and conversations, then keeps them searchable with sources so nothing said is lost. A new version on the shared AKnew SDK is in progress.",
+      "aliases": [
+        "A New Scribe",
+        "livescribe",
+        "AI note taker"
+      ],
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "ultimate-notes",
+      "name": "Ultimate Notes",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "A notes layer for AKnewScribe that would pull in old notes from other apps and drives and turn them into one organized, searchable notebook.",
+      "aliases": [
+        "AKnewNotes",
+        "A New Notes",
+        "AI notes app",
+        "Keep, OneNote and Samsung Notes import"
+      ],
+      "parent": "aknewscribe",
+      "note": "Partly started; mostly still an idea."
+    },
+    {
+      "id": "audio-log-24h",
+      "name": "24-hour audio log",
+      "status": "building",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "An all-day audio log for AKnewScribe that strips out silence so a full day can be reviewed quickly.",
+      "aliases": [
+        "A New Voice",
+        "A New Audio Log"
+      ],
+      "parent": "aknewscribe",
+      "note": "Partly built."
+    },
+    {
+      "id": "truth-check",
+      "name": "Truth check",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "Marks where every remembered fact came from and flags old notes as dated, so recall never passes off stale information as current.",
+      "aliases": [
+        "A New Truth Check",
+        "dated notes rule"
+      ],
+      "parent": "aknewscribe",
+      "note": "Partly started."
+    },
+    {
+      "id": "followthrough-ledger",
+      "name": "Follow-through ledger",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Tracks every promise and \"look into this\" request so it is actually done, not just acknowledged.",
+      "aliases": [
+        "waiting room",
+        "research it now"
+      ],
+      "parent": "aknewscribe"
+    },
+    {
+      "id": "telegram-call-capture",
+      "name": "Telegram call capture",
+      "status": "paused",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Captures live Telegram calls into AKnewScribe so they are transcribed like any other conversation.",
+      "aliases": [
+        "pytgcalls"
+      ],
+      "parent": "aknewscribe",
+      "note": "Blocked for now."
+    },
+    {
+      "id": "sealed-cloud-backups",
+      "name": "Sealed Scribe backups",
+      "status": "building",
+      "category": "Archives and backup",
+      "era": "current",
+      "summary": "Encrypted cloud backups for AKnewScribe recordings, with a practiced restore drill so a backup is proven before it is needed.",
+      "parent": "aknewscribe",
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewrecollection",
+      "name": "AKnewRecollection",
+      "status": "building",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "A search plugin that answers \"do you recall\" questions from AKnewScribe records and always cites where the answer came from.",
+      "parent": "aknewscribe",
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewrecall",
+      "name": "AKnewRecall",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Ask AKnewScribe questions from Discord and get cited answers from past notes and recordings.",
+      "aliases": [
+        "#aknewrecall",
+        "#aknewscribe-search",
+        "Scribe search in Discord"
+      ],
+      "parent": "aknewscribe"
+    },
+    {
+      "id": "aknew-voice-live",
+      "name": "AKnew Voice",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Hands-free, real-time voice conversation with the assistant, so everything can be done by speaking.",
+      "aliases": [
+        "aKnewVoice",
+        "A New Assistant",
+        "real-time voice AI",
+        "aknew_voice_live"
+      ],
+      "note": "Tested with synthetic speech; real-world use is early.",
+      "firstNoted": "2024-03"
+    },
+    {
+      "id": "aknewmod",
+      "name": "aKnewMod",
+      "status": "in-use",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "An AI moderator and admin for the A Knew Knowledge Discord server that carries out requested server changes safely.",
+      "aliases": [
+        "Discord moderator AI",
+        "aKnewMod v10",
+        "AKnewDiscord"
+      ]
+    },
+    {
+      "id": "discord-workspaces",
+      "name": "Discord project workspaces",
+      "status": "past",
+      "category": "Discord and community",
+      "era": "past",
+      "summary": "Per-project and per-session workspaces inside Discord, like a ticket bot for work in progress.",
+      "aliases": [
+        "ticket bot"
+      ],
+      "parent": "aknewmod",
+      "note": "Merged into aKnewMod in October 2026."
+    },
+    {
+      "id": "aknewkanban",
+      "name": "aKnewKanban",
+      "status": "building",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "Mirrors the work board into Discord so tasks can be followed and steered from a phone.",
+      "aliases": [
+        "Discord Kanban",
+        "kanban mirror",
+        "next-up board",
+        "kanban-discord-mirror"
+      ],
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewready",
+      "name": "aKnewReady",
+      "status": "building",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "A ready-to-test board plus the #demos showcase, where finished things wait to be tried.",
+      "aliases": [
+        "ready-to-test",
+        "#demos"
+      ],
+      "links": [
+        {
+          "label": "See the demos",
+          "url": "/demos/"
+        }
+      ],
+      "note": "Partly built; the demos showcase is public."
+    },
+    {
+      "id": "update-me",
+      "name": "Update Me",
+      "status": "in-use",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "A Discord channel that answers \"what is new\" with a short, current summary of every project.",
+      "aliases": [
+        "#update-me"
+      ]
+    },
+    {
+      "id": "aknewerror",
+      "name": "aKnewError",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Collects errors and failures from every tool into one place so they are noticed and fixed quickly.",
+      "aliases": [
+        "#aknewerror",
+        "A New Alerts"
+      ]
+    },
+    {
+      "id": "p1-watcher",
+      "name": "aKnewWatcher",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Watches for urgent problems and raises them right away; part of aKnewError.",
+      "aliases": [
+        "P1 Watcher",
+        "A Watcher",
+        "#a-watcher"
+      ],
+      "parent": "aknewerror"
+    },
+    {
+      "id": "failure-alerts",
+      "name": "Failure alerts",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Sends a Telegram alert when an automated job fails; part of aKnewError.",
+      "aliases": [
+        "agent-failure-alerts",
+        "Telegram failure alerts"
+      ],
+      "parent": "aknewerror"
+    },
+    {
+      "id": "aknewquota",
+      "name": "aKnewQuota",
+      "status": "building",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Shows how much AI usage is left across subscriptions, with a /quota command and usage history.",
+      "aliases": [
+        "/quota",
+        "quota plugin",
+        "usage metrics"
+      ],
+      "note": "Partly built."
+    },
+    {
+      "id": "desktop-quota",
+      "name": "Desktop quota display",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A quota readout for the desktop app and terminal.",
+      "aliases": [
+        "Desktop Quota and Terminal",
+        "quota HUD"
+      ],
+      "parent": "aknewquota",
+      "note": "Built; folded into aKnewQuota."
+    },
+    {
+      "id": "quota-routing",
+      "name": "Shared quota routing",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Spreads AI work across the owner's own subscriptions by remaining headroom so work keeps moving.",
+      "aliases": [
+        "account rotation",
+        "round-robin",
+        "bucket-first"
+      ]
+    },
+    {
+      "id": "local-quota-proxy",
+      "name": "Local quota proxy",
+      "status": "building",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "One local front door for AI requests that respects each subscription's limits.",
+      "aliases": [
+        "CLIProxyAPI",
+        "front door"
+      ],
+      "parent": "quota-routing",
+      "note": "Partly built; the newer version is on hold."
+    },
+    {
+      "id": "plan-sign-in-provider",
+      "name": "Plan sign-in provider",
+      "status": "building",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Lets the assistant use an existing chat subscription plan through its own sign-in instead of paying per request.",
+      "aliases": [
+        "SIWC"
+      ],
+      "parent": "quota-routing",
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewgemini",
+      "name": "AKnewGemini",
+      "status": "building",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "A Discord assistant for speech-to-text, video breakdowns and image work, now with a newer Discord wrapper.",
+      "aliases": [
+        "#aknewgemini",
+        "AKnewGemini v2",
+        "gym night"
+      ],
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewcodex",
+      "name": "aKnewCodex",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "A bridge that lets the owner use a chat subscription's coding and web features from Discord. It grew out of AKnewGPT.",
+      "aliases": [
+        "AKnewGPT",
+        "aKnewChatgpt",
+        "project GQT",
+        "aKnewBridge"
+      ],
+      "note": "Running, but narrower than first planned."
+    },
+    {
+      "id": "aknewbroker",
+      "name": "aKnewBroker",
+      "status": "paused",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "A betting research persona and hub for AKnewGamba.",
+      "aliases": [
+        "AKnewGambler",
+        "money wizard"
+      ],
+      "parent": "aknewgamba",
+      "note": "The standalone bot is blocked; the hub is partly built."
+    },
+    {
+      "id": "aknewpipeline",
+      "name": "AKnewPipeline",
+      "status": "building",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Turns a spoken idea into a planned, built and tested app with little hands-on work: an autonomous app factory.",
+      "aliases": [
+        "aknewidea",
+        "Autonomous App Factory",
+        "meta-agent",
+        "A New Architect"
+      ],
+      "firstNoted": "2026-04"
+    },
+    {
+      "id": "aknewfactory",
+      "name": "aKnewFactory",
+      "status": "paused",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "The scheduled engine that moves pipeline work forward step by step without spending AI usage on idle checks.",
+      "aliases": [
+        "Factory v3"
+      ],
+      "parent": "aknewpipeline",
+      "note": "Built in part, now paused."
+    },
+    {
+      "id": "aknewworkflow",
+      "name": "AKnewWorkFlow",
+      "status": "paused",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Collects new ideas from Discord and Telegram and files them into the pipeline.",
+      "aliases": [
+        "idea intake"
+      ],
+      "parent": "aknewpipeline",
+      "note": "Paused; recovery of the intake is planned."
+    },
+    {
+      "id": "idea-ledger",
+      "name": "Idea Ledger",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A one-time effort that gathered every idea from years of chats into one numbered ledger, then worked through them in overnight batches.",
+      "aliases": [
+        "IDEA cards",
+        "overnight Idea Pipeline"
+      ],
+      "note": "The ledger is done; some batches were run."
+    },
+    {
+      "id": "delegation-hq",
+      "name": "Delegation HQ",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A front desk that handed work out to helper assistants. Its job moved into the main assistant and the work board.",
+      "aliases": [
+        "Delegator",
+        "Architect desk"
+      ]
+    },
+    {
+      "id": "look-it-up",
+      "name": "Look It Up",
+      "status": "in-use",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Checks for an existing tool or earlier work before anything new is built, so effort is reused instead of repeated.",
+      "aliases": [
+        "look-it-up skill"
+      ]
+    },
+    {
+      "id": "aknewaddition",
+      "name": "AKnewAddition",
+      "status": "in-use",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Starts every new project with the same structure, a quality rubric and personas, and audits existing ones against it.",
+      "aliases": [
+        "A New Standards",
+        "scaffolder"
+      ]
+    },
+    {
+      "id": "aknewthrowawaydemo",
+      "name": "AKnewThrowawayDemo",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A throwaway project made to prove the AKnewAddition starter works.",
+      "parent": "aknewaddition",
+      "note": "Created, tested, then removed on purpose."
+    },
+    {
+      "id": "aknewgamba",
+      "name": "AKnewGamba",
+      "status": "in-use",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "Sports betting research with sources for every claim. Research only; it does not place bets.",
+      "aliases": [
+        "aknewgambling",
+        "#aknewgamba",
+        "gambling channel"
+      ]
+    },
+    {
+      "id": "aknewtrading",
+      "name": "aKnewTrading",
+      "status": "building",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "Market research and trading experiments, paper trading first, behind safety gates. Research only, never investment advice.",
+      "aliases": [
+        "A New Trading",
+        "A Newer Trading",
+        "A Newest Trading",
+        "AknewTrading-V1",
+        "Alpaca bot",
+        "AutoStonks Algo Suite",
+        "HFT platform plan"
+      ],
+      "note": "Partly built; history goes back to mid 2025.",
+      "firstNoted": "2026-04"
+    },
+    {
+      "id": "aknewtrading-legacy",
+      "name": "Early trading prototypes",
+      "status": "past",
+      "category": "Markets research",
+      "era": "past",
+      "summary": "Fourteen early trading experiments from before the suite, now kept together inside aKnewTrading. Several were full projects of their own, listed below.",
+      "aliases": [
+        "AKnewTrading legacy",
+        "aknewcrypto",
+        "AKnewWap",
+        "ARobinTrading",
+        "VWAP Reclaim",
+        "VWAP reversion scalp"
+      ],
+      "parent": "aknewtrading",
+      "includes": [
+        {
+          "name": "aknewcrypto",
+          "summary": "A crypto trading bot foundation on Kraken market data with forecasts (July 2026)."
+        },
+        {
+          "name": "AKnewWap",
+          "summary": "Event-driven prediction for the big index funds, with options analysis and simulation (August 2026)."
+        },
+        {
+          "name": "ARobinTrading",
+          "summary": "Compared forecast price ranges with option prices to rank option signals (July 2026)."
+        },
+        {
+          "name": "VWAP Reclaim",
+          "summary": "A paper-trading bot built on a VWAP reversion strategy (April 2026)."
+        }
+      ]
+    },
+    {
+      "id": "aknewbacktest",
+      "name": "AKnewBacktest",
+      "status": "in-use",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "Tests trading ideas against past market data before anything goes near real money.",
+      "aliases": [
+        "AKNEWBACKTEST",
+        "0DTE backtester"
+      ],
+      "note": "Built; paper only."
+    },
+    {
+      "id": "aknewdata",
+      "name": "aKnewData",
+      "status": "building",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "Records market data and history so research runs on real numbers.",
+      "aliases": [
+        "market data pipeline",
+        "market data recorder"
+      ],
+      "parent": "aknewtrading"
+    },
+    {
+      "id": "aknewkronos",
+      "name": "AKnewKronos",
+      "status": "building",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "A forecasting feed for aKnewTrading, measured against simple baselines.",
+      "aliases": [
+        "Kronos forecasting feed"
+      ],
+      "parent": "aknewtrading",
+      "note": "Partly built inside aKnewTrading."
+    },
+    {
+      "id": "aknewoption",
+      "name": "AKnewOption",
+      "status": "past",
+      "category": "Markets research",
+      "era": "past",
+      "summary": "A same-day options research module.",
+      "aliases": [
+        "0DTE options module"
+      ],
+      "parent": "aknewtrading",
+      "note": "Folded into aKnewTrading and AKnewBacktest."
+    },
+    {
+      "id": "aknew-pacman",
+      "name": "aknewknowledge.com and A Knew Pac-Man",
+      "status": "public",
+      "category": "Games",
+      "era": "current",
+      "summary": "This website and its arcade: Pac-Man style mazes you can play on a phone, plus this project directory.",
+      "aliases": [
+        "website",
+        "Maze Runner: Final",
+        "/play"
+      ],
+      "links": [
+        {
+          "label": "Open the arcade",
+          "url": "/play/"
+        },
+        {
+          "label": "Play Maze Runner: Final",
+          "url": "/play/final/"
+        }
+      ]
+    },
+    {
+      "id": "afterhours",
+      "name": "AFTERHOURS",
+      "status": "public",
+      "category": "Games",
+      "era": "past",
+      "summary": "A 2.5D neon Pac-Man build, the first of the three arcade builds.",
+      "aliases": [
+        "Pac-Man AFTERHOURS"
+      ],
+      "parent": "aknew-pacman",
+      "links": [
+        {
+          "label": "Play AFTERHOURS",
+          "url": "/play/afterhours/"
+        }
+      ],
+      "note": "Finished demo, still playable."
+    },
+    {
+      "id": "maze-runner",
+      "name": "Maze Runner",
+      "status": "public",
+      "category": "Games",
+      "era": "past",
+      "summary": "A first-person run through the maze, the second arcade build.",
+      "aliases": [
+        "Pac-Man FPS",
+        "Maze Runner POV"
+      ],
+      "parent": "aknew-pacman",
+      "links": [
+        {
+          "label": "Play Maze Runner",
+          "url": "/play/game/"
+        }
+      ],
+      "note": "Finished demo, still playable."
+    },
+    {
+      "id": "maze-runner-online",
+      "name": "Maze Runner Online",
+      "status": "public",
+      "category": "Games",
+      "era": "current",
+      "summary": "3D Pac-Man for up to four friends in a shared room.",
+      "aliases": [
+        "3D Pac-Man Multiplayer",
+        "Pac-Man Versus"
+      ],
+      "parent": "aknew-pacman",
+      "links": [
+        {
+          "label": "Play Maze Runner Online",
+          "url": "/play/online/"
+        }
+      ],
+      "note": "Playable; more modes are still being built."
+    },
+    {
+      "id": "aknew-brand",
+      "name": "AKnew brand and personas",
+      "status": "in-use",
+      "category": "Brand and business",
+      "era": "current",
+      "summary": "The shared look, voice and assistant personas across the suite, including the themed Discord server.",
+      "aliases": [
+        "personas",
+        "aknew-core"
+      ]
+    },
+    {
+      "id": "aknew-android",
+      "name": "AKnew Android assistant",
+      "status": "building",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "Brings the assistant to an older Android phone (Galaxy Note 9) as a native app.",
+      "aliases": [
+        "note 9 app",
+        "Note 9 fork"
+      ],
+      "note": "Partly built."
+    },
+    {
+      "id": "aknewvpn",
+      "name": "AKnewVPN",
+      "status": "building",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "A private VPN for the owner's own devices, starting with the iPhone.",
+      "note": "Scaffolded; the iPhone tunnel is next."
+    },
+    {
+      "id": "aknew-sdk",
+      "name": "AKnew SDK",
+      "status": "building",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Shared building blocks every AKnew tool uses, so new tools start from tested parts.",
+      "note": "Version 0.1.0 in progress."
+    },
+    {
+      "id": "aknewdeploy",
+      "name": "aKnewDeploy",
+      "status": "building",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "One way to release and roll back every AKnew tool.",
+      "note": "Version 0.1.0 in progress."
+    },
+    {
+      "id": "afreshdiscord",
+      "name": "aFreshDiscord",
+      "status": "building",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "One repository for all the Discord bots, rebuilt cleanly on the shared SDK.",
+      "aliases": [
+        "AKnewDiscord",
+        "Discord mega repo"
+      ],
+      "note": "Version 0.1.0 in progress."
+    },
+    {
+      "id": "operation-qa-env",
+      "name": "Operation QA Env",
+      "status": "building",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "A full rehearsal environment with a test Discord server and test users, so releases are tried before real people see them.",
+      "aliases": [
+        "QA guild",
+        "A New Environments",
+        "customer intake bot"
+      ]
+    },
+    {
+      "id": "aknewapi",
+      "name": "AKnewAPI",
+      "status": "building",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Routes requests across several of the owner's own computers so work is shared and keeps running.",
+      "aliases": [
+        "Operation API",
+        "Operation Laptop",
+        "A New API",
+        "multi-node API router"
+      ],
+      "note": "Built in part since August 2026."
+    },
+    {
+      "id": "aknewspotify",
+      "name": "AKnewSpotify",
+      "status": "building",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "An opt-in Discord radio bot for listening together.",
+      "aliases": [
+        "Discord radio bot",
+        "AKnewSpotify Satellite"
+      ],
+      "note": "Built behind a switch; not released."
+    },
+    {
+      "id": "aknewcomic",
+      "name": "AKnewComic",
+      "status": "public",
+      "category": "Creative and media",
+      "era": "current",
+      "summary": "An original superhero comic. Issue 1, \"The Costume\", is readable on the site with a large text mode for low vision.",
+      "aliases": [
+        "The Costume",
+        "superhero comic",
+        "Issue 1"
+      ],
+      "links": [
+        {
+          "label": "Read AKnewComic Issue 1",
+          "url": "/aknewcomic/"
+        }
+      ],
+      "note": "Issue 1 is published; finishing touches continue."
+    },
+    {
+      "id": "aknew-live-lab",
+      "name": "AKnew Live Lab",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A demo lab with an evidence desk that showed proof for each claim as it happened.",
+      "aliases": [
+        "Evidence Desk"
+      ],
+      "note": "Finished demo."
+    },
+    {
+      "id": "media-delivery-lab",
+      "name": "Media, Made Simple",
+      "status": "past",
+      "category": "Creative and media",
+      "era": "past",
+      "summary": "A demo of getting media to people the simplest way.",
+      "aliases": [
+        "media-delivery-lab"
+      ],
+      "note": "Finished demo."
+    },
+    {
+      "id": "guest-bots",
+      "name": "Guest bots",
+      "status": "in-use",
+      "category": "Discord and community",
+      "era": "current",
+      "summary": "Assistants that friends and guests can chat with safely in the #ai channel.",
+      "aliases": [
+        "guest chat",
+        "#ai"
+      ]
+    },
+    {
+      "id": "messaging-audit",
+      "name": "Messaging audit",
+      "status": "past",
+      "category": "Discord and community",
+      "era": "past",
+      "summary": "A review that hardened what guest assistants can see and do.",
+      "aliases": [
+        "guest hardening"
+      ],
+      "parent": "guest-bots",
+      "note": "Done."
+    },
+    {
+      "id": "t3-code-accounts",
+      "name": "T3 Code accounts",
+      "status": "in-use",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Backup and quick switching between accounts in the T3 Code app.",
+      "aliases": [
+        "T3 Code backup"
+      ]
+    },
+    {
+      "id": "t3-chat-export",
+      "name": "T3 chat export",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "Exports T3 chats to Markdown files, made for a friend.",
+      "aliases": [
+        "T3 Chat Export"
+      ],
+      "note": "Done."
+    },
+    {
+      "id": "workflow-lab",
+      "name": "Workflow lab",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "Studied a well-known developer's workflow and kept the useful parts as quality gates and a prompt library.",
+      "aliases": [
+        "workflow-gates",
+        "prompt library"
+      ],
+      "note": "Done; the gates are still used."
+    },
+    {
+      "id": "desktop-app",
+      "name": "Desktop assistant app",
+      "status": "paused",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "Set up the assistant's desktop app on the main workstation with recaps and copy-all, plus a Windows release.",
+      "aliases": [
+        "desktop recaps",
+        "Copy all"
+      ],
+      "note": "The Windows build is blocked."
+    },
+    {
+      "id": "pi-setup",
+      "name": "Pi setup",
+      "status": "paused",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Ran the Pi coding assistant on a laptop without a screen, with quota tracking.",
+      "aliases": [
+        "my Pi setup"
+      ],
+      "note": "Blocked while the laptop is offline."
+    },
+    {
+      "id": "pi-lab",
+      "name": "Pi lab",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "Looked at how another developer set up the Pi coding assistant and took the good ideas.",
+      "note": "Done."
+    },
+    {
+      "id": "firecrawl-setup",
+      "name": "Firecrawl setup",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Set up Firecrawl so web pages can be read reliably.",
+      "note": "Done."
+    },
+    {
+      "id": "system-maintenance",
+      "name": "System maintenance",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Keeps the main workstation steady: controlled updates and crash triage.",
+      "aliases": [
+        "crash triage"
+      ],
+      "note": "Done; repeats as needed."
+    },
+    {
+      "id": "remote-access",
+      "name": "Remote desktop and cloud gaming",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Private remote desktop and game streaming from the main workstation with Sunshine and Moonlight.",
+      "aliases": [
+        "Remote Desktop",
+        "Cloud Gaming",
+        "Sunshine",
+        "Moonlight",
+        "Parsec",
+        "gaming VMs"
+      ],
+      "note": "Built."
+    },
+    {
+      "id": "operation-threadripper",
+      "name": "Operation Threadripper",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Built the always-on home workstation that runs the whole suite. The first deliverable.",
+      "aliases": [
+        "first deliverable",
+        "host build"
+      ],
+      "note": "Built."
+    },
+    {
+      "id": "assistant-host-setup",
+      "name": "Assistant host setup",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Installs, patches and runs the main always-on assistant on the home workstation."
+    },
+    {
+      "id": "browser-profiles",
+      "name": "Browser profiles",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Separate signed-in browser profiles so assistants can work in the owner's accounts by voice.",
+      "aliases": [
+        "Chromium profiles",
+        "owner-say"
+      ],
+      "note": "Partly built."
+    },
+    {
+      "id": "governance",
+      "name": "House rules and safety",
+      "status": "in-use",
+      "category": "Brand and business",
+      "era": "current",
+      "summary": "The written rules every assistant follows: what it may do alone, what needs a yes, and a security log.",
+      "aliases": [
+        "house rules",
+        "standing authorizations",
+        "fairness audit"
+      ]
+    },
+    {
+      "id": "private-access-gate",
+      "name": "Private access gate",
+      "status": "in-use",
+      "category": "Infrastructure",
+      "era": "current",
+      "summary": "Keeps internal tools reachable only on the private network, with owner approval for anything more."
+    },
+    {
+      "id": "aknewsuite-map",
+      "name": "AKnewSuite Map",
+      "status": "in-use",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "The map of every tool in the suite, plus the standard each module meets and its health checks.",
+      "aliases": [
+        "Module Standard",
+        "master summary",
+        "system architecture"
+      ]
+    },
+    {
+      "id": "human-readable-surfaces",
+      "name": "Human-readable surfaces",
+      "status": "past",
+      "category": "Discord and community",
+      "era": "past",
+      "summary": "Separated channels for people from channels for machines so people only see readable messages.",
+      "note": "Done."
+    },
+    {
+      "id": "local-models-research",
+      "name": "Local models research",
+      "status": "past",
+      "category": "AI assistants",
+      "era": "past",
+      "summary": "Researched running open AI models locally, including fine-tuning with Unsloth.",
+      "aliases": [
+        "Unsloth",
+        "uncensored models"
+      ],
+      "note": "Done."
+    },
+    {
+      "id": "google-plan-access",
+      "name": "Google plan access",
+      "status": "paused",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Tried to use a Google subscription inside the assistant.",
+      "aliases": [
+        "Solstice"
+      ],
+      "note": "Blocked by a sign-in error."
+    },
+    {
+      "id": "mooneytimer",
+      "name": "Mooneytimer420",
+      "status": "past",
+      "category": "Markets research",
+      "era": "past",
+      "summary": "A real-time earnings timer that shows money adding up as you work.",
+      "aliases": [
+        "Moony",
+        "Time that money"
+      ],
+      "links": [
+        {
+          "label": "Mooneytimer420 on GitHub",
+          "url": "https://github.com/jay37mack37/Mooneytimer420"
+        }
+      ],
+      "note": "Older project; the code is public. A preservation idea is not started."
+    },
+    {
+      "id": "kanacraft",
+      "name": "KanaCraft and Kana Colors",
+      "status": "past",
+      "category": "Learning and skills",
+      "era": "past",
+      "summary": "Two 2023 desktop apps for learning Japanese: KanaCraft for memorizing and tracing characters, and Kana Colors, which colors hiragana, katakana and kanji differently in pasted text.",
+      "aliases": [
+        "Japanese text analyzer",
+        "KanaCraft",
+        "Kana Colors",
+        "KanaColors 2.0",
+        "Japanese Character Analysis Project"
+      ],
+      "note": "From 2023, before the suite.",
+      "firstNoted": "2023-10",
+      "includes": [
+        {
+          "name": "KanaCraft",
+          "summary": "Desktop app for memorizing and tracing Japanese characters (October 2023)."
+        },
+        {
+          "name": "Kana Colors",
+          "summary": "Paste Japanese text and see each script in its own color, with reading aids (November 2023; version 2.0 worked on Word documents)."
+        }
+      ]
+    },
+    {
+      "id": "prompt-gui",
+      "name": "Prompt GUI",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A small Python desktop app for organizing AI chat prompts.",
+      "aliases": [
+        "Python prompts GUI"
+      ],
+      "note": "From late 2023, before the suite."
+    },
+    {
+      "id": "homelab-2024",
+      "name": "Homelab 2024",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "A home server setup with TrueNAS, Proxmox, Pi-hole, NGINX and RAID storage.",
+      "aliases": [
+        "TrueNAS",
+        "Proxmox",
+        "Pi-hole"
+      ],
+      "note": "From 2024, before the suite."
+    },
+    {
+      "id": "aknewme",
+      "name": "AKnewMe",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "One plan for personal growth that ties health, skills, habits and goals together."
+    },
+    {
+      "id": "aknewskill",
+      "name": "AKnewSkill",
+      "status": "idea",
+      "category": "Learning and skills",
+      "era": "idea",
+      "summary": "Learning skills as a game: mental math, juggling, handwriting and languages.",
+      "aliases": [
+        "A New Education"
+      ]
+    },
+    {
+      "id": "aknewhabit",
+      "name": "AKnewHabit",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Builds and keeps good habits with gentle tracking.",
+      "aliases": [
+        "human optimization"
+      ]
+    },
+    {
+      "id": "aknewhygiene",
+      "name": "AKnewHygiene",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Friendly self-care reminders."
+    },
+    {
+      "id": "aknewsleep",
+      "name": "AKnewSleep",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Sleep planning that fits around shift work."
+    },
+    {
+      "id": "aknewdaily",
+      "name": "AKnewDaily",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "A morning brief with weather, what to wear and the news that matters."
+    },
+    {
+      "id": "aknewhealth",
+      "name": "AKnewHealth",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Brings health data from different apps and devices into one view."
+    },
+    {
+      "id": "aknewfitness",
+      "name": "AKnewFitness",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Logs gym sessions by voice and tracks strength goals."
+    },
+    {
+      "id": "aknewcare",
+      "name": "AKnewCare",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Handles the admin side of medical appointments."
+    },
+    {
+      "id": "aknewbenefits",
+      "name": "AKnewBenefits",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Finds the most out of insurance coverage."
+    },
+    {
+      "id": "aknewpiano",
+      "name": "AKnewPiano",
+      "status": "idea",
+      "category": "Learning and skills",
+      "era": "idea",
+      "summary": "Learning piano with an AI coach.",
+      "aliases": [
+        "AKnewMusic"
+      ],
+      "firstNoted": "2022-10"
+    },
+    {
+      "id": "aknewguitar",
+      "name": "AKnewGuitar",
+      "status": "idea",
+      "category": "Learning and skills",
+      "era": "idea",
+      "summary": "Learning guitar quickly with an AI coach.",
+      "aliases": [
+        "AKnewMusic"
+      ]
+    },
+    {
+      "id": "aknewdrums",
+      "name": "AKnewDrums",
+      "status": "idea",
+      "category": "Learning and skills",
+      "era": "idea",
+      "summary": "Learning electronic drums.",
+      "aliases": [
+        "AKnewMusic"
+      ]
+    },
+    {
+      "id": "aknewpartytrick",
+      "name": "AKnewPartyTrick",
+      "status": "idea",
+      "category": "Learning and skills",
+      "era": "idea",
+      "summary": "Learning small social skills that are fun to show off."
+    },
+    {
+      "id": "aknewtranslator",
+      "name": "AKnewTranslator",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "Live two-way spoken translation between French and English.",
+      "parent": "aknew-voice-live"
+    },
+    {
+      "id": "aknewelder",
+      "name": "AKnewElder",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "A patient tech helper for older people.",
+      "aliases": [
+        "A New Old Person",
+        "elder tech assistant"
+      ]
+    },
+    {
+      "id": "aknewtogether",
+      "name": "AKnewTogether",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "Helps family and community plan and work together.",
+      "aliases": [
+        "Family Facebook, but for real"
+      ],
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "aknewfamilycloud",
+      "name": "AKnewFamilyCloud",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "A private family cloud for photos and files.",
+      "aliases": [
+        "Nextcloud"
+      ]
+    },
+    {
+      "id": "aknewconnections",
+      "name": "AKnewConnections",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Reminders to check in with friends and family."
+    },
+    {
+      "id": "aknewdating",
+      "name": "AI dating helper",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Help writing dating profiles and keeping up with dating apps.",
+      "aliases": [
+        "AKnewDating"
+      ],
+      "note": "Reshaped from an earlier full-automation version that was dropped."
+    },
+    {
+      "id": "aknewsocial",
+      "name": "AKnewSocial",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "Grows an audience for the work across social platforms."
+    },
+    {
+      "id": "aknewcontent-learning",
+      "name": "AKnewContent",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "Records the journey of learning new skills and turns it into videos.",
+      "aliases": [
+        "learning journey videos"
+      ]
+    },
+    {
+      "id": "media-adaptations",
+      "name": "Comic and audiobook adaptations",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "Comic and audiobook adaptations of favorite stories, plus the owner's own book.",
+      "aliases": [
+        "Game of Thrones",
+        "Harry Potter"
+      ],
+      "note": "Rights would need to be checked first."
+    },
+    {
+      "id": "aknewownership",
+      "name": "AKnewOwnership",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "An inventory of everything owned: items, serial numbers, accounts and domains.",
+      "aliases": [
+        "AKnewInventory",
+        "Inventory System"
+      ],
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "aknewlocation",
+      "name": "AKnewLocation",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "Helps find misplaced things."
+    },
+    {
+      "id": "aknewgarage",
+      "name": "AKnewGarage",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "Tracks car maintenance and repairs."
+    },
+    {
+      "id": "aknewshoppinglist",
+      "name": "AKnewShoppingList",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "A wish list that respects the budget."
+    },
+    {
+      "id": "aknewexperiences",
+      "name": "AKnewExperiences",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Plans trips and experiences, from vacations to test drives.",
+      "aliases": [
+        "AKnewVacation"
+      ]
+    },
+    {
+      "id": "aknewanalyst",
+      "name": "AKnewAnalyst",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "One shared analysis engine that other tools can ask questions."
+    },
+    {
+      "id": "aknewhub",
+      "name": "AKnewHub",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "One dashboard that monitors everything.",
+      "parent": "aknewerror"
+    },
+    {
+      "id": "aknewalerts",
+      "name": "AKnewAlerts",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Spots personal notices like bills, tickets and deadlines before they are missed.",
+      "parent": "aknewerror"
+    },
+    {
+      "id": "aknewbrowser",
+      "name": "AKnewBrowser",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "A browser with a \"send this to AI\" button on everything."
+    },
+    {
+      "id": "aknewvisionboard",
+      "name": "AKnewVisionBoard",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "A living vision board for goals."
+    },
+    {
+      "id": "aknewbackup",
+      "name": "AKnewBackup",
+      "status": "idea",
+      "category": "Archives and backup",
+      "era": "idea",
+      "summary": "Encrypted, deduplicated backups with restores that are actually tested.",
+      "aliases": [
+        "AKnewStorage"
+      ],
+      "note": "Partly started."
+    },
+    {
+      "id": "nas-recovery",
+      "name": "NAS recovery",
+      "status": "idea",
+      "category": "Archives and backup",
+      "era": "idea",
+      "summary": "Recover the data from the old home NAS that went down.",
+      "aliases": [
+        "TrueNAS recovery"
+      ],
+      "parent": "aknewbackup"
+    },
+    {
+      "id": "aknewarchive",
+      "name": "AKnewArchive",
+      "status": "idea",
+      "category": "Archives and backup",
+      "era": "idea",
+      "summary": "A curated archive of things worth keeping, including offline Wikipedia.",
+      "aliases": [
+        "AKnewWikipedia"
+      ]
+    },
+    {
+      "id": "rom-iso-archive",
+      "name": "Game preservation archive",
+      "status": "idea",
+      "category": "Archives and backup",
+      "era": "idea",
+      "summary": "Preserve old games and disc images for emulation.",
+      "aliases": [
+        "ROM and ISO archive"
+      ],
+      "parent": "aknewarchive"
+    },
+    {
+      "id": "aknewmediarestoration",
+      "name": "AKnewMediaRestoration",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "Uses AI to upscale and restore old TV shows."
+    },
+    {
+      "id": "aknewmediaserver",
+      "name": "AKnewMediaServer",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "A self-hosted media server at home.",
+      "aliases": [
+        "Jellyfin",
+        "Plex",
+        "photo depository"
+      ],
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "aknewfinance",
+      "name": "AKnewFinance",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "A money engine for paying down debt, growing income and tracking crypto.",
+      "aliases": [
+        "wealth engine"
+      ]
+    },
+    {
+      "id": "aknewstore",
+      "name": "AKnewStore",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "An online store for 3D printed pieces."
+    },
+    {
+      "id": "3d-printing",
+      "name": "3D printing pipeline",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "Turns photos into 3D models and prints, starting with dragons.",
+      "aliases": [
+        "photos to models",
+        "Hunyuan3D"
+      ]
+    },
+    {
+      "id": "aknewdonations",
+      "name": "AKnewDonations",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "Simple donations and payments."
+    },
+    {
+      "id": "aknewcommerce",
+      "name": "Family shoe store app",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "A shoe store and buy-sell-trade app for a family member's business."
+    },
+    {
+      "id": "aknewgaming",
+      "name": "Family gaming software study",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "Learning how a family member's regulated gaming software works and who owns what.",
+      "note": "Parked."
+    },
+    {
+      "id": "aknewgameengine",
+      "name": "AKnewGameEngine",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "Rebuilds classic games from scratch and combines them into one big game.",
+      "aliases": [
+        "mega-game"
+      ]
+    },
+    {
+      "id": "minecraft-got-mod",
+      "name": "Minecraft Game of Thrones mod",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "A Game of Thrones world for Minecraft.",
+      "parent": "aknewgameengine"
+    },
+    {
+      "id": "crash-ttr-port",
+      "name": "Crash Tag Team Racing port",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "Could the PS2 game Crash Tag Team Racing run on Android?",
+      "parent": "aknewgameengine",
+      "note": "Feasibility check only."
+    },
+    {
+      "id": "aknewminecraftmap",
+      "name": "Live Minecraft map",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "A live web map for the newest Minecraft version."
+    },
+    {
+      "id": "aknewgameservers",
+      "name": "Game server autopilot",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "Sets up game servers automatically.",
+      "aliases": [
+        "Pterodactyl",
+        "Pelican"
+      ]
+    },
+    {
+      "id": "aknewarmy",
+      "name": "AKnewArmy",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "Automation for playing several RuneScape accounts at once.",
+      "aliases": [
+        "RuneScape multiboxing"
+      ],
+      "note": "Declined; listed for the record.",
+      "firstNoted": "2021-11"
+    },
+    {
+      "id": "aknewlocalscape",
+      "name": "Localscape",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "A local reimplementation of RuneScape.",
+      "note": "Declined; listed for the record."
+    },
+    {
+      "id": "aknewdrone",
+      "name": "AKnewDrone",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "A drone project."
+    },
+    {
+      "id": "aknewenvawareness",
+      "name": "Environment awareness",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "A camera that gives gentle nudges about the space around you."
+    },
+    {
+      "id": "studio-security",
+      "name": "Studio security cameras",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "Round-the-clock security cameras for a family member's studio."
+    },
+    {
+      "id": "iphone-recovery",
+      "name": "Operation iPhone Recovery",
+      "status": "idea",
+      "category": "Archives and backup",
+      "era": "idea",
+      "summary": "Recover photos from a disabled iPhone X."
+    },
+    {
+      "id": "mobile-freedom",
+      "name": "Mobile device freedom",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Own the phones: sign your own iOS apps and get more from the Galaxy Note 9."
+    },
+    {
+      "id": "ai-jarrod",
+      "name": "Project AI Jarrod",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "A personal digital counterpart that can speak and act like the owner, with clear rules about when it is the real person.",
+      "aliases": [
+        "AI Jarrod"
+      ]
+    },
+    {
+      "id": "a-new-ai-tool",
+      "name": "A New AI Tool",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "A tool that makes tools.",
+      "parent": "aknewaddition"
+    },
+    {
+      "id": "a-new-trash-sandbox",
+      "name": "A New Trash",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "A sandbox for throwaway experiments, with a way to promote the good ones.",
+      "aliases": [
+        "A New Sandbox"
+      ],
+      "parent": "aknewaddition"
+    },
+    {
+      "id": "a-new-share",
+      "name": "A New Share",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "A share button that gives chosen people access to a tool.",
+      "aliases": [
+        "authorized users"
+      ],
+      "parent": "aknewaddition",
+      "note": "Partly started."
+    },
+    {
+      "id": "a-new-standards",
+      "name": "A New Standards",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Covers the requirements you did not know to ask for.",
+      "parent": "aknewaddition",
+      "note": "Partly realized by the module standard and rubric."
+    },
+    {
+      "id": "self-hosted-git",
+      "name": "Self-hosted Git",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Self-hosted code hosting and automated testing.",
+      "aliases": [
+        "Forgejo",
+        "Gitea"
+      ]
+    },
+    {
+      "id": "hypervisor-vms",
+      "name": "Virtual machine setup",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Virtual machines that can be snapshotted, moved and restored.",
+      "aliases": [
+        "hypervisor"
+      ]
+    },
+    {
+      "id": "networking-secrets",
+      "name": "Home network and passwords",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Ad blocking, a reverse proxy and a local password manager for the home network.",
+      "aliases": [
+        "Pi-hole",
+        "AdGuard",
+        "Bitwarden"
+      ]
+    },
+    {
+      "id": "laptop-fleet",
+      "name": "Laptop fleet",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Laptops that can rebuild the main workstation from scratch.",
+      "aliases": [
+        "dump-wipe-rebuild"
+      ],
+      "parent": "operation-threadripper"
+    },
+    {
+      "id": "dev-schema",
+      "name": "New development schema",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "A fresh way of building software around the newest AI tools.",
+      "parent": "aknewpipeline",
+      "note": "Partly started."
+    },
+    {
+      "id": "ai-services-suite",
+      "name": "AI services suite",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "A suite of AI services: chat, images, code and faces.",
+      "parent": "aknewknowledge",
+      "note": "Partly started."
+    },
+    {
+      "id": "business-formation",
+      "name": "Business formation and funding",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "idea",
+      "summary": "Forming and funding the company: legal entity, nonprofit options, startup funding and an IT staffing plan.",
+      "aliases": [
+        "LLC",
+        "SBA funding"
+      ],
+      "note": "Partly started."
+    },
+    {
+      "id": "game-economy-pipelines",
+      "name": "Game economy data",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "Data pipelines for in-game item prices in Old School RuneScape and RuneScape 3.",
+      "aliases": [
+        "OSRS prices"
+      ]
+    },
+    {
+      "id": "prompt-library",
+      "name": "Prompt library",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Reusable prompts for planning and keeping code clean.",
+      "aliases": [
+        "meta-prompts"
+      ],
+      "parent": "aknewaddition",
+      "note": "Partly started."
+    },
+    {
+      "id": "home-assistant",
+      "name": "Home Assistant automation",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "Smart-home automation with Home Assistant.",
+      "aliases": [
+        "smart house automation"
+      ],
+      "note": "A Home Assistant container ran on the home server in 2024; the wider automation plan is still an idea.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "ar-safety-visor",
+      "name": "AR safety visor",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "idea",
+      "summary": "A smart safety visor concept with augmented reality."
+    },
+    {
+      "id": "youtube-breakdown",
+      "name": "Video breakdowns",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "idea",
+      "summary": "Summarizes YouTube and other videos into the parts worth knowing.",
+      "parent": "aknewgemini",
+      "note": "Partly started."
+    },
+    {
+      "id": "google-jules-lane",
+      "name": "Free coding lane",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Use a free coding service from Google as an extra lane for small coding jobs.",
+      "parent": "quota-routing"
+    },
+    {
+      "id": "audience-note-sharing",
+      "name": "Note sharing by audience",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "idea",
+      "summary": "Share chosen notes with chosen people, for example a doctor.",
+      "parent": "ultimate-notes"
+    },
+    {
+      "id": "ai-desktop-control",
+      "name": "AI desktop and phone control",
+      "status": "unknown",
+      "category": "Builder tools",
+      "era": "current",
+      "summary": "Lets assistants do clicks and on-screen steps themselves, first in a browser tab, then the desktop, then the phone, instead of waiting for a person.",
+      "aliases": [
+        "desktop-control",
+        "AI can control the computer"
+      ],
+      "note": "A first version exists; how well it works day to day has not been confirmed."
+    },
+    {
+      "id": "model-head-to-head",
+      "name": "Head-to-head AI review",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Several AI models debate or compete on the same proposal and the strongest answer is chosen.",
+      "aliases": [
+        "multi-model review"
+      ],
+      "parent": "aknewpipeline",
+      "note": "Partly exists for urgent alert decisions; the general version is not built."
+    },
+    {
+      "id": "assistant-permissions-directory",
+      "name": "People and assistant permissions directory",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "One directory of roles for people and assistants (owner, admin, guest, view-only, helpers) with the permissions each has and monitoring of what they do.",
+      "aliases": [
+        "AD-style directory",
+        "identity and permissions"
+      ]
+    },
+    {
+      "id": "workload-resource-manager",
+      "name": "Workload resource manager",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Would schedule heavy jobs such as video and local AI so that running several at once does not exhaust the workstation's memory. That is the goal, not a tested result.",
+      "aliases": [
+        "no out-of-memory"
+      ],
+      "parent": "operation-threadripper"
+    },
+    {
+      "id": "pipeline-for-others",
+      "name": "Pipeline for family and collaborators",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Separate project queues so family and collaborators can feed their own ideas into the build pipeline.",
+      "parent": "aknewpipeline"
+    },
+    {
+      "id": "ai-playtester",
+      "name": "AI game playtester",
+      "status": "idea",
+      "category": "Games",
+      "era": "idea",
+      "summary": "An AI player that beta-tests games against a dedicated test server, with the online maze game as a likely first target.",
+      "aliases": [
+        "autonomous playtester"
+      ],
+      "parent": "aknew-pacman"
+    },
+    {
+      "id": "assistant-spending-budget",
+      "name": "Assistant spending budget",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Would give assistants a small, capped prepaid card so they can sign up for data services on their own.",
+      "aliases": [
+        "prepaid virtual card"
+      ],
+      "parent": "aknewpipeline",
+      "note": "Would need an approval and safety design first."
+    },
+    {
+      "id": "imessage-bridge",
+      "name": "iMessage bridge",
+      "status": "idea",
+      "category": "Infrastructure",
+      "era": "idea",
+      "summary": "Named as something to include, but its purpose was never written down. The likely intent is a self-hosted bridge to reach iMessage from non-Apple devices and assistants.",
+      "aliases": [
+        "BlueBubbles"
+      ],
+      "note": "Purpose not confirmed; only the name was recorded.",
+      "firstNoted": "2025-01"
+    },
+    {
+      "id": "record-keeper",
+      "name": "Record Keeper",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "past",
+      "summary": "A small app idea from 2023 to log who he talked to, when and about what, with an optional recording. An early ancestor of AKnewScribe.",
+      "parent": "aknewscribe",
+      "note": "Idea only; never built as such.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "yearnote",
+      "name": "YearNote",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "A 2023 design for a year-long notes system with day, week and season counters and simple trackers.",
+      "parent": "ultimate-notes",
+      "note": "Detailed spec; not built.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "ai-chat-website",
+      "name": "Better AI chat website",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "past",
+      "summary": "A 2023 idea for a better AI chat site: chats that persist across tabs, history, and two assistants side by side.",
+      "aliases": [
+        "ChatGPT Website 2.0"
+      ],
+      "note": "Idea only.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "hustle-gang-sites",
+      "name": "Community websites",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "past",
+      "summary": "Websites or apps to give family members' ventures and a local church more reach, connections and simple inventory.",
+      "note": "2023 idea list; not built.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "outreach-posting-helper",
+      "name": "Outreach posting helper",
+      "status": "idea",
+      "category": "Brand and business",
+      "era": "past",
+      "summary": "A one-line 2023 idea to automate social posting for the community-websites idea.",
+      "note": "Never pursued.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "windows-macros",
+      "name": "Windows clipboard and macro toolkit",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "Multi-slot copy and paste, a secure copy mode and handy macros for everyday Windows work.",
+      "note": "2023 notes; no build found.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "screenies",
+      "name": "Screenies",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A small Windows helper that saves every screen snip into a dated folder automatically.",
+      "note": "Specified in 2024; no build found.",
+      "firstNoted": "2024-03"
+    },
+    {
+      "id": "macro-keyboard",
+      "name": "Macro keyboard and voice-typing key",
+      "status": "idea",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A custom keyboard with macro keys, later imagined as a plug-in device that types what you say.",
+      "note": "Hardware idea from 2023-2024.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "outdoor-gaming-shelter",
+      "name": "Outdoor gaming shelter",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "A deployable outdoor lounge for gaming with shade, wind, bug and privacy control.",
+      "note": "2023 idea.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "home-garden",
+      "name": "Home garden",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "A food, herb and flower garden.",
+      "note": "2023 plan; outcome unknown.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "home-gym-elite",
+      "name": "Home Gym ELITE",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "A do-it-yourself home gym: cable machine, pull-up station and homemade weights.",
+      "note": "Planned 2020-2024; build status unknown.",
+      "firstNoted": "2020-10"
+    },
+    {
+      "id": "home-workshop",
+      "name": "Science and woodworking workshop",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "A home workshop with presses, 3D printers and a materials reference library, plus woodworking plans.",
+      "note": "2023-2024 notes.",
+      "firstNoted": "2023-11"
+    },
+    {
+      "id": "home-diy",
+      "name": "Home DIY improvements",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "Sound panels, better insulation, homemade furniture and a weighted blanket.",
+      "note": "2024; outcome unknown.",
+      "firstNoted": "2024-05"
+    },
+    {
+      "id": "tattoo-clothing-designs",
+      "name": "Tattoo and clothing designs",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "past",
+      "summary": "Tattoo concepts and clothing and fabric design ideas, including graphic tees.",
+      "note": "2024 notes; not produced.",
+      "firstNoted": "2024-05"
+    },
+    {
+      "id": "local-events-calendar",
+      "name": "Local events calendar",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "A forward-looking calendar of local and sky events.",
+      "note": "2024 idea.",
+      "firstNoted": "2024-05"
+    },
+    {
+      "id": "concrete-casting",
+      "name": "Concrete casting experiments",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "Concrete casting and coatings, including recycled plastic and fibre fillers.",
+      "note": "2024 idea.",
+      "firstNoted": "2024-05"
+    },
+    {
+      "id": "flywheel-pedal-power",
+      "name": "Flywheel and pedal-power experiments",
+      "status": "idea",
+      "category": "Home, family and belongings",
+      "era": "past",
+      "summary": "Putting pedal and flywheel power to mechanical use.",
+      "note": "2024 research chats; no build found.",
+      "firstNoted": "2024-05"
+    },
+    {
+      "id": "local-ai-server-2024",
+      "name": "Local AI server 2024",
+      "status": "past",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "Self-hosted language and image models in containers on home hardware.",
+      "note": "Ran in 2024; replaced by the 2026 setup.",
+      "firstNoted": "2024-03"
+    },
+    {
+      "id": "directorbot",
+      "name": "DirectorBot",
+      "status": "past",
+      "category": "AI assistants",
+      "era": "past",
+      "summary": "A 2024 chatbot persona prototype for mediating workplace issues and giving constructive feedback.",
+      "note": "Single prompt prototype.",
+      "firstNoted": "2024-01"
+    },
+    {
+      "id": "firefox-extension",
+      "name": "Firefox extension experiment",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "An early try at turning Python code into a Firefox extension.",
+      "note": "2023; outcome unknown.",
+      "firstNoted": "2023-04"
+    },
+    {
+      "id": "satisfactory-calculator",
+      "name": "Satisfactory Calculator",
+      "status": "public",
+      "category": "Games",
+      "era": "past",
+      "summary": "A production-chain planner for the factory game Satisfactory.",
+      "links": [
+        {
+          "label": "Satisfactory Calculator on GitHub",
+          "url": "https://github.com/jay37mack37/satisfactory-calculator"
+        }
+      ],
+      "note": "Public repo, 2026.",
+      "firstNoted": "2020-10"
+    },
+    {
+      "id": "compound-interest-calculator",
+      "name": "Compound Interest Calculator",
+      "status": "public",
+      "category": "Markets research",
+      "era": "past",
+      "summary": "A one-page interactive compound-interest visualizer.",
+      "links": [
+        {
+          "label": "Compound Interest Calculator on GitHub",
+          "url": "https://github.com/jay37mack37/compound-interest-calculator"
+        }
+      ],
+      "note": "Public repo with live page, 2026.",
+      "firstNoted": "2026-07"
+    },
+    {
+      "id": "jobhunter",
+      "name": "Job-search tracker",
+      "status": "past",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "A personal tool to track job applications and keep resume versions organized.",
+      "note": "Built in 2026; private.",
+      "firstNoted": "2026-05"
+    },
+    {
+      "id": "windows-coding-proxy-port",
+      "name": "Windows coding proxy port",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A Windows port of a tool that runs one coding assistant against another provider's models through a local proxy.",
+      "note": "2026.",
+      "firstNoted": "2026-07"
+    },
+    {
+      "id": "windows-mkcd",
+      "name": "windows-mkcd",
+      "status": "public",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "One command to create a folder and step into it on Windows.",
+      "links": [
+        {
+          "label": "windows-mkcd on GitHub",
+          "url": "https://github.com/jay37mack37/windows-mkcd"
+        }
+      ],
+      "note": "Public repo, 2026.",
+      "firstNoted": "2026-08"
+    },
+    {
+      "id": "aknewai",
+      "name": "AKnewAI",
+      "status": "past",
+      "category": "Builder tools",
+      "era": "past",
+      "summary": "A mid-2026 tool that runs several AI coding agents and has them check each other's work. An ancestor of AKnewPipeline.",
+      "parent": "aknewpipeline",
+      "note": "Version 1 worked; private.",
+      "firstNoted": "2026-07"
+    },
+    {
+      "id": "prop-firm-trading",
+      "name": "Prop-firm trading",
+      "status": "idea",
+      "category": "Markets research",
+      "era": "idea",
+      "summary": "Trading with a funded prop-firm account. Research only, never investment advice.",
+      "parent": "aknewtrading",
+      "note": "Not started.",
+      "firstNoted": "2026-10"
+    },
+    {
+      "id": "market-data-quality-test",
+      "name": "Market-data poisoning test",
+      "status": "idea",
+      "category": "Markets research",
+      "era": "current",
+      "summary": "Checks whether subtly altered market data could mislead models trained on it, and compares free and paid data quality.",
+      "parent": "aknewdata",
+      "note": "Set as a low priority in November 2026.",
+      "firstNoted": "2026-11"
+    },
+    {
+      "id": "aknew-delegation",
+      "name": "AKnew Delegation",
+      "status": "in-use",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "One chat room per helper assistant in Discord and Telegram, where tasks are handed off and driven to completion.",
+      "note": "Moved to a new assistant host in November 2026.",
+      "firstNoted": "2026-10"
+    },
+    {
+      "id": "consensus",
+      "name": "Consensus",
+      "status": "building",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "When called, opted-in AI chats post what they are doing and pause; the chat he resumes gathers the others' context first.",
+      "note": "Skill written; live use not yet verified.",
+      "firstNoted": "2026-11"
+    },
+    {
+      "id": "aknewgemini-live-voice",
+      "name": "AKnewGemini Live voice",
+      "status": "idea",
+      "category": "AI assistants",
+      "era": "current",
+      "summary": "A bot that joins a Discord voice channel and talks live as part of AKnewGemini, reusing AKnewScribe voice tech.",
+      "parent": "aknewgemini",
+      "note": "Planned as the final AKnewGemini v2 feature.",
+      "firstNoted": "2026-11"
+    },
+    {
+      "id": "explain-it-twice",
+      "name": "Explain-it-twice podcast",
+      "status": "idea",
+      "category": "Creative and media",
+      "era": "past",
+      "summary": "Short audio episodes that explain one topic twice: once for experts, once for a child.",
+      "note": "Prompt experiments in 2026.",
+      "firstNoted": "2026-07"
+    },
+    {
+      "id": "aknewcallout",
+      "name": "AKnewCallout",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "idea",
+      "summary": "Say \"I'm sick\" or \"I'm late\", approve one draft, and the right people get the right message.",
+      "note": "Recurring need since 2023; not started.",
+      "firstNoted": "2023-05"
+    },
+    {
+      "id": "dlc-price-converter",
+      "name": "DLC price converter",
+      "status": "idea",
+      "category": "Games",
+      "era": "past",
+      "summary": "Shows a game add-on's price across many currencies converted to dollars.",
+      "note": "2023 idea.",
+      "firstNoted": "2023-03"
+    },
+    {
+      "id": "universal-controller",
+      "name": "Universal controller scheme",
+      "status": "idea",
+      "category": "Games",
+      "era": "past",
+      "summary": "One controller layout that covers every action on a PC.",
+      "note": "Idea.",
+      "firstNoted": "2023"
+    },
+    {
+      "id": "work-log-helper",
+      "name": "Work log helper",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "A dated personal work log with help writing clear, factual follow-ups.",
+      "note": "Idea.",
+      "firstNoted": "2024-03"
+    },
+    {
+      "id": "paperwork-explainer",
+      "name": "Paperwork explainer",
+      "status": "idea",
+      "category": "Health and daily life",
+      "era": "past",
+      "summary": "Explains each section of a lease or official notice in plain language, with questions to ask.",
+      "note": "From a 2023 lease review; not built as a tool.",
+      "firstNoted": "2023-04"
+    },
+    {
+      "id": "billify",
+      "name": "Billify",
+      "status": "unknown",
+      "category": "Infrastructure",
+      "era": "past",
+      "summary": "A name on an older self-hosting list. Its purpose was not recorded.",
+      "note": "Purpose unknown."
+    },
+    {
+      "id": "firefall",
+      "name": "Firefall",
+      "status": "unknown",
+      "category": "Builder tools",
+      "era": "idea",
+      "summary": "Named as something to bring into the suite. Its purpose was not recorded.",
+      "note": "Purpose unknown."
+    },
+    {
+      "id": "game-mashup-pitches",
+      "name": "PS2 mashup pitches",
+      "status": "past",
+      "category": "Creative and media",
+      "era": "past",
+      "summary": "A prank to win a skeptic over to AI: pitch twenty awful four-game PS2 mashups, then twenty genuinely good ones.",
+      "aliases": [
+        "Mashup list ideas",
+        "mashup lists"
+      ],
+      "note": "Done in one sitting in 2026; the forty titles were AI-written.",
+      "firstNoted": "2026-08",
+      "includes": [
+        {
+          "name": "Mashup lists",
+          "summary": "Other crossover concept lists from 2026, such as cartoon and anime mashups."
+        }
+      ],
+      "concepts": {
+        "label": "AI-written pitches. Generated concepts, not separate projects.",
+        "groups": [
+          {
+            "label": "The deliberately bad round",
+            "items": [
+              "Grand Theft Auto: Health Inspector",
+              "Silent Hill: Underground 2",
+              "God of Chores",
+              "Resident Evil: Halftime Show",
+              "Metal Gear Solid: Joint Custody",
+              "Tony Hawk’s Pro Exorcist",
+              "Gran Turismo: Divorce Court",
+              "Kingdom Hearts: Municipal Services",
+              "Shadow of the Colossus: Delivery Pending",
+              "Final Fantasy: Annual Performance Review",
+              "SOCOM: Homeowners Association",
+              "Devil May Cry: Customer Support",
+              "SSX: Probate Court",
+              "Bully: Deep Sea Semester",
+              "God of War: Authentic Bass Fishing",
+              "Katamari Damacy: Evidence Disposal",
+              "Ace Combat: Indoor Edition",
+              "Guitar Hero: Witness Protection",
+              "The Sims: Final Boss",
+              "Everything Requires a License"
+            ]
+          },
+          {
+            "label": "The genuinely good round",
+            "items": [
+              "Midnight Crew",
+              "The Last Pilgrim",
+              "Dead Air",
+              "Blackout Protocol",
+              "Scrap Kings",
+              "After the Bell",
+              "Ridgebreak",
+              "Night Shift",
+              "Neon Circuit",
+              "Ash & Iron",
+              "Blood Oath",
+              "Street Crown",
+              "Frontline: No Respawn",
+              "Small-Time Legends",
+              "The Unwritten Blade",
+              "Last Fare",
+              "House of Echoes",
+              "Skybreak Squadron",
+              "The Living Dungeon",
+              "ONE LAST JOB"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -32,6 +32,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#mission">Mission</a>
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
+      <a href="/projects/">Projects</a>
       <a href="/play/">Play</a>
       <a href="/demos/">Demos</a>
       <a href="#community">Community</a>
@@ -45,6 +46,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="#mission">Mission</a>
       <a href="#book">The Book</a>
       <a href="#work">What We Build</a>
+      <a href="/projects/">Projects</a>
       <a href="/play/">Play</a>
       <a href="/demos/">Demos</a>
       <a href="#community">Community</a>
@@ -170,6 +172,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           </a>
         </article>
       </div>
+      <a class="work-all" href="/projects/">See every project and idea${icon('arrow')}</a>
     </section>
 
     <section class="community" id="community">
@@ -216,7 +219,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="section-shell footer-grid">
       <a class="brand footer-brand" href="#top"><span class="brand-mark">AK</span><span>A Knew Knowledge</span></a>
       <p>Remember differently.<br>Build intentionally.</p>
-      <div class="footer-links"><a href="#book">Book</a><a href="#work">Projects</a><a href="/play/">Play</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
+      <div class="footer-links"><a href="#book">Book</a><a href="/projects/">Projects</a><a href="/play/">Play</a><a href="#contact">Contact</a><a href="https://github.com/jay37mack37" target="_blank" rel="noopener noreferrer">GitHub</a><a class="footer-discord" href="https://discord.gg/cDv9BQetjJ" target="_blank" rel="noopener noreferrer">${discordIcon()}Discord</a></div>
       <small>© <span id="year"></span> A Knew Knowledge LLC</small>
     </div>
   </footer>
