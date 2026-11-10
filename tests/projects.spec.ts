@@ -10,7 +10,7 @@ const STATUS_LABEL: Record<string, string> = { public: 'Public', 'in-use': 'In u
 const countOf = (status: string) => projects.filter((p) => p.status === status).length
 
 const names = new Map(projects.map((p) => [p.id, p.name]))
-// Same fields the page searches: name, aliases, summary, note, category, status, parent name.
+// Same fields the page searches: name, aliases, summary, note, included names and summaries, category, status, parent name.
 const hay = (p: Project) => [p.name, ...(p.aliases ?? []), p.summary, p.note, ...(p.includes ?? []).flatMap((i) => [i.name, i.summary]), p.category, STATUS_LABEL[p.status], p.parent ? names.get(p.parent) : ''].filter(Boolean).join(' ').toLowerCase()
 
 const noOverflow = async (page: Page) => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)
@@ -239,12 +239,42 @@ test('privacy lint rejects private details and keeps coined project names', asyn
   const named = good()
   named.projects[0].aliases = ['ChatGPT Website 2.0']
   expect(() => validate(named), 'allowlisted original name').not.toThrow()
+  named.projects[0].name = 'Hermes Desktop'
+  expect(() => validate(named), 'allowlisted original name as the shown name').not.toThrow()
+  for (const loose of ['Hermes', 'Hermes Desktop app', 'hermes desktop']) {
+    const near = good()
+    near.projects[0].name = loose
+    expect(() => validate(near), `allowlist is exact: ${loose}`).toThrow()
+  }
   named.projects[0].summary = 'ChatGPT Website 2.0 was written by ChatGPT.'
-  expect(() => validate(named), 'allowlist is for exact alias strings only').toThrow()
+  expect(() => validate(named), 'allowlist is for exact name and alias strings only').toThrow()
   const inc = good()
   inc.projects[0].includes = [{ name: 'Old bot', summary: 'Lived at /srv/x.' }]
   expect(() => validate(inc), 'private path inside includes').toThrow()
   expect(() => validate(coined)).not.toThrow()
+})
+
+test('original project names that contain a product word stay shown or searchable', async ({ page }) => {
+  await page.goto('/projects/')
+  const search = page.getByRole('searchbox', { name: 'Search projects and ideas' })
+  const visible = page.locator('.project-row:visible')
+  // [what someone would type, the entry it must find, the name it must be shown under]
+  const originals: [string, string, string?][] = [
+    ['claudex', 'windows-coding-proxy-port', 'claudex for Windows'],
+    ['ChatGPT Website 2.0', 'ai-chat-website', 'ChatGPT Website 2.0'],
+    ['Hermes Desktop', 'desktop-app', 'Hermes Desktop'],
+    ['OpenClaw setup', 'assistant-host-setup', 'OpenClaw setup'],
+    ['OpenClaw Android', 'aknew-android', 'AKnew OpenClaw Android'],
+    ['Google Jules', 'google-jules-lane', 'Google Jules coding lane'],
+    ['ChatGPT-prompts GUI', 'prompt-gui'],
+    ['openai-chatgpt-plan', 'plan-sign-in-provider'],
+    ['Hermes Messaging Audit', 'messaging-audit'],
+  ]
+  for (const [query, id, shownAs] of originals) {
+    await search.fill(query)
+    await expect(visible.filter({ has: page.locator(`[id="${id}-name"]`) }), query).toHaveCount(1)
+    if (shownAs) await expect(page.locator(`#${id}-name`)).toHaveText(shownAs)
+  }
 })
 
 test('merged projects stay findable by their own historical names', async ({ page }) => {

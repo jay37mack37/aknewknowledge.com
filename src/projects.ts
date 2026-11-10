@@ -22,7 +22,8 @@ if (form && results && empty && rows.length) {
   const total = rows.length
   const words = (s: string) => s.toLowerCase().split(/\s+/).filter(Boolean)
 
-  // Every typed word must appear somewhere in the row's name, aliases, summary, category, status or parent.
+  // Every typed word must appear somewhere in the row's name, aliases, summary, note, included names
+  // and summaries, category, status or parent name (data-search, built by searchText in scripts/projects.mjs).
   const apply = (updateUrl: boolean) => {
     const terms = words(q.value)
     const [status, category, era] = selects.map((s) => s.value)

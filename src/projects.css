@@ -66,6 +66,7 @@
 .project-concepts[open] summary::before { content: '\2212'; }
 .project-concepts summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .project-concepts-group { margin: 8px 0 4px; font-weight: 600; }
+.project-concepts-group, .project-concepts ul { padding-left: 30px; }
 .project-concepts ul { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); column-gap: 28px; color: #4a4f48; }
 .project-first { margin: 0; color: #4a4f48; font-size: 13px; }
 .project-aliases span { font-weight: 600; color: var(--ink); }

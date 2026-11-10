@@ -292,7 +292,8 @@
       "summary": "A quota readout for the desktop app and terminal.",
       "aliases": [
         "Desktop Quota and Terminal",
-        "quota HUD"
+        "quota HUD",
+        "Hermes Desktop quota HUD"
       ],
       "parent": "aknewquota",
       "note": "Built; folded into aKnewQuota."
@@ -332,7 +333,8 @@
       "era": "current",
       "summary": "Lets the assistant use an existing chat subscription plan through its own sign-in instead of paying per request.",
       "aliases": [
-        "SIWC"
+        "SIWC",
+        "openai-chatgpt-plan provider"
       ],
       "parent": "quota-routing",
       "note": "Partly built."
@@ -694,7 +696,7 @@
     },
     {
       "id": "aknew-android",
-      "name": "AKnew Android assistant",
+      "name": "AKnew OpenClaw Android",
       "status": "building",
       "category": "AI assistants",
       "era": "current",
@@ -850,7 +852,8 @@
       "era": "past",
       "summary": "A review that hardened what guest assistants can see and do.",
       "aliases": [
-        "guest hardening"
+        "guest hardening",
+        "Hermes Messaging Audit"
       ],
       "parent": "guest-bots",
       "note": "Done."
@@ -893,7 +896,7 @@
     },
     {
       "id": "desktop-app",
-      "name": "Desktop assistant app",
+      "name": "Hermes Desktop",
       "status": "paused",
       "category": "Builder tools",
       "era": "past",
@@ -923,6 +926,9 @@
       "category": "Builder tools",
       "era": "past",
       "summary": "Looked at how another developer set up the Pi coding assistant and took the good ideas.",
+      "aliases": [
+        "Pi → Hermes Lab"
+      ],
       "note": "Done."
     },
     {
@@ -978,11 +984,14 @@
     },
     {
       "id": "assistant-host-setup",
-      "name": "Assistant host setup",
+      "name": "OpenClaw setup",
       "status": "in-use",
       "category": "Infrastructure",
       "era": "current",
-      "summary": "Installs, patches and runs the main always-on assistant on the home workstation."
+      "summary": "Installs, patches and runs the main always-on assistant on the home workstation.",
+      "aliases": [
+        "OpenClaw on this machine"
+      ]
     },
     {
       "id": "browser-profiles",
@@ -1119,7 +1128,8 @@
       "era": "past",
       "summary": "A small Python desktop app for organizing AI chat prompts.",
       "aliases": [
-        "Python prompts GUI"
+        "Python prompts GUI",
+        "Python ChatGPT-prompts GUI"
       ],
       "note": "From late 2023, before the suite."
     },
@@ -1881,7 +1891,7 @@
     },
     {
       "id": "google-jules-lane",
-      "name": "Free coding lane",
+      "name": "Google Jules coding lane",
       "status": "idea",
       "category": "Builder tools",
       "era": "idea",
@@ -2018,14 +2028,11 @@
     },
     {
       "id": "ai-chat-website",
-      "name": "Better AI chat website",
+      "name": "ChatGPT Website 2.0",
       "status": "idea",
       "category": "AI assistants",
       "era": "past",
       "summary": "A 2023 idea for a better AI chat site: chats that persist across tabs, history, and two assistants side by side.",
-      "aliases": [
-        "ChatGPT Website 2.0"
-      ],
       "note": "Idea only.",
       "firstNoted": "2023-11"
     },
@@ -2243,11 +2250,14 @@
     },
     {
       "id": "windows-coding-proxy-port",
-      "name": "Windows coding proxy port",
+      "name": "claudex for Windows",
       "status": "past",
       "category": "Builder tools",
       "era": "past",
       "summary": "A Windows port of a tool that runs one coding assistant against another provider's models through a local proxy.",
+      "aliases": [
+        "claudex Windows port"
+      ],
       "note": "2026.",
       "firstNoted": "2026-07"
     },

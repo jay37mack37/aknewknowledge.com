@@ -46,9 +46,14 @@ const PRIVATE_PATTERNS = [
   ['model or agent name', /\b(?:claude|opus|sonnet|haiku|gpt(?:-?\d[\w.]*)?|chatgpt|openai|codex|gemini|openclaw|hermes|sol|fable|astra|yuxor|jules|copilot|grok|anthropic)\b/i],
 ]
 
-// Original names the owner gave a project that contain a vendor product word. Exact strings
-// only, so search still finds the old name while attribution text stays model-free.
-export const ORIGINAL_NAMES = new Set(['ChatGPT Website 2.0'])
+// Original names the owner gave a project or tool that contain a vendor product word. Exact
+// strings, and only as a project name or alias, so the real names stay shown and searchable
+// while summaries, notes and every other field stay free of model and agent credits.
+export const ORIGINAL_NAMES = new Set([
+  'ChatGPT Website 2.0', 'Hermes Desktop', 'OpenClaw setup', 'OpenClaw on this machine', 'AKnew OpenClaw Android',
+  'Google Jules coding lane', 'Python ChatGPT-prompts GUI', 'openai-chatgpt-plan provider', 'Hermes Messaging Audit',
+  'Hermes Desktop quota HUD', 'Pi → Hermes Lab',
+])
 
 export function privacyProblem(text) {
   for (const [name, re] of PRIVATE_PATTERNS) if (re.test(text)) return name
@@ -84,7 +89,7 @@ export function validate(d) {
       if (!l.label || !l.url) fail(`${where} link needs label and url`)
       if (!(SITE_ROUTES.has(l.url) || (l.url.startsWith(GITHUB) && /^https:\/\/github\.com\/jay37mack37\/[\w.-]+$/.test(l.url)))) fail(`${where} link ${l.url} is not an allowed site route or public repo`)
     }
-    const strings = [p.name, p.summary, p.note, ...(p.aliases ?? []).filter((a) => !ORIGINAL_NAMES.has(a)), ...(p.links ?? []).map((l) => l.label),
+    const strings = [...[p.name, ...(p.aliases ?? [])].filter((a) => !ORIGINAL_NAMES.has(a)), p.summary, p.note, ...(p.links ?? []).map((l) => l.label),
       ...(p.includes ?? []).flatMap((i) => [i.name, i.summary]), p.concepts?.label, ...(p.concepts?.groups ?? []).flatMap((g) => [g.label, ...g.items])].filter(Boolean)
     for (const s of strings) {
       const problem = privacyProblem(s)
