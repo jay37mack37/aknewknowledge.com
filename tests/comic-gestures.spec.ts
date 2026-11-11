@@ -19,6 +19,7 @@ test('broad center tap advances instead of enlarging', async ({ page, isMobile }
 async function ready(page: Page) {
   await expect(page.locator('#page')).toBeVisible()
   await expect.poll(() => page.locator('#page').evaluate((img) => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
+  await expect(page.locator('#page')).toHaveCSS('opacity', '1')
 }
 
 test.describe('trusted touch gestures', () => {
@@ -71,7 +72,11 @@ test.describe('trusted touch gestures', () => {
       const swipeX = fresh.x + fresh.width * 0.7
       const swipeY = fresh.y + 160
       await send('touchStart', [{ x: swipeX, y: swipeY }])
-      for (let step = 1; step <= 6; step++) await send('touchMove', [{ x: swipeX - step * 20, y: swipeY }])
+      for (let step = 1; step <= 6; step++) {
+        await send('touchMove', [{ x: swipeX - step * 20, y: swipeY }])
+        // A deliberate slow swipe is not a stationary long press.
+        if (step === 3) await page.waitForTimeout(650)
+      }
       await page.waitForTimeout(150)
       await send('touchEnd', [])
       await expect(count).toContainText(large ? 'Panel 2 of' : 'Page 2 of 15')
@@ -208,7 +213,7 @@ test('candidate layout and diagrams are readable at phone widths', async ({ page
 })
 
 test('candidate metadata and image failures keep the reader recoverable', async ({ page }) => {
-  await page.route('**/pages/01.webp', (route) => route.abort())
+  await page.route('**/pages/01*', (route) => route.abort())
   await page.goto(readerURL)
   await page.locator('#next').click()
   await expect(page.locator('#status')).toContainText('This image could not load')
@@ -221,4 +226,47 @@ test('candidate metadata and image failures keep the reader recoverable', async 
   await expect(page.locator('#next')).toBeDisabled()
   await page.locator('#options-toggle').click()
   await expect(page.locator('.download')).toHaveAttribute('href', 'issue-01.pdf')
+})
+
+
+test('fast mobile images reserve full resolution for explicit zoom', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  const requests: string[] = []
+  page.on('request', request => requests.push(request.url()))
+  await page.goto(readerURL)
+  await ready(page)
+  await expect.poll(() => page.locator('#page').evaluate((image) => (image as HTMLImageElement).currentSrc)).toContain('/responsive/')
+  expect((await page.locator('#page').boundingBox())?.width).toBeGreaterThan(350)
+  expect(requests.some(url => /\/pages\/00-cover\.webp$/.test(url))).toBe(false)
+  await page.locator('#enlarge').click()
+  await expect(page.locator('#zoom-page')).toHaveAttribute('src', /pages\/00-cover\.webp$/)
+  await expect.poll(() => requests.some(url => /\/pages\/00-cover\.webp$/.test(url))).toBe(true)
+})
+
+
+test('Fast 4G cold phone reader shows the decoded cover under one second', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  const session = await page.context().newCDPSession(page)
+  await session.send('Network.enable')
+  await session.send('Network.setCacheDisabled', { cacheDisabled: true })
+  await session.send('Network.emulateNetworkConditions', {
+    offline: false, latency: 40, downloadThroughput: 9_000_000 / 8,
+    uploadThroughput: 1_500_000 / 8, connectionType: 'cellular4g',
+  })
+  let bytes = 0
+  session.on('Network.dataReceived', (event) => { bytes += event.encodedDataLength })
+  const start = Date.now()
+  await page.goto('/aknewcomic/', { waitUntil: 'domcontentloaded' })
+  await page.waitForFunction(() => {
+    const image = document.getElementById('page') as HTMLImageElement
+    return image?.complete && image.naturalWidth > 0 && getComputedStyle(image).opacity === '1'
+  })
+  await page.locator('#page').evaluate(async (image) => {
+    await (image as HTMLImageElement).decode()
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+  })
+  const firstVisibleMs = Date.now() - start
+  await testInfo.attach('fast-4g-cold-cover', { body: JSON.stringify({ firstVisibleMs, bytesToFirstPage: bytes, latencyMs: 40, downloadMbps: 9, uploadMbps: 1.5 }), contentType: 'application/json' })
+  expect(firstVisibleMs).toBeLessThan(1000)
+  expect(bytes).toBeLessThan(350_000)
 })

@@ -111,3 +111,7 @@ body.accessible #gesture-hint { font-size: 14px; }
 #restart { margin-bottom: 14px; }
 body.accessible .overview button { padding: 4px; font-size: 16px; }
 @media (max-width: 360px) { .overview { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* srcset's density-corrected intrinsic width must not shrink the approved layout. */
+body.comic:not(.fit-width) .art img { width: min(var(--source-width, 100%), calc((100dvh - var(--bar) - 160px) * var(--source-ratio, 1))); }
+body.comic.cover:not(.fit-width) .art img { width: min(var(--source-width, 100%), calc((100dvh - var(--bar) - 196px) * var(--source-ratio, 1))); }

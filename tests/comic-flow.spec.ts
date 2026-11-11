@@ -78,7 +78,7 @@ test('large type, page choice, keyboard and zoom work across reloads', async ({ 
   }
   await page.keyboard.press('ArrowRight')
   await expect(page.locator('#count')).toHaveText('Page 6 of 15')
-  await page.getByRole('button', { name: 'Enlarge comic art' }).click()
+  await page.getByRole('button', { name: 'Enlarge comic art' }).press('Enter')
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.getByRole('button', { name: 'Actual size' }).click()
   await expect(page.locator('#zoom-scroll')).toHaveClass(/actual/)
@@ -88,7 +88,7 @@ test('large type, page choice, keyboard and zoom work across reloads', async ({ 
 })
 
 test('broken images preserve the actual story text and navigation', async ({ page }) => {
-  await page.route('**/panels/01-01.webp', (route) => route.abort())
+  await page.route('**/panels/01-01*', (route) => route.abort())
   await page.goto('/aknewcomic/')
   await enterLargeText(page)
   await page.getByRole('button', { name: 'Read issue' }).click()
@@ -111,7 +111,7 @@ test('keyboard page turns keep a meaningful focus target after zoom', async ({ p
   await enterLargeText(page)
   await page.getByRole('button', { name: 'Read issue' }).click()
   await page.getByRole('button', { name: 'Whole page', exact: true }).click()
-  await page.getByRole('button', { name: 'Enlarge comic art' }).click()
+  await page.getByRole('button', { name: 'Enlarge comic art' }).press('Enter')
   await page.getByRole('button', { name: 'Close ✕' }).click()
   await expect(page.locator('#art')).toBeFocused()
   await page.keyboard.press('ArrowRight')
