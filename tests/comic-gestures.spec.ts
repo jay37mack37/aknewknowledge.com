@@ -244,6 +244,74 @@ test('fast mobile images reserve full resolution for explicit zoom', async ({ pa
 })
 
 
+// Wire-byte accounting for the cold cover receipt.
+// Summing Network.dataReceived is not a transfer total: over HTTP/2 Chromium reports 0 for many
+// chunks (the public origin gave 26,662 B against 185,890 B of completed requests), and over
+// HTTP/1.1 it drops response headers while adding partial bytes of in-flight neighbour prefetches.
+// The receipt therefore counts loadingFinished.encodedDataLength (headers + body on the wire) for
+// exactly the requests the page reports complete at decode+paint, and lists in-flight ones apart.
+type WireRequest = { url: string; dataReceived: number; finished: number | null; sentAtMs?: number }
+
+function legacyDataReceivedBytes(requests: WireRequest[]) {
+  return requests.reduce((sum, request) => sum + request.dataReceived, 0)
+}
+
+function completedWireBytes(requests: WireRequest[], completedAtPaint: Set<string>, paintedAtMs = Infinity) {
+  let total = 0
+  const counted: Record<string, number> = {}
+  const inFlight: string[] = []
+  for (const request of requests) {
+    if (!/^https?:/.test(request.url)) continue // data: placeholders never touch the network
+    if ((request.sentAtMs ?? 0) > paintedAtMs) continue // started after paint, not part of first view
+    if (completedAtPaint.has(request.url) && request.finished !== null && !(request.url in counted)) {
+      counted[request.url] = request.finished
+      total += request.finished
+    } else if (!completedAtPaint.has(request.url)) inFlight.push(request.url)
+  }
+  return { total, counted, inFlight }
+}
+
+// A wire count for a completed response can never be below its body size, so this catches an
+// undercounting method instead of letting it slip under the 350,000 B budget.
+function wireReceiptProblems(coverWireBytes: number | undefined, coverBodyBytes: number, totalBytes: number) {
+  const problems: string[] = []
+  if (!(coverBodyBytes > 0)) problems.push('cover body size missing from resource timing')
+  if (coverWireBytes === undefined || coverWireBytes < coverBodyBytes) problems.push(`cover counted ${coverWireBytes} B on the wire but its body alone is ${coverBodyBytes} B`)
+  if (totalBytes < coverBodyBytes) problems.push(`total ${totalBytes} B is below the cover body ${coverBodyBytes} B`)
+  return problems
+}
+
+test('wire receipt rejects the HTTP/2 dataReceived undercount and accepts completed requests', () => {
+  // Recorded public cold Fast 4G load (HTTP/2): per-request dataReceived sums against
+  // loadingFinished.encodedDataLength, cut at the cover's decode+paint.
+  const origin = 'https://aknewknowledge.com/aknewcomic/'
+  const cover = `${origin}responsive/pages/00-cover-720.avif`
+  const recorded: WireRequest[] = [
+    { url: origin, dataReceived: 0, finished: 1823 },
+    { url: `${origin}reader-v2.css?v=mobile-fast-v2`, dataReceived: 0, finished: 3042 },
+    { url: `${origin}reader-v2.js?v=mobile-fast-v2`, dataReceived: 0, finished: 6277 },
+    { url: `${origin}issue.json`, dataReceived: 0, finished: 4032 },
+    { url: `${origin}responsive/manifest.json`, dataReceived: 0, finished: 17476 },
+    { url: 'data:image/webp;base64,UklGRuwAAABXRUJQ', dataReceived: 0, finished: 0 },
+    { url: cover, dataReceived: 26662, finished: 153240 },
+    { url: `${origin}responsive/pages/01-720.avif`, dataReceived: 0, finished: null },
+    { url: `${origin}responsive/pages/02-720.avif`, dataReceived: 0, finished: null },
+    // Synthetic row (not in the recording): a request sent after paint by a later page turn.
+    // It must be neither counted nor reported as in flight at paint.
+    { url: `${origin}responsive/pages/03-720.avif`, dataReceived: 105246, finished: 105246, sentAtMs: 3571 },
+  ]
+  const coverBody = 152980
+  const completed = new Set(recorded.slice(0, 7).map(request => request.url))
+  const legacy = legacyDataReceivedBytes(recorded)
+  expect(legacy).toBe(26662 + 105246)
+  expect(wireReceiptProblems(recorded[6].dataReceived, coverBody, legacy)).not.toEqual([])
+  const receipt = completedWireBytes(recorded, completed, 572)
+  expect(receipt.total).toBe(185890)
+  expect(receipt.counted[cover]).toBe(153240)
+  expect(receipt.inFlight).toEqual([`${origin}responsive/pages/01-720.avif`, `${origin}responsive/pages/02-720.avif`])
+  expect(wireReceiptProblems(receipt.counted[cover], coverBody, receipt.total)).toEqual([])
+})
+
 test('Fast 4G cold phone reader shows the decoded cover under one second', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
   const session = await page.context().newCDPSession(page)
@@ -253,20 +321,46 @@ test('Fast 4G cold phone reader shows the decoded cover under one second', async
     offline: false, latency: 40, downloadThroughput: 9_000_000 / 8,
     uploadThroughput: 1_500_000 / 8, connectionType: 'cellular4g',
   })
-  let bytes = 0
-  session.on('Network.dataReceived', (event) => { bytes += event.encodedDataLength })
+  const wire = new Map<string, WireRequest>()
+  session.on('Network.requestWillBeSent', (event) => { wire.set(event.requestId, { url: event.request.url, dataReceived: 0, finished: null, sentAtMs: event.wallTime * 1000 }) })
+  session.on('Network.dataReceived', (event) => { const request = wire.get(event.requestId); if (request) request.dataReceived += event.encodedDataLength })
+  session.on('Network.loadingFinished', (event) => { const request = wire.get(event.requestId); if (request) request.finished = event.encodedDataLength })
   const start = Date.now()
   await page.goto('/aknewcomic/', { waitUntil: 'domcontentloaded' })
   await page.waitForFunction(() => {
     const image = document.getElementById('page') as HTMLImageElement
     return image?.complete && image.naturalWidth > 0 && getComputedStyle(image).opacity === '1'
   })
-  await page.locator('#page').evaluate(async (image) => {
+  // The page's own clock decides what was complete at paint, so later requests are excluded
+  // even if their CDP events arrive before the receipt is assembled.
+  const atPaint = await page.locator('#page').evaluate(async (image) => {
     await (image as HTMLImageElement).decode()
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+    const paintedAt = performance.now()
+    const entries = [...performance.getEntriesByType('navigation'), ...performance.getEntriesByType('resource')] as PerformanceResourceTiming[]
+    const cover = new URL((image as HTMLImageElement).currentSrc, location.href).href
+    return {
+      paintedAtMs: performance.timeOrigin + paintedAt,
+      cover,
+      coverBodyBytes: entries.find(entry => entry.name === cover)?.encodedBodySize ?? 0,
+      completed: entries.filter(entry => entry.responseEnd > 0 && entry.responseEnd <= paintedAt).map(entry => entry.name),
+    }
   })
   const firstVisibleMs = Date.now() - start
-  await testInfo.attach('fast-4g-cold-cover', { body: JSON.stringify({ firstVisibleMs, bytesToFirstPage: bytes, latencyMs: 40, downloadMbps: 9, uploadMbps: 1.5 }), contentType: 'application/json' })
+  const completed = new Set(atPaint.completed)
+  // Completion already happened in the browser; wait only for its CDP event to be delivered.
+  await expect.poll(() => [...wire.values()].filter(request => completed.has(request.url) && request.finished !== null).length).toBeGreaterThanOrEqual(completed.size)
+  const receipt = completedWireBytes([...wire.values()], completed, atPaint.paintedAtMs)
+  const coverWireBytes = receipt.counted[atPaint.cover]
+  await testInfo.attach('fast-4g-cold-cover', {
+    body: JSON.stringify({
+      firstVisibleMs, completedWireBytesAtPaint: receipt.total, coverWireBytes, coverBodyBytes: atPaint.coverBodyBytes,
+      completedAtPaint: receipt.counted, inFlightAtPaint: receipt.inFlight, method: 'loadingFinished.encodedDataLength of requests complete at decode+paint',
+      latencyMs: 40, downloadMbps: 9, uploadMbps: 1.5,
+    }),
+    contentType: 'application/json',
+  })
   expect(firstVisibleMs).toBeLessThan(1000)
-  expect(bytes).toBeLessThan(350_000)
+  expect(wireReceiptProblems(coverWireBytes, atPaint.coverBodyBytes, receipt.total)).toEqual([])
+  expect(receipt.total).toBeLessThan(350_000)
 })

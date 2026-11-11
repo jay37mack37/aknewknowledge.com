@@ -84,24 +84,48 @@ Development checkouts without generated assets retain the original-image fallbac
 ### Performance measurement
 The benchmark uses fresh Chromium with iPhone 13 emulation at 390x844, cache disabled, Fast 4G with 40ms latency, 9Mbps download and 1.5Mbps upload.
 First-visible timing ends after the full selected cover image decodes and two animation frames paint, not when the blur placeholder appears.
-Network bytes count transferred response payload up to that point, including any in-flight speculative transfers.
+Wire bytes are the `loadingFinished` encoded length (headers plus body) of each request the page's own resource timing reports complete at that paint.
+Neighbour images still in flight at paint are listed separately and not counted; requests started after paint are excluded.
 LCP is read from the browser PerformanceObserver.
 Page-turn measurements include input, image readiness, decode and paint after the neighborhood has warmed.
 The baseline is the real public preview before optimization; the candidate is the locally served exact built runtime under the same explicit network throttle.
 Origin/connection overhead differs, so live post-deployment measurement is required before claiming the final public budget.
 
+#### Pre-release table (legacy byte row unreliable)
+The byte row below summed CDP `Network.dataReceived` chunks, which is not a wire total.
+Over HTTP/2 Chromium reports zero for many chunks: one public cold load summed 26,662 B against 185,890 B of completed requests.
+Over local HTTP/1.1 the same sum drops response headers and adds partial bytes of in-flight neighbour prefetches.
+The 3,116,668 and 220,022 figures are kept only as history and are not comparable to the corrected method.
+The timing rows and the cover body sizes are reliable; the 3588ms baseline is the first fully decoded image and stays the reference.
+
 | Metric | Public unoptimized preview | Optimized local candidate |
 | --- | ---: | ---: |
 | First decoded cover visible | 3588ms | 457ms |
 | LCP | 3460ms | 392ms |
-| Bytes transferred to first visible cover | 3,116,668 | 220,022 |
+| Legacy dataReceived sum to first visible cover (unreliable) | 3,116,668 | 220,022 |
 | Three warmed page turns | 111 / 381 / 150ms | 62 / 48 / 49ms |
-| Cover image transfer | 1,923,468 bytes | 152,980 bytes (720px AVIF) |
+| Cover image body | 1,923,468 bytes | 152,980 bytes (720px AVIF) |
+
+#### Public production receipts (authoritative)
+Two cold production runs after release, same device profile and throttle, fresh browser profile, cache cleared.
+Wire bytes use the completed-request method above.
+
+| Metric | Run 1 | Run 2 |
+| --- | ---: | ---: |
+| First decoded cover visible | 699ms | 630ms |
+| LCP | 652ms | 564ms |
+| Cover body (720px AVIF) | 152,980 B | 152,980 B |
+| Cover on the wire | 153,237 B | 153,228 B |
+| Completed wire bytes at first paint | 185,861 B | 185,885 B |
+
+Each completed total covers the HTML, stylesheet, script, issue metadata, image manifest and cover; pages 1 and 2 were still in flight at paint in both runs and are not counted, even where part of a body had arrived.
+The corrected local regression reads 185,657 B completed at paint, with the same two neighbours in flight.
 
 Image decode exposed a real slow-swipe bug: moving horizontal gestures taking 500-800ms were incorrectly classified as long presses.
 The runtime now uses input timestamps and distinguishes stationary holds from an already-moving swipe; the trusted-touch test deliberately pauses mid-swipe while retaining all long-press, scroll and pinch assertions.
 Runtime asset URLs have a new query version so a browser does not reuse the old slow reader code under the website's ten-minute cache lifetime.
-The regression suite enforces a decoded cover below 1000ms and below 350,000 bytes under this exact throttle.
+The regression suite enforces a decoded cover below 1000ms and below 350,000 completed wire bytes under this exact throttle.
+It also fails if the cover's counted wire bytes fall below its own body size, and a recorded HTTP/2 fixture proves the legacy sum trips that check.
 A separate regression checks that responsive source sets do not shrink the original rendered 366px-wide cover on a 390px phone.
 The image-error interception patterns now cover both originals and derivatives, preserving the same recovery assertions.
 Image readiness helpers wait for nonzero natural width and full opacity, since the new blur placeholder intentionally appears before decoding completes.
