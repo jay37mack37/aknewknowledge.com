@@ -296,7 +296,8 @@ test('wire receipt rejects the HTTP/2 dataReceived undercount and accepts comple
     { url: cover, dataReceived: 26662, finished: 153240 },
     { url: `${origin}responsive/pages/01-720.avif`, dataReceived: 0, finished: null },
     { url: `${origin}responsive/pages/02-720.avif`, dataReceived: 0, finished: null },
-    // Requested by a later page turn: neither counted nor reported as in flight at paint.
+    // Synthetic row (not in the recording): a request sent after paint by a later page turn.
+    // It must be neither counted nor reported as in flight at paint.
     { url: `${origin}responsive/pages/03-720.avif`, dataReceived: 105246, finished: 105246, sentAtMs: 3571 },
   ]
   const coverBody = 152980
