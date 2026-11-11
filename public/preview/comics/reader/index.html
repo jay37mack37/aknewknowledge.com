@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#111a18">
+  <base href="/aknewcomic/">
+  <title>Preview · AKnewComic · The Costume · Issue #1</title>
+  <link rel="stylesheet" href="/preview/comics/reader/reader-v2.css">
+  <script src="/preview/comics/reader/reader-v2.js" defer></script>
+</head>
+<body class="comic">
+  <aside class="preview-note">Preview · Own saved place · <a href="/preview/comics/">Changes</a> · <a href="/aknewcomic/">Normal reader</a></aside>
+  <a class="skip" href="#story">Skip to comic</a>
+  <header class="masthead">
+    <a class="brand" href="/aknewcomic/" aria-label="AKnewComic cover">AKnew<span>Comic</span></a>
+    <div class="masthead-actions">
+      <button id="mode-toggle" aria-pressed="false">Large text mode</button>
+      <button id="options-toggle" aria-expanded="false" aria-controls="options">Options</button>
+    </div>
+  </header>
+  <section id="options" class="options" aria-label="Reading options" hidden>
+    <div id="size-row" class="option-row"><span>Text size</span><div class="size-controls"><button id="smaller" aria-label="Smaller story text">A−</button><output id="text-size" aria-live="polite">28</output><button id="larger" aria-label="Larger story text">A+</button></div></div>
+    <label class="option-row" for="page-select"><span>Go to page</span><select id="page-select" aria-label="Go to page"></select></label>
+    <div class="option-row"><span>Artwork fit</span><div role="group" aria-label="Artwork fit"><button id="fit-screen" aria-pressed="true">Fit screen</button> <button id="fit-width" aria-pressed="false">Fit width</button></div></div>
+    <button id="overview-toggle" aria-expanded="false" aria-controls="overview">Page overview</button>
+    <div id="overview" class="overview" aria-label="Page overview" hidden></div>
+    <p id="saved-place" class="saved-place" role="status"></p>
+    <button id="restart">Restart issue</button>
+    <a class="download" href="issue-01.pdf" download>Download Issue #1 ↓</a>
+  </section>
+  <div class="reader-tools"><p id="gesture-hint">Left third: back · Elsewhere: next</p><button id="enlarge">Enlarge</button></div>
+  <main id="story" tabindex="-1">
+    <p id="status" class="status" role="status">Opening the comic…</p>
+    <div id="reader" hidden>
+      <div id="view-controls" class="view-controls" role="group" aria-label="Reading view" hidden>
+        <button id="panel-view" aria-pressed="true">Panel view</button>
+        <button id="page-view" aria-pressed="false">Whole page</button>
+      </div>
+      <figure class="artwork">
+        <button id="art" class="art" aria-label="Enlarge cover"><img id="page" alt="" fetchpriority="high"></button>
+        <figcaption id="cover-note" class="cover-note">Issue #1 · A comic for Javell</figcaption>
+      </figure>
+      <section id="transcript" class="transcript" aria-label="Comic text" hidden></section>
+      <p id="ending" class="ending" hidden>End of Issue #1.<br>Two supports. One future.</p>
+    </div>
+    <noscript><p class="status">This reader needs JavaScript. <a href="issue-01.pdf">Download the complete comic</a> instead.</p></noscript>
+  </main>
+  <footer class="reading-bar">
+    <p id="count" class="count" role="status" aria-live="polite">Issue #1</p>
+    <nav class="navigation" aria-label="Comic navigation">
+      <button id="prev" disabled>← Back</button>
+      <button id="next" class="primary" disabled>Read issue →</button>
+    </nav>
+  </footer>
+  <dialog id="zoom" aria-label="Enlarged comic art">
+    <div class="zoom-bar"><button id="fit">Actual size</button><button id="close">Close ✕</button></div>
+    <div id="zoom-scroll" class="zoom-scroll"><img id="zoom-page" alt=""></div>
+    <p id="zoom-error" role="status" hidden>The enlarged image could not load.</p>
+  </dialog>
+</body>
+</html>
