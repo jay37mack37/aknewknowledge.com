@@ -69,6 +69,7 @@ No approved originals, issue metadata, dialogue or PDF are edited.
 
 ### Image delivery
 The build emits 180px thumbnails, 720px phone derivatives and 1200px larger-view derivatives from all 16 pages and 61 panels.
+The current build verifies 385 derivative assets against the generated manifest's byte counts.
 WebP uses quality 84 for reading and 65 for thumbnails.
 AVIF uses quality 68 and is selected only where smaller than its WebP equivalent.
 Unsupported AVIF decoding falls back to the WebP srcset, without dropping straight to full-resolution art.
