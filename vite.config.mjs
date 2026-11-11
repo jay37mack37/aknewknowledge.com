@@ -1,3 +1,4 @@
+import { comicImages } from './scripts/comic-images.mjs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import { fillPage, loadManifest, manifestPath } from './scripts/demos.mjs'
@@ -34,7 +35,7 @@ const projectsPage = {
 }
 
 export default defineConfig({
-  plugins: [demosPage, projectsPage],
+  plugins: [demosPage, projectsPage, comicImages(root)],
   build: {
     rollupOptions: {
       input: {

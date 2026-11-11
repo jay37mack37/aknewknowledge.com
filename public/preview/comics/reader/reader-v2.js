@@ -18,6 +18,78 @@
   let textSize = 28
   let touchStart = null
   let ignoreClickUntil = 0
+  let imageManifest = {}
+  let renderToken = 0
+  const decodedImages = new Map()
+
+  // Cap phone transfer pixels at 720px without changing the rendered layout.
+  // The full-resolution src stays available to the explicit Enlarge dialog.
+  function imageSizes() {
+    return window.innerWidth <= 600 ? `${Math.min(window.innerWidth - 24, 720 / (window.devicePixelRatio || 1))}px` : '1200px'
+  }
+  function configureImage(image, src, webpOnly = false) {
+    const entry = imageManifest[src]
+    if (entry) {
+      image.width = entry.width
+      image.height = entry.height
+      image.style.setProperty('--source-width', `${entry.width}px`)
+      image.style.setProperty('--source-ratio', String(entry.width / entry.height))
+      image.sizes = imageSizes()
+      image.srcset = (webpOnly ? entry.webp : entry.variants).filter((variant) => variant.width >= 600).map((variant) => `${variant.src} ${variant.width}w`).join(', ')
+    } else image.removeAttribute('srcset')
+    image.src = src
+  }
+  function warmNeighbours(src) {
+    const sequence = accessible() && shownView() === 'panel'
+      ? pages.flatMap((page, index) => index ? page.panels.map((panel) => panel.src) : [page.src])
+      : pages.map((page) => page.src)
+    const index = sequence.indexOf(src)
+    const wanted = [src, sequence[index + 1], sequence[index + 2], sequence[index - 1]].filter(Boolean)
+    for (const key of decodedImages.keys()) if (!wanted.includes(key)) decodedImages.delete(key)
+    // Start warming only after the visible image has decoded, never competing
+    // with the first page for the phone's network budget.
+    for (const key of wanted) {
+      if (key === src || decodedImages.has(key)) continue
+      const image = new Image()
+      image.fetchPriority = 'low'
+      let fallback = false
+      image.onerror = () => { if (!fallback) { fallback = true; configureImage(image, key, true) } }
+      configureImage(image, key)
+      decodedImages.set(key, image)
+      image.decode().catch(() => { /* Current-image loading reports errors when needed. */ })
+    }
+  }
+
+  function renderImage(src) {
+    const token = ++renderToken
+    const image = $('page')
+    const entry = imageManifest[src]
+    $('art').style.backgroundImage = entry ? `url("${entry.placeholder}")` : ''
+    $('art').style.backgroundSize = '100% 100%'
+    image.style.opacity = '0'
+    $('art').hidden = false
+    $('status').hidden = true
+    let fallback = false
+    image.onload = async () => {
+      try { await image.decode() } catch { return }
+      if (token !== renderToken) return
+      image.style.opacity = '1'
+      $('art').style.backgroundImage = ''
+      $('status').hidden = true
+      warmNeighbours(src)
+    }
+    image.onerror = () => {
+      if (token !== renderToken) return
+      if (entry && !fallback) { fallback = true; configureImage(image, src, true); return }
+      $('status').textContent = accessible()
+        ? 'This image could not load. The comic text is below. You can continue, reload, or download the issue from Options.'
+        : 'This image could not load. You can continue, reload, read the text in Large text mode, or download the issue from Options.'
+      $('status').hidden = false
+      $('art').hidden = true
+    }
+    configureImage(image, src)
+    if (image.complete && image.naturalWidth) image.onload()
+  }
 
   const accessible = () => mode === 'accessible'
   const shownView = () => accessible() ? view : 'page'
@@ -106,16 +178,7 @@
     $('art').setAttribute('aria-label', cover ? 'Enlarge cover' : 'Enlarge comic art')
     // Hiding a focused image button otherwise drops keyboard focus to body.
     if (document.activeElement === $('art')) $('story').focus({ preventScroll: true })
-    $('status').textContent = 'Loading artwork…'
-    $('status').hidden = false
-    $('art').hidden = true
-    $('page').src = src
-    if ($('page').complete && $('page').naturalWidth) {
-      $('status').hidden = true
-      $('art').hidden = false
-    }
-    // Warm the next whole page so normal page turns feel instant.
-    if (!large && pages[pageIndex + 1]) new Image().src = pages[pageIndex + 1].src
+    renderImage(src)
     save()
     if (scroll) window.scrollTo({ top: 0, behavior: 'instant' })
   }
@@ -134,14 +197,6 @@
     show(nextPage, nextPanel)
   }
 
-  $('page').onload = () => { $('status').hidden = true; $('art').hidden = false }
-  $('page').onerror = () => {
-    $('status').textContent = accessible()
-      ? 'This image could not load. The comic text is below. You can continue, reload, or download the issue from Options.'
-      : 'This image could not load. You can continue, reload, read the text in Large text mode, or download the issue from Options.'
-    $('status').hidden = false
-    $('art').hidden = true
-  }
   $('prev').onclick = () => move(-1)
   $('next').onclick = () => move(1)
   document.querySelector('.brand').onclick = (event) => { event.preventDefault(); if (pages.length) show(0) }
@@ -183,7 +238,7 @@
         button.setAttribute('aria-label', index === 0 ? 'Open cover' : `Open page ${index}`)
         if (index === pageIndex) button.setAttribute('aria-current', 'page')
         const image = document.createElement('img')
-        image.src = p.src
+        image.src = imageManifest[p.src]?.webp[0]?.src || p.src
         image.alt = ''
         image.loading = 'lazy'
         const label = document.createElement('span')
@@ -255,11 +310,14 @@
       return
     }
     const point = event.touches[0]
-    touchStart = { x: point.clientX, y: point.clientY, time: performance.now(), scroll: window.scrollY, maxY: 0, maxX: 0 }
+    touchStart = { x: point.clientX, y: point.clientY, time: event.timeStamp, scroll: window.scrollY, maxY: 0, maxX: 0 }
   }, { passive: true })
   $('story').addEventListener('touchmove', (event) => {
     if (!touchStart) return
     if (event.touches.length !== 1) { multiTouch = true; touchStart = null; suppressClick(); return }
+    // A stationary hold is a long press. A swipe already in motion may take
+    // longer than 500ms, especially while a phone is decoding nearby artwork.
+    if (event.timeStamp - touchStart.time > 500 && touchStart.maxX <= 10 && touchStart.maxY <= 10) { touchStart = null; suppressClick(); return }
     touchStart.maxX = Math.max(touchStart.maxX, Math.abs(event.touches[0].clientX - touchStart.x))
     touchStart.maxY = Math.max(touchStart.maxY, Math.abs(event.touches[0].clientY - touchStart.y))
   }, { passive: true })
@@ -273,8 +331,8 @@
     if (!start || invalid || !event.changedTouches.length) { suppressClick(); return }
     const dx = event.changedTouches[0].clientX - start.x
     const dy = event.changedTouches[0].clientY - start.y
-    const duration = performance.now() - start.time
-    if (zoomed() || Math.abs(window.scrollY - start.scroll) > 2 || duration > 500 || start.maxY > 30 || String(window.getSelection()).length) { suppressClick(); return }
+    const duration = event.timeStamp - start.time
+    if (zoomed() || Math.abs(window.scrollY - start.scroll) > 2 || (duration > 500 && start.maxX < 60) || duration > 2000 || start.maxY > 30 || String(window.getSelection()).length) { suppressClick(); return }
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2 && start.maxY < 30) {
       suppressClick()
       move(dx < 0 ? 1 : -1)
@@ -285,7 +343,12 @@
 
   async function boot() {
     try {
-      const response = await fetch('issue.json', { cache: 'no-cache' })
+      const [response, derivatives] = await Promise.all([
+        fetch('issue.json', { cache: 'no-cache' }),
+        fetch('responsive/manifest.json').then((result) => result.ok ? result.json() : null).catch(() => null),
+      ])
+      // Development checkouts without a build retain the original-image fallback.
+      if (derivatives?.schema === 'aknewcomic-images/2') imageManifest = derivatives.images
       if (!response.ok) throw new Error('Issue unavailable')
       const issue = await response.json()
       if (issue.schema !== 'aknewcomic-issue/2' || !Array.isArray(issue.pages) || issue.pages.length !== 16) throw new Error('Incomplete issue')

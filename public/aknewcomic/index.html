@@ -6,8 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#111a18">
   <title>AKnewComic · The Costume · Issue #1</title>
-  <link rel="stylesheet" href="reader-v2.css">
-  <script src="reader-v2.js" defer></script>
+  <link rel="stylesheet" href="reader-v2.css?v=mobile-fast-v2">
+  <script src="reader-v2.js?v=mobile-fast-v2" defer></script>
 </head>
 <body class="comic">
   <a class="skip" href="#story">Skip to comic</a>
@@ -21,8 +21,14 @@
   <section id="options" class="options" aria-label="Reading options" hidden>
     <div id="size-row" class="option-row"><span>Text size</span><div class="size-controls"><button id="smaller" aria-label="Smaller story text">A−</button><output id="text-size" aria-live="polite">28</output><button id="larger" aria-label="Larger story text">A+</button></div></div>
     <label class="option-row" for="page-select"><span>Go to page</span><select id="page-select" aria-label="Go to page"></select></label>
+    <div class="option-row"><span>Artwork fit</span><div role="group" aria-label="Artwork fit"><button id="fit-screen" aria-pressed="true">Fit screen</button> <button id="fit-width" aria-pressed="false">Fit width</button></div></div>
+    <button id="overview-toggle" aria-expanded="false" aria-controls="overview">Page overview</button>
+    <div id="overview" class="overview" aria-label="Page overview" hidden></div>
+    <p id="saved-place" class="saved-place" role="status"></p>
+    <button id="restart">Restart issue</button>
     <a class="download" href="issue-01.pdf" download>Download Issue #1 ↓</a>
   </section>
+  <div class="reader-tools"><p id="gesture-hint">Left third: back · Elsewhere: next</p><button id="enlarge">Enlarge</button></div>
   <main id="story" tabindex="-1">
     <p id="status" class="status" role="status">Opening the comic…</p>
     <div id="reader" hidden>

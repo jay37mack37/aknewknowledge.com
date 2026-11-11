@@ -41,7 +41,8 @@ async function noSideways(page: Page) {
 
 async function decoded(page: Page) {
   await expect(page.locator('#art')).toBeVisible()
-  expect(await page.locator('#page').evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
+  await expect.poll(() => page.locator('#page').evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
+  await expect(page.locator('#page')).toHaveCSS('opacity', '1')
 }
 
 test('normal layout reads all sixteen full pages as art only', async ({ page, request }) => {
@@ -63,14 +64,15 @@ test('normal layout reads all sixteen full pages as art only', async ({ page, re
   await expect(page.locator('#count')).toHaveText('Page 14 of 15')
 })
 
-test('normal layout: edge taps turn, center enlarges, arrows and focus behave', async ({ page }) => {
+test('normal layout: broad taps turn, explicit enlarge, arrows and focus behave', async ({ page }) => {
   await page.goto('/aknewcomic/')
   await decoded(page)
   const art = page.locator('#art')
   const tap = async (fraction: number) => {
-    const box = await art.boundingBox()
-    if (!box) throw new Error('art not visible')
-    await art.click({ position: { x: box.width * fraction, y: box.height / 2 } })
+    const area = page.locator('#story')
+    const box = await area.boundingBox()
+    if (!box) throw new Error('reading area not visible')
+    await area.click({ position: { x: box.width * fraction, y: 160 } })
   }
   await tap(0.92)
   await expect(page.locator('#count')).toHaveText('Page 1 of 15')
@@ -83,14 +85,22 @@ test('normal layout: edge taps turn, center enlarges, arrows and focus behave', 
   await decoded(page)
   await expect(page.getByRole('dialog')).not.toBeVisible()
   await tap(0.5)
+  await expect(page.locator('#count')).toHaveText('Page 2 of 15')
+  await expect(page.getByRole('dialog')).not.toBeVisible()
+  await decoded(page)
+  await tap(0.08)
+  await expect(page.locator('#count')).toHaveText('Page 1 of 15')
+  await decoded(page)
+  await page.locator('#enlarge').click()
   await expect(page.getByRole('dialog')).toBeVisible()
   await expect(page.locator('#zoom-page')).toHaveAttribute('src', /pages\/01\.webp$/)
   await page.getByRole('button', { name: 'Actual size' }).click()
   await expect(page.locator('#zoom-scroll')).toHaveClass(/actual/)
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).not.toBeVisible()
-  await expect(art).toBeFocused()
-  // Keyboard activation always enlarges instead of guessing an edge.
+  await expect(page.locator('#enlarge')).toBeFocused()
+  // Keyboard activation still enlarges instead of turning the page.
+  await art.focus()
   await page.keyboard.press('Enter')
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.getByRole('button', { name: 'Close ✕' }).click()
@@ -146,6 +156,10 @@ test.describe('touch', () => {
     // Wait out the short post-swipe click guard before a deliberate tap.
     await page.waitForTimeout(800)
     await page.locator('#art').tap()
+    await expect(page.locator('#count')).toHaveText('Page 3 of 15')
+    await expect(page.getByRole('dialog')).not.toBeVisible()
+    await decoded(page)
+    await page.locator('#enlarge').tap()
     await expect(page.getByRole('dialog')).toBeVisible()
   })
 })
@@ -217,7 +231,7 @@ test('normal layout fits without sideways scroll and keeps small tidy controls',
 })
 
 test('normal layout broken page art keeps navigation and points to Large text mode', async ({ page }) => {
-  await page.route('**/pages/01.webp', (route) => route.abort())
+  await page.route('**/pages/01*', (route) => route.abort())
   await page.goto('/aknewcomic/')
   await page.locator('#next').click()
   await expect(page.locator('#status')).toContainText('This image could not load')
