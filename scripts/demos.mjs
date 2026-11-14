@@ -107,7 +107,6 @@ export function pageSlots(m) {
     DEMOS_TITLE_B: esc(cut > 0 ? t.slice(cut + 1) : ''),
     DEMOS_HOW: inline(m.forum.how),
     DEMOS_BYLINE: esc(m.forum.byline),
-    DEMOS_INVITE: esc(m.forum.discord.invite),
     DEMOS_CARDS: renderDemosHtml(m),
   }
 }
